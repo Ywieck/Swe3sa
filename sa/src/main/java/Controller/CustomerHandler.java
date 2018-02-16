@@ -16,6 +16,7 @@ import org.omg.CORBA.SystemException;
 
 import Model.Adress;
 import Model.Customer;
+import Model.Salutation;
 
 public class CustomerHandler {
 
@@ -26,21 +27,22 @@ public class CustomerHandler {
 
 	private DataModel<Customer> customer;
 	private Customer rememberCustomer = new Customer();
-//	private Kreditkarte merkeKreditkarte = new Kreditkarte();
-	private Adress rememberAdress = new Adress();
+	// private Kreditkarte merkeKreditkarte = new Kreditkarte();
+	private Adress rememberAdress = new Adress(null, null, null);
 
 	@PostConstruct
 	public void init() {
 		try {
 			utx.begin();
 
-
 			customer = new ListDataModel<Customer>();
 			customer.setWrappedData(em.createNamedQuery("SelectCustomer").getResultList());
 			utx.commit();
 
 		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicRollbackException
-				| SystemException | NotSupportedException | HeuristicMixedException e) {
+				| SystemException | NotSupportedException | HeuristicMixedException
+				| javax.transaction.NotSupportedException | javax.transaction.SystemException
+				| javax.transaction.RollbackException e) {
 			e.printStackTrace();
 		}
 	}
@@ -68,7 +70,9 @@ public class CustomerHandler {
 			customer.setWrappedData(em.createNamedQuery("SelectCustomer").getResultList());
 			utx.commit();
 		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicRollbackException
-				| SystemException | NotSupportedException | HeuristicMixedException e) {
+				| SystemException | NotSupportedException | HeuristicMixedException
+				| javax.transaction.NotSupportedException | javax.transaction.SystemException
+				| javax.transaction.RollbackException e) {
 			e.printStackTrace();
 		}
 		return "index";
@@ -84,34 +88,37 @@ public class CustomerHandler {
 			customer.setWrappedData(em.createNamedQuery("SelectCustomer").getResultList());
 			utx.commit();
 		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicRollbackException
-				| SystemException | NotSupportedException | HeuristicMixedException e) {
+				| SystemException | NotSupportedException | HeuristicMixedException
+				| javax.transaction.NotSupportedException | javax.transaction.SystemException
+				| javax.transaction.RollbackException e) {
 			e.printStackTrace();
 			// -> Transaktionsende
 		}
 		return "alleKunden";
 	}
 
-	public String edit() {
+	public String editCustomer() {
 		rememberCustomer = customer.getRowData();
 		return "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 	}
 
-	public String kreditkarteSpeichern() {
-//		try {
-//			merkeKunde.setKreditkarte(merkeKreditkarte);
-//			utx.begin();
-//			merkeKunde = em.merge(merkeKunde);
-//			merkeKreditkarte = em.merge(merkeKreditkarte);
-//			em.persist(merkeKunde);
-//			em.persist(merkeKreditkarte);
-//			kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
-//			utx.commit();
-//		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicRollbackException
-//				| SystemException | NotSupportedException | HeuristicMixedException e) {
-//			e.printStackTrace();
-//		}
-//		return "alleKunden";
-//	}
+	// public String kreditkarteSpeichern() {
+	// try {
+	// merkeKunde.setKreditkarte(merkeKreditkarte);
+	// utx.begin();
+	// merkeKunde = em.merge(merkeKunde);
+	// merkeKreditkarte = em.merge(merkeKreditkarte);
+	// em.persist(merkeKunde);
+	// em.persist(merkeKreditkarte);
+	// kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
+	// utx.commit();
+	// } catch (SecurityException | IllegalStateException | RollbackException |
+	// HeuristicRollbackException
+	// | SystemException | NotSupportedException | HeuristicMixedException e) {
+	// e.printStackTrace();
+	// }
+	// return "alleKunden";
+	// }
 
 	public String saveAdress() {
 		try {
@@ -124,64 +131,66 @@ public class CustomerHandler {
 			customer.setWrappedData(em.createNamedQuery("SelectCustomer").getResultList());
 			utx.commit();
 		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicRollbackException
-				| SystemException | NotSupportedException | HeuristicMixedException e) {
+				| SystemException | NotSupportedException | HeuristicMixedException
+				| javax.transaction.RollbackException | javax.transaction.SystemException
+				| javax.transaction.NotSupportedException e) {
 			e.printStackTrace();
 		}
 		return "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 	}
 
 	public String newAdress() {
-		rememberCustomer = kunden.getRowData();
+		rememberCustomer = customer.getRowData();
 		rememberAdress = rememberCustomer.getAdress();
 
 		if (rememberAdress == null)
-			rememberAdress = new Adress();
+			rememberAdress = new Adress(null, null, null);
 
 		return "Adress";
 	}
 
 	public String cancel() {
-		return "alleKunden";
+		return "index";
 	}
 
-	public Anrede[] getAnredeValues() {
-		return Anrede.values();
+	public Salutation[] getSalutationValues() {
+		return Salutation.values();
 	}
 
-	public Kreditkartentyp[] getKreditkartentypValues() {
-		return Kreditkartentyp.values();
+	// public Kreditkartentyp[] getKreditkartentypValues() {
+	// return Kreditkartentyp.values();
+	// }
+
+	public DataModel<Customer> getCustomers() {
+		return customer;
 	}
 
-	public DataModel<Kunde> getKunden() {
-		return kunden;
+	public void setKunden(DataModel<Customer> customers) {
+		this.customer = customers;
 	}
 
-	public void setKunden(DataModel<Kunde> kunden) {
-		this.kunden = kunden;
+	public Customer getMerkeKunde() {
+		return rememberCustomer;
 	}
 
-	public Kunde getMerkeKunde() {
-		return merkeKunde;
+	public void setRememberCustomer(Customer rememberCustomer) {
+		this.rememberCustomer = rememberCustomer;
 	}
 
-	public void setMerkeKunde(Kunde merkeKunde) {
-		this.merkeKunde = merkeKunde;
+	// public Kreditkarte getMerkeKreditkarte() {
+	// return merkeKreditkarte;
+	// }
+	//
+	// public void setMerkeKreditkarte(Kreditkarte merkeKreditkarte) {
+	// this.merkeKreditkarte = merkeKreditkarte;
+	// }
+
+	public Adress getRememberAdress() {
+		return rememberAdress;
 	}
 
-//	public Kreditkarte getMerkeKreditkarte() {
-//		return merkeKreditkarte;
-//	}
-//
-//	public void setMerkeKreditkarte(Kreditkarte merkeKreditkarte) {
-//		this.merkeKreditkarte = merkeKreditkarte;
-	}
-
-	public Anschrift getMerkeAnschrift() {
-		return merkeAnschrift;
-	}
-
-	public void setMerkeAnschrift(Anschrift merkeAnschrift) {
-		this.merkeAnschrift = merkeAnschrift;
+	public void setRememberAdress(Adress rememberAdress) {
+		this.rememberAdress = rememberAdress;
 	}
 
 }
