@@ -16,14 +16,18 @@ body {
 	background: #6E6E6E;
 }
 
+}
 #header {
-	width: 100%;
+	/* 	verändert nicht viel..
+	evtl die pics hier rein ?? */
+	/* width: 100%;
 	height: 150px;
 	background: maroon;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	-o-border-radius: 5px;
+	-o-border-radius: 5px;*/
+	
 }
 
 #header h1 {
@@ -32,30 +36,48 @@ body {
 	position: relative;
 	opacity: 0.8;
 	background-size: 100% 100%;
-	padding-top: 50px;
-	font-size: 90px;
+	padding-top: 200px;
+	font-size: 50px;
 	font-wight: bold;
 	color: white;
 	font-family: Courier;
 }
 
 #main {
-width: 3000px;
-	height: 500px;
+	width: 100%;
+	height: 980px;
 	background: lightgray;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	-o-border-radius: px;}
-
-#menue {
-	
+	-o-border-radius: 5px;
 }
 
-#inhalt {
-	
+#menue {
+	width: 20%;
+	height: 980px;
+	background: maroon;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-o-border-radius: 5px;
+}
+
+#footer {
+	/* clear: both;  wird gebraucht bei main und menue = right/left*/
+	width: 100%;
+	height: 200px;
+	background: black;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-o-border-radius: 5px;
 }
 
 /* .header {
