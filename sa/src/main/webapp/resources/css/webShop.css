@@ -18,7 +18,7 @@ body {
 
 .headerImg {
 	height: 200px;
-	background-image: url(../Headerpic.jpg) !important;
+	background-image: url(../Headerpic2.jpg) !important;
 	background-repeat: no-repeat;
 	position: realative;
 	opacity: 0.8;
@@ -27,12 +27,12 @@ body {
 }
 
 .headerLogo {
-	height: 200px;
+	height: 300px;
 	background-image: url(../logous.png) !important;
 	background-repeat: no-repeat;
 	position: relative;
 	opacity: 1;
-	background-size: 400px 200px;
+	background-size: 50% 50%;
 	z-index: 0;
 }
 
@@ -58,20 +58,7 @@ body {
 	-webkit-border-radius: 5px;
 	-o-border-radius: 5px;
 }
-/* menue befüllung */
-/* #steuerung {
-	background-color: white;
-	width: 12em;
-	float: left;
-	margin: 10px;
-} */
 
-/* #steuerung strong, #steuerung a {
-	text-decoration: none;
-	border: 1px solid black;
-	display: block;
-	padding: 6px 6px 6px 20px;
-} */
 a.navi, a.navi_first, a.navi_self {
 	display: block;
 	white-space: nowrap;
@@ -93,8 +80,8 @@ a.navi_first {
 }
 
 a.navi:link, a.navi_first:link, a.navi:visited, a.navi_first:visited {
-	background-color: rgb(115, 115, 75);
-	color: white;
+	background-color: maroon;
+	color: black;
 }
 
 a.navi_self:link, a.navi_self:visited {
@@ -109,12 +96,12 @@ a.navi:hover, a.navi_first:hover, a.navi_self:hover, a.navi:active, a.navi_first
 }
 
 #menuitem {
-	background-color: grey;
+	background-color: maroon;
 	line-height: 50px;
 }
 
 #menuitem:hover {
-	background-color: green;
+	background-color: grey;
 }
 
 #inhalt {
