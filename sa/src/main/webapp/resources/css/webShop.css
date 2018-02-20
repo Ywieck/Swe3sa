@@ -5,12 +5,6 @@ body {
 	margin: 0;
 }
 
-/* #website {
-	width: 100%;
-		height: 100%;
-	position: relative;
-	background: #6E6E6E;
-} */
 }
 #header {
 	position: relative;
@@ -45,7 +39,7 @@ body {
 #menubar {
 	width: 100%;
 	height: 50px;
-	background: #3b3b3b;
+	background: maroon;
 }
 
 #main {
@@ -64,6 +58,55 @@ body {
 	-webkit-border-radius: 5px;
 	-o-border-radius: 5px;
 }
+/* menue befüllung */
+/* #steuerung {
+	background-color: white;
+	width: 12em;
+	float: left;
+	margin: 10px;
+} */
+
+/* #steuerung strong, #steuerung a {
+	text-decoration: none;
+	border: 1px solid black;
+	display: block;
+	padding: 6px 6px 6px 20px;
+} */
+a.navi, a.navi_first, a.navi_self {
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	font-family: Tahoma, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	letter-spacing: 0.1em;
+	padding: 3px;
+	text-align: center;
+}
+
+a.navi_first {
+	border-top: 1px solid black;
+}
+
+a.navi:link, a.navi_first:link, a.navi:visited, a.navi_first:visited {
+	background-color: rgb(115, 115, 75);
+	color: white;
+}
+
+a.navi_self:link, a.navi_self:visited {
+	background-color: gray;
+	color: white;
+}
+
+a.navi:hover, a.navi_first:hover, a.navi_self:hover, a.navi:active, a.navi_first:active,
+	a.navi_self:active {
+	background-color: white;
+	color: black;
+}
 
 #inhalt {
 	float: right;
@@ -76,19 +119,6 @@ body {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-o-border-radius: 5px;
-}
-#steuerung {
-    background-color: #dddddd;
-    width: 12em;
-    float: left;
-    margin:  10px;
-}
-
-#steuerung strong,
-#steuerung a {
-    text-decoration: none;
-    border: 1px solid black;
-    display: block;
 }
 
 #footer {
