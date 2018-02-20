@@ -65,9 +65,18 @@ body {
 	-o-border-radius: 5px;
 }
 
+#menuitem {
+	background-color: grey;
+	line-height: 50px;
+}
+
+#menuitem:hover {
+	background-color: green;
+}
+
 #inhalt {
 	float: right;
-	width: 79.3%; /* 1% rest für den abstand zum menue*/
+	width: 79.3%; /* 1% rest fï¿½r den abstand zum menue*/
 	height: 980px;
 	background: lightgray;
 	margin-top: 10px;
