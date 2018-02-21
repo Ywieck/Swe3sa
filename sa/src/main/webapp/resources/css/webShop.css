@@ -7,13 +7,14 @@ body {
 
 }
 #header {
-	position: relative;
+	position: absolute;
 	width: 100%;
-	background: black;
+	background: white;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-o-border-radius: 5px;
+	background: black;
 }
 
 .headerImg {
@@ -37,9 +38,20 @@ body {
 }
 
 #menubar {
+	position: relative;
+	top: 0;
+	left: 0;
 	width: 100%;
 	height: 50px;
-	background: maroon;
+	background: #2f2f2f;
+	border-top: 4px solid maroon;
+	box-shadow: inset 0 -0.4em 0.7em rgba(255, 255, 255, 0.15);
+}
+
+#menubar table {
+	width: 100%;
+	color: white;
+	font-family: 'Jura', sans-serif;
 }
 
 #main {
@@ -57,6 +69,7 @@ body {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-o-border-radius: 5px;
+	width: 20%;
 }
 
 a.navi, a.navi_first, a.navi_self {
@@ -66,7 +79,7 @@ a.navi, a.navi_first, a.navi_self {
 	border-left: 1px solid black;
 	border-right: 1px solid black;
 	border-bottom: 1px solid black;
-	font-family: Tahoma, sans-serif;
+	font-family: 'Jura', sans-serif;
 	font-size: 12px;
 	font-weight: bold;
 	text-decoration: none;
@@ -81,11 +94,11 @@ a.navi_first {
 
 a.navi:link, a.navi_first:link, a.navi:visited, a.navi_first:visited {
 	background-color: maroon;
-	color: black;
+	color: white;
 }
 
 a.navi_self:link, a.navi_self:visited {
-	background-color: gray;
+	background-color: silver;
 	color: white;
 }
 
@@ -95,18 +108,9 @@ a.navi:hover, a.navi_first:hover, a.navi_self:hover, a.navi:active, a.navi_first
 	color: black;
 }
 
-#menuitem {
-	background-color: maroon;
-	line-height: 50px;
-}
-
-#menuitem:hover {
-	background-color: grey;
-}
-
 #inhalt {
 	float: right;
-	width: 79.3%; /* 1% rest f�r den abstand zum menue*/
+	width: 79.3%; /* 0,7% rest fuer den Abstand zum menue*/
 	height: 980px;
 	background: lightgray;
 	margin-top: 10px;
