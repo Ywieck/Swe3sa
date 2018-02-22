@@ -7,23 +7,100 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:p="http://primefaces.org/ui">
 
-<head>
-<title>EY!Wear!YE</title>
-<link href="https://fonts.googleapis.com/css?family=Jura"
-	rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="resources/css/webShop.css" type="text/css" />
+<h:head>
+	<title>EY!Wear!YE</title>
+	<link href="https://fonts.googleapis.com/css?family=Jura"
+		rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="resources/css/webShop.css" type="text/css" />
+</h:head>
 
-
-</head>
-
-<body>
+<h:body>
 	<div id="header">
 		<div class="headerImg">
 			<div class="headerLogo"></div>
 		</div>
 	</div>
 	<div id="menubar">
-		<table>
+
+		<h:form>
+			<p:growl id="messages" />
+
+			<p:menubar>
+				<p:submenu label="Damen">
+					<p:submenu label="Bekleidung">
+						<p:menuitem value="Kleider" url="#" />
+						<p:menuitem value="Shirts" url="#" />
+						<p:menuitem value="Tops" url="#" />
+						<p:menuitem value="Jeans" url="#" />
+						<p:menuitem value="Jacken" url="#" />
+					</p:submenu>
+					<p:submenu label="Schuhe">
+						<p:menuitem value="High Heels" url="#" />
+						<p:menuitem value="Stiefeletten" url="#" />
+						<p:menuitem value="Sneaker" url="#" />
+						<p:menuitem value="Sportschuhe" url="#" />
+					</p:submenu>
+				</p:submenu>
+
+				<p:submenu label="Herren">
+					<p:submenu label="Bekleidung">
+						<p:menuitem value="Jeans" url="#" />
+						<p:menuitem value="T-Shirts" url="#" />
+						<p:menuitem value="Poloshirts" url="#" />
+						<p:menuitem value="Hemden" url="#" />
+						<p:menuitem value="Jacken" url="#" />
+					</p:submenu>
+					<p:submenu label="Schuhe">
+						<p:menuitem value="Sneaker" url="#" />
+						<p:menuitem value="Schnürschuhe" url="#" />
+						<p:menuitem value="Boots" url="#" />
+						<p:menuitem value="Sportschuhe" url="#" />
+					</p:submenu>
+				</p:submenu>
+
+				<p:submenu label="Sale %">
+					<p:submenu label="Damen">
+						<p:submenu label="Bekleidung">
+							<p:menuitem value="Kleider" url="#" />
+							<p:menuitem value="Shirts" url="#" />
+							<p:menuitem value="Tops" url="#" />
+							<p:menuitem value="Jeans" url="#" />
+							<p:menuitem value="Jacken" url="#" />
+						</p:submenu>
+						<p:submenu label="Schuhe">
+							<p:menuitem value="High Heels" url="#" />
+							<p:menuitem value="Stiefeletten" url="#" />
+							<p:menuitem value="Sneaker" url="#" />
+							<p:menuitem value="Sportschuhe" url="#" />
+						</p:submenu>
+					</p:submenu>
+					<p:submenu label="Herren">
+						<p:submenu label="Bekleidung">
+							<p:menuitem value="Jeans" url="#" />
+							<p:menuitem value="T-Shirts" url="#" />
+							<p:menuitem value="Poloshirts" url="#" />
+							<p:menuitem value="Hemden" url="#" />
+							<p:menuitem value="Jacken" url="#" />
+						</p:submenu>
+						<p:submenu label="Schuhe">
+							<p:menuitem value="Sneaker" url="#" />
+							<p:menuitem value="Schnürschuhe" url="#" />
+							<p:menuitem value="Boots" url="#" />
+							<p:menuitem value="Sportschuhe" url="#" />
+						</p:submenu>
+					</p:submenu>
+				</p:submenu>
+
+				<f:facet name="options">
+					<p:inputText style="margin-right:10px" placeholder="Search" />
+					<p:commandButton type="button" value="Anmeldung" />
+					<p:commandButton type="button" value="Warenkorb" />
+
+				</f:facet>
+			</p:menubar>
+		</h:form>
+
+		<!-- <table>
 			<tr>
 				<td
 					style="width: 15%; border-right: 2px solid rgba(255, 255, 255, 0.18)">Damen</td>
@@ -35,26 +112,25 @@
 					style="width: 15%; border-right: 2px solid rgba(255, 255, 255, 0.18)">Anmeldung</td>
 				<td style="width: 15%;">Warenkorb</td>
 			</tr>
-		</table>
+		</table> -->
 	</div>
 	<div id="main">
 		<div id="menue">
-			<div id="navigation">
-			<p>
+			<!-- <div id="navigation">
+				<p>
 					<a class="navi_self navi_first" href="index.xhtml"> NEU</a> <a
 						class="navi" href="index.xhtml" title="Bekleidung"> BEKLEIDUNG</a>
 					<a class="navi" href="index.xhtml" title="Schuhe">SCHUHE</a> <a
 						class="navi" href="index.xhtml" title="Sport"> SPORT</a> <a
 						class="navi" href="index.xhtml" title="Accessoires">ACCESSOIRES</a>
 					<a class="navi" href="index.xhtml" title="Wäsche">WÄSCHE</a> <a
-						class="navi" href="index.xhtml" title="Premium">PREMIUM</a> <a
-						class="navi" href="index.xhtml" title="Marken">MARKEN</a> <a
 						class="navi" href="index.xhtml" title="Sale"> SALE %</a>
 				</p>
-			</div>
+			</div> -->
 		</div>
 		<div id="inhalt"></div>
+
 	</div>
 	<div id="footer"></div>
-</body>
+</h:body>
 </html>

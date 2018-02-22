@@ -5,7 +5,6 @@ body {
 	margin: 0;
 }
 
-}
 #header {
 	position: absolute;
 	width: 100%;
@@ -35,7 +34,6 @@ body {
 	background-size: 50% 50%;
 	z-index: 0;
 }
-
 #menubar {
 	position: absolute;
 	top: 200px;
@@ -47,7 +45,7 @@ body {
 	box-shadow: inset 0 -0.4em 0.7em rgba(255, 255, 255, 0.15);
 }
 
-#menubar table {
+/*  #menubar table {
 	width: 100%;
 	color: white;
 	font-family: Jura, sans-serif;
@@ -59,17 +57,16 @@ body {
 	padding-top: 0.5em;
 	padding-left: 0;
 	padding-right: 0;
-	/* Trenn-Striche Höhe */
+	Trenn-Striche Höhe
 	padding-bottom: 0.7em;
-}
-
+}  */
 #main {
 	position: absolute;
 	width: 100%;
 	top: 250px;
 }
 
-#menue {
+/* #menue {
 	float: left;
 	width: 20%;
 	top: 250px;
@@ -81,16 +78,14 @@ body {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-o-border-radius: 5px;
-	width: 20%;
-	height: 980px;
-}
+} */
 
-a.navi, a.navi_first, a.navi_self {
+/* a.navi, a.navi_first, a.navi_self {
 	display: block;
 	white-space: nowrap;
 	overflow: hidden;
-	/* border-left: 1px solid gray; */
-	/* border-right: 1px solid gray; */
+	border-left: 1px solid gray;
+	border-right: 1px solid gray;
 	border-bottom: 1px solid silver;
 	font-family: Jura, sans-serif;
 	font-size: 12px;
@@ -118,11 +113,11 @@ a.navi:hover, a.navi_first:hover, a.navi_self:hover, a.navi:active, a.navi_first
 	a.navi_self:active {
 	background-color: white;
 	color: black;
-}
+} */
 
 #inhalt {
 	float: right;
-	width: 79.3%; /* 0,7% rest fuer den Abstand zum menue*/
+	width: 100%; /* 0,7% rest fuer den Abstand zum menue*/
 	height: 980px;
 	background: lightgray;
 	margin-top: 10px;
