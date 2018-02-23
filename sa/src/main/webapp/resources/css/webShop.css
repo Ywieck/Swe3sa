@@ -34,6 +34,7 @@ body {
 	background-size: 50% 50%;
 	z-index: 0;
 }
+
 #menubar {
 	position: absolute;
 	top: 200px;
@@ -114,7 +115,6 @@ a.navi:hover, a.navi_first:hover, a.navi_self:hover, a.navi:active, a.navi_first
 	background-color: white;
 	color: black;
 } */
-
 #inhalt {
 	float: right;
 	width: 100%; /* 0,7% rest fuer den Abstand zum menue*/
@@ -137,5 +137,17 @@ a.navi:hover, a.navi_first:hover, a.navi_self:hover, a.navi:active, a.navi_first
 	background: #3b3b3b;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	background: #3b3b3b;
+	color: white;
+	font-family: Jura, sans-serif;
+	font-weight: bold;
+}
+
+.fot{
+	width: 100%;
+	margin: 1em 0em 1em 0em;
+	padding-bottom: 1em;
+}
+
+.fot td {
+	width: 33%;
 }
