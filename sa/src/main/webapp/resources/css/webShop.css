@@ -5,17 +5,10 @@ body {
 	margin: 0;
 }
 
-/* #website {
-	width: 100%;
-		height: 100%;
-	position: relative;
-	background: #6E6E6E;
-} */
-}
 #header {
-	position: relative;
+	position: absolute;
 	width: 100%;
-	background: black;
+	background: white;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -24,7 +17,7 @@ body {
 
 .headerImg {
 	height: 200px;
-	background-image: url(../Headerpic.jpg) !important;
+	background-image: url(../Headerpic2.jpg) !important;
 	background-repeat: no-repeat;
 	position: realative;
 	opacity: 0.8;
@@ -33,28 +26,50 @@ body {
 }
 
 .headerLogo {
-	height: 200px;
+	height: 300px;
 	background-image: url(../logous.png) !important;
 	background-repeat: no-repeat;
 	position: relative;
 	opacity: 1;
-	background-size: 400px 200px;
+	background-size: 50% 50%;
 	z-index: 0;
 }
-
 #menubar {
+	position: absolute;
+	top: 200px;
+	left: 0;
 	width: 100%;
 	height: 50px;
-	background: #3b3b3b;
+	background: #2f2f2f;
+	border-top: 4px solid maroon;
+	box-shadow: inset 0 -0.4em 0.7em rgba(255, 255, 255, 0.15);
 }
 
-#main {
+/*  #menubar table {
 	width: 100%;
+	color: white;
+	font-family: Jura, sans-serif;
+	font-weight: bold;
+	font-size: 15px;
 }
 
-#menue {
+#menubar td {
+	padding-top: 0.5em;
+	padding-left: 0;
+	padding-right: 0;
+	Trenn-Striche Höhe
+	padding-bottom: 0.7em;
+}  */
+#main {
+	position: absolute;
+	width: 100%;
+	top: 250px;
+}
+
+/* #menue {
 	float: left;
 	width: 20%;
+	top: 250px;
 	height: 980px;
 	background: maroon;
 	margin-top: 10px;
@@ -63,20 +78,46 @@ body {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-o-border-radius: 5px;
+} */
+
+/* a.navi, a.navi_first, a.navi_self {
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	border-left: 1px solid gray;
+	border-right: 1px solid gray;
+	border-bottom: 1px solid silver;
+	font-family: Jura, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	letter-spacing: 0.1em;
+	padding: 7px;
+	text-align: center;
 }
 
-#menuitem {
-	background-color: grey;
-	line-height: 50px;
+a.navi_first {
+	border-top: 1px solid silver;
 }
 
-#menuitem:hover {
-	background-color: green;
+a.navi:link, a.navi_first:link, a.navi:visited, a.navi_first:visited {
+	background-color: maroon;
+	color: white;
 }
+
+a.navi_self:link, a.navi_self:visited {
+	color: white;
+}
+
+a.navi:hover, a.navi_first:hover, a.navi_self:hover, a.navi:active, a.navi_first:active,
+	a.navi_self:active {
+	background-color: white;
+	color: black;
+} */
 
 #inhalt {
 	float: right;
-	width: 79.3%; /* 1% rest fï¿½r den abstand zum menue*/
+	width: 100%; /* 0,7% rest fuer den Abstand zum menue*/
 	height: 980px;
 	background: lightgray;
 	margin-top: 10px;
@@ -86,25 +127,15 @@ body {
 	-webkit-border-radius: 5px;
 	-o-border-radius: 5px;
 }
-#steuerung {
-    background-color: #dddddd;
-    width: 12em;
-    float: left;
-    margin:  10px;
-}
-
-#steuerung strong,
-#steuerung a {
-    text-decoration: none;
-    border: 1px solid black;
-    display: block;
-}
 
 #footer {
 	clear: both; /*wird gebraucht bei main und menue = right/left*/
+	position: absolute;
 	width: 100%;
 	height: 200px;
+	top: 1240px;
 	background: #3b3b3b;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	background: #3b3b3b;
 }
