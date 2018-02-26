@@ -115,43 +115,98 @@
 		</table> -->
 	</div>
 	<div id="main">
-		<div id="menue">
-			<!-- <div id="navigation">
-				<p>
-					<a class="navi_self navi_first" href="index.xhtml"> NEU</a> <a
-						class="navi" href="index.xhtml" title="Bekleidung"> BEKLEIDUNG</a>
-					<a class="navi" href="index.xhtml" title="Schuhe">SCHUHE</a> <a
-						class="navi" href="index.xhtml" title="Sport"> SPORT</a> <a
-						class="navi" href="index.xhtml" title="Accessoires">ACCESSOIRES</a>
-					<a class="navi" href="index.xhtml" title="Wäsche">WÄSCHE</a> <a
-						class="navi" href="index.xhtml" title="Sale"> SALE %</a>
-				</p>
-			</div> -->
-		</div>
-		<div id="inhalt"></div>
+		<div id="inhalt">
+			<h:form id="form">
+				<p:dataGrid var="car" value="#{dataGridView.cars}" columns="3"
+					layout="grid" rows="12" paginator="true" id="cars"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="6,12,16">
 
+					<f:facet name="header">
+            Produkte
+        </f:facet>
+
+					<p:panel header="#{car.id}" style="text-align:center">
+						<h:panelGrid columns="1" style="width:100%">
+							<p:graphicImage name="demo/images/car/#{car.brand}.gif" />
+
+							<h:outputText value="#{car.year}" />
+
+							<p:commandLink update=":form:carDetail"
+								oncomplete="PF('carDialog').show()" title="View Detail">
+								<h:outputText styleClass="ui-icon ui-icon-search"
+									style="margin:0 auto;" />
+								<f:setPropertyActionListener value="#{car}"
+									target="#{dataGridView.selectedCar}" />
+							</p:commandLink>
+						</h:panelGrid>
+					</p:panel>
+
+				</p:dataGrid>
+
+				<p:dialog header="Car Info" widgetVar="carDialog" modal="true"
+					showEffect="fade" hideEffect="fade" resizable="false">
+					<p:outputPanel id="carDetail" style="text-align:center;">
+						<p:panelGrid columns="2"
+							rendered="#{not empty dataGridView.selectedCar}"
+							columnClasses="label,value">
+							<f:facet name="header">
+								<p:graphicImage
+									name="demo/images/car/#{dataGridView.selectedCar.brand}-big.gif" />
+							</f:facet>
+
+							<h:outputText value="Id:" />
+							<h:outputText value="#{dataGridView.selectedCar.id}" />
+
+							<h:outputText value="Year" />
+							<h:outputText value="#{dataGridView.selectedCar.year}" />
+
+							<h:outputText value="Color:" />
+							<h:outputText value="#{dataGridView.selectedCar.color}"
+								style="color:#{dataGridView.selectedCar.color}" />
+
+							<h:outputText value="Price" />
+							<h:outputText value="$#{dataGridView.selectedCar.price}" />
+						</p:panelGrid>
+					</p:outputPanel>
+				</p:dialog>
+			</h:form>
+
+		</div>
 	</div>
 	<div id="footer">
-	<table class="fot">
-	<tr>
-	<td>
-	<table style="margin-left: 4em;">
-	<tr><td>Über Uns</td></tr>
-	<tr><td>Impressum</td></tr>
-	<tr><td>AGB</td></tr>
-	<tr><td>Kontakt</td></tr>
-	<tr><td>Newsletter</td></tr>
-	<tr><td>RSS Feed</td></tr>
-	
-	</table>
-</td>
-	<td>Newsletter</td>
-	<td>Facebook</td>
-	<td></td>
-	</tr>
-	</table>
-	
-	
+		<table class="fot">
+			<tr>
+				<td>
+					<table style="margin-left: 4em;">
+						<tr>
+							<td>Über Uns</td>
+						</tr>
+						<tr>
+							<td>Impressum</td>
+						</tr>
+						<tr>
+							<td>AGB</td>
+						</tr>
+						<tr>
+							<td>Kontakt</td>
+						</tr>
+						<tr>
+							<td>Newsletter</td>
+						</tr>
+						<tr>
+							<td>RSS Feed</td>
+						</tr>
+
+					</table>
+				</td>
+				<td>Newsletter</td>
+				<td>Facebook</td>
+				<td></td>
+			</tr>
+		</table>
+
+
 	</div>
 </h:body>
 </html>

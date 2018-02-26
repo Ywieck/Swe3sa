@@ -18,7 +18,7 @@ import javax.validation.constraints.Size;
 
 @NamedQuery(name = "SelectCustomer", query = "Select c from Customer c")
 public class Customer {
-	private String salutation;
+	private Salutation salutation;
 
 	@Size(min = 3, max = 30)
 	private String firstName;
@@ -43,7 +43,7 @@ public class Customer {
 		super();
 	}
 
-	public Customer(String salutation, String firstName, String surname, Date birthday,
+	public Customer(Salutation salutation, String firstName, String surname, Date birthday,
 			/* Kreditkarte kreditkarte, */ Adress adress) {
 		this();
 		this.salutation = salutation;
@@ -55,11 +55,11 @@ public class Customer {
 
 	}
 
-	public String getSalutation() {
+	public Salutation getSalutation() {
 		return salutation;
 	}
 
-	public void setSalutation(String salutation) {
+	public void setSalutation(Salutation salutation) {
 		this.salutation = salutation;
 	}
 
