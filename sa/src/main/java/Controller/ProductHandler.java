@@ -26,17 +26,30 @@ public class ProductHandler {
 	@Resource
 	private UserTransaction utx;
 
-	private DataModel<Product> product;
-	private Product rememberProduct = new Product();
+	private DataModel<Product> products;
+	
+
+	public DataModel<Product> getProducts() {
+		return products;
+	}
+
+
+	public void setProducts(DataModel<Product> products) {
+		this.products = products;
+	}
+
 
 	@PostConstruct
-	public void init() {
+	public void init() throws SecurityException, IllegalStateException, RollbackException, HeuristicRollbackException, SystemException, NotSupportedException, HeuristicMixedException, javax.transaction.NotSupportedException, javax.transaction.SystemException
+, javax.transaction.RollbackException {
 		try {
 			utx.begin();
-			em.persist(new Product("Hose", 34, "stinkt"));
 
-			product = new ListDataModel<Product>();
-			product.setWrappedData(em.createNamedQuery("SelectProduct").getResultList());
+			products = new ListDataModel<Product>();
+
+			em.persist(new Product("Enno"));
+			em.persist(new Product("Yasar"));
+			products.setWrappedData(em.createNamedQuery("SelectedProduct").getResultList());
 			utx.commit();
 
 		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicRollbackException
@@ -45,71 +58,6 @@ public class ProductHandler {
 				| javax.transaction.RollbackException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public String newProduct() {
-		rememberProduct = new Product();
-		return "newProduct";
-	}
-
-	public String saveProduct() {
-		try {
-			utx.begin();
-			rememberProduct = em.merge(rememberProduct);
-			em.persist(rememberProduct);
-			product.setWrappedData(em.createNamedQuery("SelectProduct").getResultList());
-			utx.commit();
-		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicRollbackException
-				| SystemException | NotSupportedException | HeuristicMixedException
-				| javax.transaction.NotSupportedException | javax.transaction.SystemException
-				| javax.transaction.RollbackException e) {
-			e.printStackTrace();
-		}
-		return "allProducts";
-	}
-
-	public String deleteProduct() {
-		// -> Transaktionsbeginn
-		try {
-			utx.begin();
-			rememberProduct = product.getRowData();
-			rememberProduct = em.merge(rememberProduct);
-			em.remove(rememberProduct);
-			product.setWrappedData(em.createNamedQuery("SelectProduct").getResultList());
-			utx.commit();
-		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicRollbackException
-				| SystemException | NotSupportedException | HeuristicMixedException
-				| javax.transaction.NotSupportedException | javax.transaction.SystemException
-				| javax.transaction.RollbackException e) {
-			e.printStackTrace();
-			// -> Transaktionsende
-		}
-		return "allProducts";
-	}
-
-	public String editProduct() {
-		rememberProduct = product.getRowData();
-		return "newProduct";
-	}
-
-	public String cancel() {
-		return "index";
-	}
-
-	public DataModel<Product> getProduct() {
-		return product;
-	}
-
-	public void setProduct(DataModel<Product> product) {
-		this.product = product;
-	}
-
-	public Product getRememberProdukt() {
-		return rememberProduct;
-	}
-
-	public void setRememberProduct(Product rememberProduct) {
-		this.rememberProduct = rememberProduct;
 	}
 
 }
