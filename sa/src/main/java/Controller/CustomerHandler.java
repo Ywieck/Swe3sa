@@ -2,6 +2,8 @@ package Controller;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.persistence.EntityManager;
@@ -18,6 +20,8 @@ import Model.Adress;
 import Model.Customer;
 import Model.Salutation;
 
+@ManagedBean
+@ViewScoped
 public class CustomerHandler {
 
 	@PersistenceContext
@@ -49,7 +53,7 @@ public class CustomerHandler {
 
 	public String newCustomer() {
 		rememberCustomer = new Customer();
-		return "neuerKunde";
+		return "newCustomer";
 	}
 
 	// public String neuKreditkarte() {
@@ -165,11 +169,11 @@ public class CustomerHandler {
 		return customer;
 	}
 
-	public void setKunden(DataModel<Customer> customers) {
+	public void setCustomer(DataModel<Customer> customers) {
 		this.customer = customers;
 	}
 
-	public Customer getMerkeKunde() {
+	public Customer getRememberCustomer() {
 		return rememberCustomer;
 	}
 

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+
+<h:head>
+	<title>EY!Wear!YE</title>
+	<link href="https://fonts.googleapis.com/css?family=Jura"
+		rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="resources/css/webShop.css" type="text/css" />
+</h:head>
+
+<h:body>
+	<div id="header">
+		<div class="headerImg">
+			<div class="headerLogo"></div>
+		</div>
+	</div>
+	<div id="menubar">
+
+		<h:form>
+			<p:growl id="messages" />
+
+			<p:menubar>
+				<p:submenu label="Damen">
+					<p:submenu label="Bekleidung">
+						<p:menuitem value="Shirts" url="#" />
+						<p:menuitem value="Jeans" url="#" />
+						<p:menuitem value="Jacken" url="#" />
+					</p:submenu>
+					<p:submenu label="Schuhe">
+						<p:menuitem value="Sneaker" url="#" />
+						<p:menuitem value="Sportschuhe" url="#" />
+					</p:submenu>
+				</p:submenu>
+
+				<p:submenu label="Herren">
+					<p:submenu label="Bekleidung">
+						<p:menuitem value="Jeans" url="#" />
+						<p:menuitem value="T-Shirts" url="#" />
+						<p:menuitem value="Jacken" url="#" />
+					</p:submenu>
+					<p:submenu label="Schuhe">
+						<p:menuitem value="Sneaker" url="#" />
+						<p:menuitem value="Sportschuhe" url="#" />
+					</p:submenu>
+				</p:submenu>
+
+				<f:facet name="options">
+					<p:inputText style="margin-right:10px" placeholder="Suche ..." />
+					<p:splitButton value="Anmelden">
+						<p:menuitem value="Login" url="#" />
+						<p:separator />
+						<p:menuitem value="Registrieren" url="registrieren.xhtml" />
+					</p:splitButton>
+					<p:commandButton type="button" value="Warenkorb"
+						icon="ui-icon-cart" />
+				</f:facet>
+			</p:menubar>
+		</h:form>
+	</div>
+	<div id="content">
+		<h:form id="form">
+			<p:growl id="growl" showDetail="true" sticky="true" />
+			<p:panelGrid styleClass="anmeldungGrid" columns="2" cellpadding="20">
+				<f:facet name="header">Persönliche Daten</f:facet>
+
+				<p:outputLabel value="Vorname" for="vorname" />
+				<h:panelGroup>
+					<p:inputText id="vorname" required="true" value="Vorname.."
+						requiredMessage="vorname fehlt">
+						<!-- 						<f:converter converterId="eigenerConverter" /> -->
+					</p:inputText>
+					<h:message for="vorname" styleClass="message" />
+				</h:panelGroup>
+
+				<p:outputLabel value="Nachname" for="nachname" />
+				<h:panelGroup>
+					<p:inputText id="nachname" required="true" value="Nachname.."
+						requiredMessage="nachname fehlt">
+						<!-- 						<f:converter converterId="eigenerConverter" /> -->
+					</p:inputText>
+					<h:message for="nachname" styleClass="message" />
+				</h:panelGroup>
+
+
+
+				<p:outputLabel value="Strasse" for="strasse" />
+				<h:panelGroup>
+					<p:inputText id="strasse" required="true" value="Strasse.."
+						requiredMessage="strasse fehlt">
+						<!-- 						<f:converter converterId="eigenerConverter" /> -->
+					</p:inputText>
+					<h:message for="strasse" styleClass="message" />
+				</h:panelGroup>
+
+				<p:outputLabel value="PLZ" for="plz" />
+				<h:panelGroup>
+					<p:inputText id="plz" required="true" value="PLZ.."
+						requiredMessage="plz fehlt">
+						<!-- 							<f:validateRegex pattern="^([A-Z]-)?[0-9]{5}$" /> -->
+					</p:inputText>
+					<h:message for="plz" styleClass="message" />
+				</h:panelGroup>
+
+				<p:outputLabel value="Ort" for="ort" />
+				<h:panelGroup>
+					<p:inputText id="ort" required="true" value="Ort.."
+						requiredMessage="ort fehlt">
+						<!-- 						<f:converter converterId="eigenerConverter" /> -->
+					</p:inputText>
+					<h:message for="ort" styleClass="message" />
+				</h:panelGroup>
+
+				<p:outputLabel value="Benutzername" for="benutzername" />
+				<h:panelGroup>
+					<p:inputText id="benutzername" required="true"
+						value="Benutzername.." requiredMessage="Eingabe fehlt" />
+					<h:message for="benutzername" styleClass="message" />
+				</h:panelGroup>
+				<p:outputLabel for="pwd1" value="Passwort" />
+				<h:panelGroup>
+					<p:password id="pwd1" value="" match="pwd2" label="Password 1"
+						required="true" feedback="true" />
+				</h:panelGroup>
+				<p:outputLabel for="pwd2" value="Passwort" />
+				<h:panelGroup>
+					<p:password id="pwd2" value="" label="Password 2" required="true" />
+				</h:panelGroup>
+
+			</p:panelGrid>
+			<br />
+
+			<p:commandButton value="Speichern" />
+			<p:commandButton action="index.xhtml" value="Abrechen"
+				immediate="true" />
+		</h:form>
+		<div class="push"></div>
+	</div>
+	<div id="footer">
+		<p>© 2017-2018 Hochschule Bremerhaven - Software Engineering III |
+			Yasar Wieck und Enno Münsterberg</p>
+		<table class="fot">
+			<tr>
+				<td><a href="ueberUns.xhtml">Über Uns</a></td>
+				<td>Impressum</td>
+				<td>Kontakt</td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+</h:body>
+</html>
