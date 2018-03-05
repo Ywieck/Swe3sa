@@ -7,6 +7,8 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:p="http://primefaces.org/ui">
 
+
+
 <h:head>
 	<title>EY!Wear!YE</title>
 	<link href="https://fonts.googleapis.com/css?family=Jura"
@@ -64,67 +66,53 @@
 			</p:menubar>
 		</h:form>
 	</div>
-	<div id="content">
-		<h:form id="form">
-			<p:dataGrid var="product" value="#{ProductHandler.products}"
-				columns="3" layout="grid" rows="12" paginator="true" id="cars"
-				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				rowsPerPageTemplate="6,12,16">
 
-				<f:facet name="header">
-            Produkte
-        </f:facet>
 
-				<p:panel header="#{product.name}" style="text-align:center">
-					<h:panelGrid columns="1" style="width:25%">
-						<p:graphicImage libary="resources" name="logous.png" />
+	<div id="content"
+		style="color: black; font-family: Jura; font-size: 17px; width: 100%; margin: auto;">
 
-						<h:outputText value="#{product.name}" />
+		<ui:insert name="impressum">
+			<center>
+				<h1>
+					<a style="color: maroon;">§ Impressum</a>
+				</h1>
+			</center>
+		</ui:insert>
+		<h2>Angaben gemäß § 5 TMG:</h2>
+		<p>
+			EY!Wear GmbH<br /> Am Lunedeich 183<br /> 27572 Bremerhaven
+		</p>
+		<h2>Vertreten durch:</h2>
+		<p>
+			Yasar Wieck<br /> Enno Münsterberg
+		</p>
 
-						<p:commandLink update=":form:carDetail"
-							oncomplete="PF('carDialog').show()" title="View Detail">
-							<h:outputText styleClass="ui-icon ui-icon-search"
-								style="margin:0 auto;" />
-							<f:setPropertyActionListener value="#{car}"
-								target="#{dataGridView.selectedCar}" />
-						</p:commandLink>
-					</h:panelGrid>
-				</p:panel>
+		<h2>Registereintrag:</h2>
+		<p>
+			Eintragung im Handelsregister. <br />Registergericht: Amtsgericht
+			Musterstadt <br />Registernummer: AMS-999999
+		</p>
+		<h2>Umsatzsteuer-ID:</h2>
+		<p>
+			Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
+			DE 999 999 999
+		</p>
+		<h2>Aufsichtsbehörde:</h2>
+		<p>Landratsamt Musterstadt</p>
+		<h2>Angaben zur Berufshaftpflichtversicherung:</h2>
+		<p>
+			Name und Sitz des Versicherers:<br /> Beispiel Versicherung AG<br />
+			Musterweg 10<br /> 90210 Musterstadt
+		</p>
+		<p>
+			Geltungsraum der Versicherung:<br /> Deutschland
+		</p>
 
-			</p:dataGrid>
 
-			<p:dialog header="Car Info" widgetVar="carDialog" modal="true"
-				showEffect="fade" hideEffect="fade" resizable="false">
-				<p:outputPanel id="carDetail" style="text-align:center;">
-					<p:panelGrid columns="2"
-						rendered="#{not empty dataGridView.selectedCar}"
-						columnClasses="label,value">
-						<f:facet name="header">
-							<p:graphicImage
-								name="demo/images/car/#{dataGridView.selectedCar.brand}-big.gif" />
-						</f:facet>
-
-						<h:outputText value="Id:" />
-						<h:outputText value="#{dataGridView.selectedCar.id}" />
-
-						<h:outputText value="Year" />
-						<h:outputText value="#{dataGridView.selectedCar.year}" />
-
-						<h:outputText value="Color:" />
-						<h:outputText value="#{dataGridView.selectedCar.color}"
-							style="color:#{dataGridView.selectedCar.color}" />
-
-						<h:outputText value="Price" />
-						<h:outputText value="$#{dataGridView.selectedCar.price}" />
-					</p:panelGrid>
-				</p:outputPanel>
-			</p:dialog>
-		</h:form>
 
 
 		<div class="push"></div>
 	</div>
-
 	<div id="footer">
 		<p>© 2017-2018 Hochschule Bremerhaven - Software Engineering III |
 			Yasar Wieck und Enno Münsterberg</p>
@@ -136,8 +124,6 @@
 				<td></td>
 			</tr>
 		</table>
-
-
 	</div>
 </h:body>
 </html>

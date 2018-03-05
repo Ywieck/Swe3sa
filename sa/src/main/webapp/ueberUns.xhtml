@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+	<title>EY!Wear!YE</title>
+	<link href="https://fonts.googleapis.com/css?family=Jura"
+		rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="resources/css/webShop.css" type="text/css" />
+</h:head>
+
+<h:body>
+	<div id="header">
+		<div class="headerImg">
+			<div class="headerLogo"></div>
+		</div>
+	</div>
+	<div id="menubar">
+
+		<h:form>
+			<p:growl id="messages" />
+
+			<p:menubar>
+				<p:menuitem value="Home" url="index.xhtml" icon="ui-icon-home" />
+				<p:submenu label="Damen">
+					<p:submenu label="Bekleidung">
+						<p:menuitem value="Shirts" url="#" />
+						<p:menuitem value="Jeans" url="#" />
+						<p:menuitem value="Jacken" url="#" />
+					</p:submenu>
+					<p:submenu label="Schuhe">
+						<p:menuitem value="Sneaker" url="#" />
+						<p:menuitem value="Sportschuhe" url="#" />
+					</p:submenu>
+				</p:submenu>
+
+				<p:submenu label="Herren">
+					<p:submenu label="Bekleidung">
+						<p:menuitem value="Jeans" url="#" />
+						<p:menuitem value="T-Shirts" url="#" />
+						<p:menuitem value="Jacken" url="#" />
+					</p:submenu>
+					<p:submenu label="Schuhe">
+						<p:menuitem value="Sneaker" url="#" />
+						<p:menuitem value="Sportschuhe" url="#" />
+					</p:submenu>
+				</p:submenu>
+
+				<f:facet name="options">
+					<p:inputText style="margin-right:10px" placeholder="Suche ..." />
+					<p:splitButton value="Anmelden">
+						<p:menuitem value="Login" url="login.xhtml" />
+						<p:separator />
+						<p:menuitem value="Registrieren" url="registrieren.xhtml" />
+					</p:splitButton>
+					<p:commandButton type="button" value="Warenkorb"
+						icon="ui-icon-cart" />
+				</f:facet>
+			</p:menubar>
+		</h:form>
+	</div>
+
+
+	<div id="content"
+		style="color: black; font-family: Jura; font-size: 17px; width: 100%; margin: auto;">
+
+		<h1>
+			<a style="color: maroon;">Über Uns</a>
+		</h1>
+
+		<h2>Allg. über uns (Geschichte o.ä.)</h2>
+		<p>Bei der EY!Wear GmbH handelt es sich um ein fiktives
+			Unternehmen im Rahmen des Moduls Software Engeneering III bei Herrn
+			Alfred Schmidt. Jegliche Angaben über diese Unternehmung sind frei
+			erfunden.</p>
+		<h2>Anfahrt</h2>
+		<p>
+			EY!Wear GmbH<br /> Am Lunedeich 183 <br /> 27572 Bremerhaven
+		</p>
+		<p>Sie erreichen die EY!Wear GmbH über die Autobahn A 27 Abfahrt
+			Bremerhaven Mitte. Nach Verlassen der Autobahn biegen Sie an der
+			dritten Möglichkeit links in die Deichstraße ein. Nach etwa 1.100
+			Metern und dem Ende der Deichstraße sehen Sie die EY!Wear GmbH auf der
+			rechten Seite. Bitte beachten Sie die Parkmöglichkeiten.</p>
+
+		<h2>Das Unternehmen</h2>
+
+		<p>Wir die EY!Wear GmbH sind ein innovatives Unternehmen im
+			Bereich des Onlineshopping. Bereits im Studium fing unser Team -
+			bestehend aus Yasar Wieck (Geschäftsführer) und Enno Münsterberg
+			(Gesellschafter) - an, sich Gedanken über eine innovative und neue
+			Art des Shoppings zu machen. Dabei tüftelten wir an vielen Ideen. Uns
+			war es wichtig, den Faktor Geld dabei nicht mit einkalkulieren zu
+			müssen bzw. nur anhand des Wertes eines Produktes den Tauschhandel
+			abschließen zu können. Unser Ziel ist es, die Plattform für jeden
+			freizugänglich zu machen auch ohne Geld. Mit Sitz in Norddeutschland
+			haben wir dank unseres Webshops und den weiteren Möglichkeiten wie
+			unserer WebApp, eine Zielgruppe in ganz Deutschland zu erreichen und
+			sogar darüber hinaus. Durch millionenfache Interaktionen und
+			Geschäfte konnten wir viele Werbepartner für unsere Idee gewinnen und
+			sie begeistern durch Werbemaßnahmen auf unserer Plattform aktiv zu
+			werden. Dabei können auch Unternehmen sich am Tauschgeschäft
+			beteiligen, indem sie z.B. B-Waren anbieten oder einfach nur Werbung
+			für ihre Produkte machen.</p>
+
+
+
+		<div class="push"></div>
+
+
+	</div>
+	<div id="footer">
+		<p>© 2017-2018 Hochschule Bremerhaven - Software Engineering III |
+			Yasar Wieck und Enno Münsterberg</p>
+		<table class="fot">
+			<tr>
+				<td><a style="color: white" href="ueberUns.xhtml">Über Uns</a></td>
+				<td><a style="color: white" href="impressum.xhtml">Impressum</a></td>
+				<td><a style="color: white" href="contact.xhtml">Kontakt</a></td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+</h:body>
+</html>

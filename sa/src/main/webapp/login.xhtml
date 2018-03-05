@@ -7,6 +7,8 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:p="http://primefaces.org/ui">
 
+
+
 <h:head>
 	<title>EY!Wear!YE</title>
 	<link href="https://fonts.googleapis.com/css?family=Jura"
@@ -66,65 +68,36 @@
 	</div>
 	<div id="content">
 		<h:form id="form">
-			<p:dataGrid var="product" value="#{ProductHandler.products}"
-				columns="3" layout="grid" rows="12" paginator="true" id="cars"
-				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				rowsPerPageTemplate="6,12,16">
+			<p:growl id="growl" showDetail="true" sticky="true" />
+			<p:panelGrid styleClass="anmeldungGrid" columns="2" cellpadding="20">
+				<f:facet name="header">Einloggen</f:facet>
 
-				<f:facet name="header">
-            Produkte
-        </f:facet>
+				<p:outputLabel value="Benutzername" for="benutzername" />
+				<h:panelGroup>
+					<p:inputText id="benutzername" required="true" value=""
+						requiredMessage="benutzername fehlt">
+						<!-- 						<f:converter converterId="eigenerConverter" /> -->
+					</p:inputText>
+					<h:message for="benutzername" styleClass="message" />
+				</h:panelGroup>
 
-				<p:panel header="#{product.name}" style="text-align:center">
-					<h:panelGrid columns="1" style="width:25%">
-						<p:graphicImage libary="resources" name="logous.png" />
+				<p:outputLabel value="Passwort" for="passwort" />
+				<h:panelGroup>
+					<p:inputText id="passwort" required="true" value=""
+						requiredMessage="passwort fehlt">
+						<!-- 						<f:converter converterId="eigenerConverter" /> -->
+					</p:inputText>
+					<h:message for="passwort" styleClass="message" />
+				</h:panelGroup>
+			</p:panelGrid>
+			<br />
 
-						<h:outputText value="#{product.name}" />
-
-						<p:commandLink update=":form:carDetail"
-							oncomplete="PF('carDialog').show()" title="View Detail">
-							<h:outputText styleClass="ui-icon ui-icon-search"
-								style="margin:0 auto;" />
-							<f:setPropertyActionListener value="#{car}"
-								target="#{dataGridView.selectedCar}" />
-						</p:commandLink>
-					</h:panelGrid>
-				</p:panel>
-
-			</p:dataGrid>
-
-			<p:dialog header="Car Info" widgetVar="carDialog" modal="true"
-				showEffect="fade" hideEffect="fade" resizable="false">
-				<p:outputPanel id="carDetail" style="text-align:center;">
-					<p:panelGrid columns="2"
-						rendered="#{not empty dataGridView.selectedCar}"
-						columnClasses="label,value">
-						<f:facet name="header">
-							<p:graphicImage
-								name="demo/images/car/#{dataGridView.selectedCar.brand}-big.gif" />
-						</f:facet>
-
-						<h:outputText value="Id:" />
-						<h:outputText value="#{dataGridView.selectedCar.id}" />
-
-						<h:outputText value="Year" />
-						<h:outputText value="#{dataGridView.selectedCar.year}" />
-
-						<h:outputText value="Color:" />
-						<h:outputText value="#{dataGridView.selectedCar.color}"
-							style="color:#{dataGridView.selectedCar.color}" />
-
-						<h:outputText value="Price" />
-						<h:outputText value="$#{dataGridView.selectedCar.price}" />
-					</p:panelGrid>
-				</p:outputPanel>
-			</p:dialog>
+			<p:commandButton value="Anmelden" />
+			<p:commandButton action="index.xhtml" value="Abrechen"
+				immediate="true" />
 		</h:form>
-
-
 		<div class="push"></div>
 	</div>
-
 	<div id="footer">
 		<p>© 2017-2018 Hochschule Bremerhaven - Software Engineering III |
 			Yasar Wieck und Enno Münsterberg</p>
@@ -136,8 +109,6 @@
 				<td></td>
 			</tr>
 		</table>
-
-
 	</div>
 </h:body>
 </html>
