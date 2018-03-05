@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>EY!Wear!YE</title>
+	<link href="https://fonts.googleapis.com/css?family=Jura"
+		rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/webShop.css" type="text/css" />
+</h:head>
+
+<h:body>
+	<div id="header">
+		<div class="headerImg">
+			<div class="headerLogo"></div>
+		</div>
+	</div>
+	<div id="menubar">
+
+		<h:form>
+			<p:growl id="messages" />
+
+			<p:menubar>
+				<p:menuitem value="Home" url="index.xhtml" icon="ui-icon-home" />
+				<p:submenu label="Damen">
+					<p:submenu label="Bekleidung">
+						<p:menuitem value="Shirts" url="#" />
+						<p:menuitem value="Jeans" url="#" />
+						<p:menuitem value="Jacken" url="#" />
+					</p:submenu>
+					<p:submenu label="Schuhe">
+						<p:menuitem value="Sneaker" url="#" />
+						<p:menuitem value="Sportschuhe" url="#" />
+					</p:submenu>
+				</p:submenu>
+
+				<p:submenu label="Herren">
+					<p:submenu label="Bekleidung">
+						<p:menuitem value="Jeans" url="#" />
+						<p:menuitem value="T-Shirts" url="#" />
+						<p:menuitem value="Jacken" url="#" />
+					</p:submenu>
+					<p:submenu label="Schuhe">
+						<p:menuitem value="Sneaker" url="#" />
+						<p:menuitem value="Sportschuhe" url="#" />
+					</p:submenu>
+				</p:submenu>
+
+				<f:facet name="options">
+					<p:inputText style="margin-right:10px" placeholder="Suche ..." />
+					<p:button value="Anmelden" outcome="login.xhtml" />
+					<p:commandButton type="button" value="Warenkorb"
+						icon="ui-icon-cart" />
+				</f:facet>
+			</p:menubar>
+		</h:form>
+	</div>
+</h:body>
+</html>

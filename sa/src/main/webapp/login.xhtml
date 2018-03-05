@@ -17,57 +17,15 @@
 </h:head>
 
 <h:body>
-	<div id="header">
-		<div class="headerImg">
-			<div class="headerLogo"></div>
-		</div>
+	<div>
+		<ui:insert>
+			<ui:include src="/WEB-INF/templates/headermenubar.xhtml" />
+		</ui:insert>
 	</div>
-	<div id="menubar">
 
-		<h:form>
-			<p:growl id="messages" />
 
-			<p:menubar>
-				<p:menuitem value="Home" url="index.xhtml" icon="ui-icon-home" />
-				<p:submenu label="Damen">
-					<p:submenu label="Bekleidung">
-						<p:menuitem value="Shirts" url="#" />
-						<p:menuitem value="Jeans" url="#" />
-						<p:menuitem value="Jacken" url="#" />
-					</p:submenu>
-					<p:submenu label="Schuhe">
-						<p:menuitem value="Sneaker" url="#" />
-						<p:menuitem value="Sportschuhe" url="#" />
-					</p:submenu>
-				</p:submenu>
-
-				<p:submenu label="Herren">
-					<p:submenu label="Bekleidung">
-						<p:menuitem value="Jeans" url="#" />
-						<p:menuitem value="T-Shirts" url="#" />
-						<p:menuitem value="Jacken" url="#" />
-					</p:submenu>
-					<p:submenu label="Schuhe">
-						<p:menuitem value="Sneaker" url="#" />
-						<p:menuitem value="Sportschuhe" url="#" />
-					</p:submenu>
-				</p:submenu>
-
-				<f:facet name="options">
-					<p:inputText style="margin-right:10px" placeholder="Suche ..." />
-					<p:splitButton value="Anmelden">
-						<p:menuitem value="Login" url="login.xhtml" />
-						<p:separator />
-						<p:menuitem value="Registrieren" url="registrieren.xhtml" />
-					</p:splitButton>
-					<p:commandButton type="button" value="Warenkorb"
-						icon="ui-icon-cart" />
-				</f:facet>
-			</p:menubar>
-		</h:form>
-	</div>
 	<div id="content">
-		<h:form id="form">
+		<h:form id="login">
 			<p:growl id="growl" showDetail="true" sticky="true" />
 			<p:panelGrid styleClass="anmeldungGrid" columns="2" cellpadding="20">
 				<f:facet name="header">Einloggen</f:facet>
@@ -83,32 +41,27 @@
 
 				<p:outputLabel value="Passwort" for="passwort" />
 				<h:panelGroup>
-					<p:inputText id="passwort" required="true" value=""
-						requiredMessage="passwort fehlt">
-						<!-- 						<f:converter converterId="eigenerConverter" /> -->
-					</p:inputText>
-					<h:message for="passwort" styleClass="message" />
+					<p:password id="passwort" value="" match="" label="Password"
+						required="true" />
 				</h:panelGroup>
 			</p:panelGrid>
 			<br />
-
 			<p:commandButton value="Anmelden" />
 			<p:commandButton action="index.xhtml" value="Abrechen"
 				immediate="true" />
+			<br></br>
+			<br></br>
+			<a style="color: black; font-family: Jura, sans-serif;"
+				href="registrieren.xhtml">Schon Registriert?</a>
 		</h:form>
 		<div class="push"></div>
 	</div>
-	<div id="footer">
-		<p>© 2017-2018 Hochschule Bremerhaven - Software Engineering III |
-			Yasar Wieck und Enno Münsterberg</p>
-		<table class="fot">
-			<tr>
-				<td><a style="color: white" href="ueberUns.xhtml">Über Uns</a></td>
-				<td><a style="color: white" href="impressum.xhtml">Impressum</a></td>
-				<td><a style="color: white" href="contact.xhtml">Kontakt</a></td>
-				<td></td>
-			</tr>
-		</table>
+	
+	
+	<div>
+		<ui:insert>
+			<ui:include src="/WEB-INF/templates/footer.xhtml" />
+		</ui:insert>
 	</div>
 </h:body>
 </html>
