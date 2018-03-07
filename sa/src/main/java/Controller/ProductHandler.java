@@ -38,13 +38,28 @@ public class ProductHandler {
 			SystemException, NotSupportedException, HeuristicMixedException, javax.transaction.NotSupportedException,
 			javax.transaction.SystemException, javax.transaction.RollbackException {
 		try {
-			System.out.println("Ennos Änderung");
 			utx.begin();
 
 			products = new ListDataModel<Product>();
 
-			em.persist(new Product("Enno"));
-			em.persist(new Product("Yasar"));
+			em.persist(new Product("Enno",100.99F,"katfasf","uafafaisf"));
+			em.persist(new Product("Yasar",1000.99F,"jfafjsf","jfhaojsfhaojf"));
+			em.persist(new Product("Enno",100.99F,"katfasf","uafafaisf"));
+			em.persist(new Product("Yasar",1000.99F,"jfafjsf","jfhaojsfhaojf"));
+			em.persist(new Product("Enno",100.99F,"katfasf","uafafaisf"));
+			em.persist(new Product("Yasar",1000.99F,"jfafjsf","jfhaojsfhaojf"));
+			em.persist(new Product("Enno",100.99F,"katfasf","uafafaisf"));
+			em.persist(new Product("Yasar",1000.99F,"jfafjsf","jfhaojsfhaojf"));
+			em.persist(new Product("Enno",100.99F,"katfasf","uafafaisf"));
+			em.persist(new Product("Yasar",1000.99F,"jfafjsf","jfhaojsfhaojf"));
+			em.persist(new Product("Enno",100.99F,"katfasf","uafafaisf"));
+			em.persist(new Product("Yasar",1000.99F,"jfafjsf","jfhaojsfhaojf"));
+			em.persist(new Product("Enno",100.99F,"katfasf","uafafaisf"));
+			em.persist(new Product("Yasar",1000.99F,"jfafjsf","jfhaojsfhaojf"));
+			em.persist(new Product("Enno",100.99F,"katfasf","uafafaisf"));
+			em.persist(new Product("Yasar",1000.99F,"jfafjsf","jfhaojsfhaojf"));
+			em.persist(new Product("Enno",100.99F,"katfasf","uafafaisf"));
+			em.persist(new Product("Yasar",1000.99F,"jfafjsf","jfhaojsfhaojf"));
 			products.setWrappedData(em.createNamedQuery("SelectedProduct").getResultList());
 			utx.commit();
 

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+	<title>EY!Wear!YE</title>
+	<link href="https://fonts.googleapis.com/css?family=Jura"
+		rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="resources/css/webShop.css" type="text/css" />
+</h:head>
+
+<h:body>
+	<div>
+		<ui:insert>
+			<ui:include src="/WEB-INF/templates/headermenubar.xhtml" />
+		</ui:insert>
+	</div>
+
+
+	<div id="content"
+		style="color: black; font-family: Jura; font-size: 17px; width: 100%; margin: auto;">
+		<h1>
+			<a style="color: maroon;">Warenkorb</a>
+		</h1>
+
+		<div
+			style="color: #F1C40F; font-family: Helvetica; font-size: 15px; float: right; margin: auto;">
+			<h:outputText id="kunde"
+				value="#{kundenHandler.merkeKunde.vorname} #{kundenHandler.merkeKunde.nachname}" />
+		</div>
+		<ui:insert name="content">
+			<h:form id="id">
+				
+				<p:dataTable var="artikel"
+					value="#{kundenHandler.merkeKunde.artikelDaten}"
+					rowClasses="odd,even" headerClass="header">
+
+
+					<p:column>
+						<f:facet name="header">Bezeichnung</f:facet>
+						<h:outputText value="#{artikel.bezeichnung}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">Hersteller</f:facet>
+						<h:outputText value="#{artikel.hersteller}" />
+					</p:column>
+
+
+
+					<p:column>
+						<f:facet name="header">Preis</f:facet>
+						<h:outputText value="#{artikel.preis}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">Anzahl</f:facet>
+						<h:outputText value="#{artikel.anzahl} Stück" />
+					</p:column>
+
+
+
+					<p:column>
+						<f:facet name="header">Gesamt</f:facet>
+						<h:outputText value="#{artikel.gesamt}" />
+					</p:column>
+				</p:dataTable>
+
+				<p:panelGrid id="summe" columns="2">
+
+
+					<h:outputLabel for="gesa" value="Gesamtanzahl" />
+					<h:outputText id="gesa"
+						value="#{kundenHandler.merkeArtikel.gesamtanzahl} Stück" />
+
+
+					<h:outputLabel for="gesamt" value="Gesamtpreis" />
+					<h:outputText id="gesamt"
+						value="#{kundenHandler.merkeArtikel.gesamtprice} Euro" />
+
+				</p:panelGrid>
+
+
+				<p:growl id="growl" showDetail="true" sticky="true" />
+				<p:commandButton value="Bezahlen"
+					oncomplete="PF('Dialog').show()" title="View Detail">
+					<f:setPropertyActionListener value=""
+						target="#{kundenHandler.merkeArtikel}" />
+				</p:commandButton>
+
+				<p:dialog header="Bezahlen" widgetVar="Dialog" modal="false"
+					position="center center">
+					<p:outputPanel id="Detail" style="text-align:center;">
+
+						<p:panelGrid columns="2" headerClass="header" footerClass="footer">
+
+							<h:outputLabel value="Kunde" for="kunde" />
+							<h:panelGroup>
+								<h:outputText id="kunde"
+									value="#{kundenHandler.merkeKunde.vorname} #{kundenHandler.merkeKunde.nachname}" />
+							</h:panelGroup>
+
+						</p:panelGrid>
+					</p:outputPanel>
+				</p:dialog>
+
+			</h:form>
+			<h:form>
+				<div id="button">
+					<p:commandButton value="Abbrechen"
+						action="index.xhtml" />
+				</div>
+			</h:form>
+		</ui:insert>
+
+
+
+
+
+
+
+
+		<div class="push"></div>
+	</div>
+
+
+	<div>
+		<ui:insert>
+			<ui:include src="/WEB-INF/templates/footer.xhtml" />
+		</ui:insert>
+	</div>
+</h:body>
+</html>
