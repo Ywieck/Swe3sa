@@ -24,22 +24,21 @@ public class ProductHandler {
 	private UserTransaction utx;
 
 	private DataModel<Product> products;
-	
 
 	public DataModel<Product> getProducts() {
 		return products;
 	}
 
-
 	public void setProducts(DataModel<Product> products) {
 		this.products = products;
 	}
 
-
 	@PostConstruct
-	public void init() throws SecurityException, IllegalStateException, RollbackException, HeuristicRollbackException, SystemException, NotSupportedException, HeuristicMixedException, javax.transaction.NotSupportedException, javax.transaction.SystemException
-, javax.transaction.RollbackException {
+	public void init() throws SecurityException, IllegalStateException, RollbackException, HeuristicRollbackException,
+			SystemException, NotSupportedException, HeuristicMixedException, javax.transaction.NotSupportedException,
+			javax.transaction.SystemException, javax.transaction.RollbackException {
 		try {
+			System.out.println("Ennos Änderung");
 			utx.begin();
 
 			products = new ListDataModel<Product>();

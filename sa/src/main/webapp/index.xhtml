@@ -23,6 +23,19 @@
 
 
 	<div id="content">
+
+		<p:dataTable var="car" value="#{ProductHandler.products}">
+			<p:column headerText="Name">
+				<h:outputText value="#{car.name}" />
+			</p:column>
+
+			<p:column headerText="">
+				<h:outputText value="" />
+			</p:column>
+
+		</p:dataTable>
+
+
 		<h:form id="form">
 			<p:dataGrid var="product" value="#{ProductHandler.products}"
 				columns="3" layout="grid" rows="12" paginator="true" id="cars"
