@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+	<title>EY!Wear!YE</title>
+	<link href="https://fonts.googleapis.com/css?family=Jura"
+		rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="resources/css/webShop.css" type="text/css" />
+</h:head>
+
+<h:body>
+	<div>
+		<ui:insert>
+			<ui:include src="/WEB-INF/templates/headermenubar.xhtml" />
+		</ui:insert>
+	</div>
+
+
+	<div id="content"
+		style="color: black; font-family: Jura; font-size: 17px; width: 100%; margin: auto;">
+		<h1>
+			<a style="color: maroon;">Kundenverwaltung</a>
+		</h1>
+		<ui:insert name="content">
+			<h:form>
+				<p:dataTable var="kunde" value="#{kundenHandler.kunden}"
+					rowClasses="odd,even" headerClass="header">
+					<f:facet name="header">Kunde</f:facet>
+
+					<p:column>
+						<f:facet name="header" style="text-align: center;">Rolle</f:facet>
+						<h:outputText style="text-align: center;" value="#{kunde.rolle}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header" style="text-align: center;">Anrede</f:facet>
+						<h:outputText style="text-align: center;"
+							value="#{kunde.anrede.label}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header" style="text-align: center;">Benutzername</f:facet>
+						<h:outputText style="text-align: center;" value="#{kunde.username}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header" style="text-align: center;">Vorname</f:facet>
+						<h:outputText style="text-align: center;" value="#{kunde.vorname}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header" style="text-align: center;">Nachname</f:facet>
+						<h:outputText style="text-align: center;" 
+							value="#{kunde.nachname}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header" style="text-align: center;">Geburtsdatum</f:facet>
+						<h:outputText style="text-align: center;"
+							value="#{kunde.geburtsdatum}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header" style="text-align: center;">Strasse</f:facet>
+						<h:outputText style="text-align: center;" value="#{kunde.strasse}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header" style="text-align: center;">PLZ</f:facet>
+						<h:outputText style="text-align: center;" value="#{kunde.plz}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header" style="text-align: center;">Ort</f:facet>
+						<h:outputText style="text-align: center;" value="#{kunde.ort}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header" style="text-align: center;">Löschen</f:facet>
+						<h:commandButton action="#{kundenHandler.delete}" value="Löschen" />
+					</p:column>
+					<p:column>
+						<f:facet name="header" style="text-align: center;">Bearbeiten</f:facet>
+						<h:commandButton action="#{kundenHandler.edit}" value="Bearbeiten" />
+					</p:column>
+				</p:dataTable>
+
+				<p:commandButton action="#{kundenHandler.neu}" value="Neuer Kunde" />
+				<p:commandButton action="index.xhtml" value="Abrechen" />
+			</h:form>
+		</ui:insert>
+
+		<div class="push"></div>
+	</div>
+
+	<div>
+		<ui:insert>
+			<ui:include src="/WEB-INF/templates/footer.xhtml" />
+		</ui:insert>
+	</div>
+</h:body>
+</html>

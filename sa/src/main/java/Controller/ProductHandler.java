@@ -14,10 +14,7 @@ import javax.ws.rs.NotSupportedException;
 
 import org.omg.CORBA.SystemException;
 
-import Model.Adress;
-import Model.Customer;
 import Model.Product;
-import Model.Salutation;
 
 public class ProductHandler {
 

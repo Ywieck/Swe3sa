@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+	<title>EY!Wear!YE</title>
+	<link href="https://fonts.googleapis.com/css?family=Jura"
+		rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="resources/css/webShop.css" type="text/css" />
+</h:head>
+
+<h:body>
+	<div>
+		<ui:insert>
+			<ui:include src="/WEB-INF/templates/headermenubar.xhtml" />
+		</ui:insert>
+	</div>
+
+
+	<div id="content"
+		style="color: black; font-family: Jura; font-size: 17px; width: 100%; margin: auto;">
+		<h1>
+			<a style="color: maroon;">Kundendaten bearbeiten</a>
+		</h1>
+
+		<h:form id="form">
+
+			<p:growl showDetail="true" />
+			<p:panel id="panel" header="Kunden Daten">
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Vorname" for="vorname" />
+					<h:panelGroup>
+						<p:inputText id="vorname" required="true"
+							requiredMessage="vorname fehlt"
+							value="#{kundenHandler.merkeKunde.vorname}">
+							<!-- 							<f:converter converterId="eigenerConverter" /> -->
+						</p:inputText>
+						<h:message for="vorname" styleClass="message" />
+					</h:panelGroup>
+
+					<h:outputLabel value="Nachname" for="nachname" />
+					<h:panelGroup>
+						<p:inputText id="nachname"
+							value="#{kundenHandler.merkeKunde.nachname}" required="true"
+							requiredMessage="nachname fehlt">
+							<!-- 							<f:converter converterId="eigenerConverter" /> -->
+						</p:inputText>
+					</h:panelGroup>
+
+
+					<h:outputLabel value="Geburtsdatum" for="geburtsdatum" />
+					<p:calendar id="geburtsdatum"
+						value="#{kundenHandler.merkeKunde.geburtsdatum}"
+						pattern="dd.MM.yyyy" required="true" timeZone=""
+						requiredMessage="Geburtsdatum fehlt" />
+
+
+					<h:outputLabel value="Strasse" for="strasse" />
+					<h:panelGroup>
+						<p:inputText id="strasse"
+							value="#{kundenHandler.merkeKunde.strasse}" required="true"
+							requiredMessage="strasse fehlt">
+							<!-- 							<f:converter converterId="eigenerConverter" /> -->
+						</p:inputText>
+					</h:panelGroup>
+
+					<h:outputLabel value="PLZ" for="plz" />
+					<h:panelGroup>
+						<p:inputText id="plz" value="#{kundenHandler.merkeKunde.plz}"
+							required="true" requiredMessage="plz fehlt">
+							<f:validateRegex pattern="^([A-Z]-)?[0-9]{5}$" />
+						</p:inputText>
+					</h:panelGroup>
+
+					<h:outputLabel value="Ort" for="ort" />
+					<h:panelGroup>
+						<p:inputText id="ort" value="#{kundenHandler.merkeKunde.ort}"
+							required="true" requiredMessage="ort fehlt">
+							<!-- 							<f:converter converterId="eigenerConverter" /> -->
+						</p:inputText>
+					</h:panelGroup>
+
+
+					<h:outputLabel value="Username" for="username" />
+					<h:panelGroup>
+						<p:inputText id="username"
+							value="#{kundenHandler.merkeKunde.username}" required="true"
+							requiredMessage="username fehlt" />
+					</h:panelGroup>
+				</h:panelGrid>
+				<br></br>
+
+				<p:commandButton action="#{kundenHandler.speichern}"
+					value="Speichern" update="@(form)" />
+				<p:commandButton action="#{kundenHandler.eigenesPasswortBearbeiten}"
+					value="Passwort ändern" />
+				<p:commandButton action="alleKunden.xhtml" value="Abbrechen"
+					update="@(form)" />
+			</p:panel>
+		</h:form>
+
+		<div class="push"></div>
+	</div>
+
+
+
+	<div>
+		<ui:insert>
+			<ui:include src="/WEB-INF/templates/footer.xhtml" />
+		</ui:insert>
+	</div>
+</h:body>
+</html>

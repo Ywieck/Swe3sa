@@ -29,6 +29,16 @@
 			<p:growl id="growl" showDetail="true" sticky="true" />
 			<p:panelGrid styleClass="anmeldungGrid" columns="2" cellpadding="20">
 				<f:facet name="header">Persönliche Daten</f:facet>
+				
+				<p:outputLabel value="Anrede" for="anrede" />
+				<h:panelGroup>
+					<p:inputText id="anrede" required="true" value=""
+						requiredMessage="anrede fehlt">
+						<!-- <f:converter converterId="eigenerConverter" /> -->
+					</p:inputText>
+					<h:message for="anrede" styleClass="message" />
+				</h:panelGroup>
+				
 
 				<p:outputLabel value="Vorname" for="vorname" />
 				<h:panelGroup>
