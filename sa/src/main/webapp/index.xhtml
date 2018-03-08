@@ -24,22 +24,33 @@
 
 	<div id="content">
 		<h:form id="form">
-			<p:dataTable var="prod" value="#{ProductHandler.products}">
+			<p:dataTable var="prod" value="#{ProductHandler.products}"
+				widgetVar="productsTable"
+				emptyMessage="Keine Produkte gefunden die der Suche entsprechen"
+				filteredValue="#{ProductHandler.filteredProducts}">
 
-				<p:column headerText="Produkt">
+				<f:facet name="header">
+					<p:outputPanel>
+						<h:outputText value="Search all fields:" />
+						<p:inputText id="globalFilter"
+							onkeyup="PF('productsTable').filter()" style="width:150px"
+							placeholder="Wo nach suchen Sie?" />
+					</p:outputPanel>
+				</f:facet>
+
+				<p:column headerText="Produkt" filteredBy="prod.name" filterMatchMode="contains">
 					<h:outputText value="#{prod.name}" />
+					<!-- 					<p:graphicImage libary="resources" name="Headerpic.jpg" /> -->
 				</p:column>
-
-				<p:column headerText="Preis">
+				<p:column headerText="Preis" filteredBy="prod.price" filterMatchMode="contains">
 					<h:outputText value="#{prod.price}" />
 				</p:column>
-				<p:column headerText="Kategorie">
+				<p:column headerText="Kategorie" filteredBy="prod.kategorie" filterMatchMode="contains">
 					<h:outputText value="#{prod.kategorie}" />
 				</p:column>
-				<p:column headerText="Geschlecht">
+				<p:column headerText="Geschlecht" filteredBy="prod.geschlecht" filterMatchMode="contains">
 					<h:outputText value="#{prod.geschlecht}" />
 				</p:column>
-
 			</p:dataTable>
 		</h:form>
 
