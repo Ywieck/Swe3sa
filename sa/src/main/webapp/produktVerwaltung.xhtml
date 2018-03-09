@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+	<title>EY!Wear!YE</title>
+	<link href="https://fonts.googleapis.com/css?family=Jura"
+		rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="resources/css/webShop.css" type="text/css" />
+</h:head>
+
+<h:body>
+	<div>
+		<ui:insert>
+			<ui:include src="/WEB-INF/templates/headermenubar.xhtml" />
+		</ui:insert>
+	</div>
+
+
+	<div id="content"
+		style="color: black; font-family: Jura; font-size: 17px; width: 100%; margin: auto;">
+		<h1>
+			<a style="color: maroon;">Produktverwaltung</a>
+		</h1>
+		<ui:insert name="content">
+			<h:form>
+				<p:dataTable var="artikel" value="#{kundenHandler.artikeln}"
+					rowClasses="odd,even" headerClass="header">
+
+					<f:facet name="header">Produktübersicht</f:facet>
+
+					<p:column>
+						<f:facet name="header"></f:facet>
+						<h:graphicImage id="image" alt="jsf-sun"
+							url="/resources/#{artikel.photo}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">Bezeichnung</f:facet>
+						<h:outputText value="#{artikel.bezeichnung}" />
+
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">Hersteller</f:facet>
+						<h:outputText value="#{artikel.hersteller}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">Beschreibung</f:facet>
+						<h:outputText value="#{artikel.beschreibung}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">Preis</f:facet>
+						<h:outputText value="#{artikel.preis} Euro;" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">Bearbeiten</f:facet>
+						<h:commandButton action="#{kundenHandler.ArtikelBearbeiten()}"
+							value="Bearbeiten" />
+
+					</p:column>
+					<p:column>
+						<f:facet name="header">Löschen</f:facet>
+						<h:commandButton action="#{kundenHandler.ArtikelLoeschen}"
+							value="Löschen" />
+					</p:column>
+
+				</p:dataTable>
+				<p:commandButton action="#{kundenHandler.Artikelneu}" value="Produkt hinzufügen" />
+				<p:commandButton action="index.xhtml" value="Abbrechen" />
+
+			</h:form>
+
+
+		</ui:insert>
+
+		<div class="push"></div>
+	</div>
+
+	<div>
+		<ui:insert>
+			<ui:include src="/WEB-INF/templates/footer.xhtml" />
+		</ui:insert>
+	</div>
+</h:body>
+</html>

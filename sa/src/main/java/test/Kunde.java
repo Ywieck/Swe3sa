@@ -75,11 +75,15 @@ public class Kunde implements Serializable {
 	@Column(name = "Ort")
 	private String ort;
 
+	@Size(min = 3, max = 30)
+	@Column(name = "Email")
+	private String email;
+
 	@JoinColumn(name = "FK_ARTIKEL_ID", foreignKey = @ForeignKey(name = "FK_ARTIKEL_ID"))
 	private ArtikelDaten daten;
-	
+
 	public Kunde(Anrede anrede, String vorname, String nachname, Date geburtsdatum, String strasse, String plz,
-			String ort, String username, String passwort, Rolle rolle) {
+			String ort, String email, String username, String passwort, Rolle rolle) {
 		this.anrede = anrede;
 		this.vorname = vorname;
 		this.nachname = nachname;
@@ -87,6 +91,7 @@ public class Kunde implements Serializable {
 		this.strasse = strasse;
 		this.plz = plz;
 		this.ort = ort;
+		this.email = email;
 		this.username = username;
 		this.passwort = passwort;
 		this.rolle = rolle;
@@ -197,6 +202,14 @@ public class Kunde implements Serializable {
 
 	public void setOrt(String ort) {
 		this.ort = ort;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

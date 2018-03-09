@@ -14,10 +14,18 @@
 	<link rel="stylesheet" href="css/webShop.css" type="text/css" />
 </h:head>
 
+<!-- image="backgroung-image:url(../../resources/Dflag.png)" -->
+
 <h:body>
 	<div id="header">
 		<div class="headerImg">
-			<div class="headerLogo"></div>
+			<div>
+				<h:commandButton action="#{kundenHandler.changeLang}" 
+					immediate="true" value="English" />
+				<h:commandButton action="#{kundenHandler.wechselLang}"
+					immediate="true" value="Deutsch" />
+				<div class="headerLogo"></div>
+			</div>
 		</div>
 	</div>
 	<div id="menubar">
@@ -53,11 +61,16 @@
 
 				<p:submenu label="Verwaltung">
 					<p:menuitem value="Kundenverwaltung" url="alleKunden.xhtml" />
-					<p:menuitem value="Produktverwaltung" url="#" />
+					<p:menuitem value="Produktverwaltung" url="produktVerwaltung.xhtml" />
 				</p:submenu>
 
+
 				<f:facet name="options">
-					<p:button value="Anmelden" outcome="login.xhtml" />
+					<p:button value="Anmelden" rendered="#{kundenHandler.loggedIn()}"
+						outcome="login.xhtml" />
+					<p:commandButton value="Abmelden"
+						rendered="#{kundenHandler.loggedNotIn()}"
+						action="#{kundenHandler.logout()}" />
 					<p:button value="Warenkorb" outcome="cart.xhtml"
 						icon="ui-icon-cart" />
 				</f:facet>

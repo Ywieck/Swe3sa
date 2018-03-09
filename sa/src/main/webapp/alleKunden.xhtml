@@ -46,7 +46,8 @@
 					</p:column>
 					<p:column>
 						<f:facet name="header" style="text-align: center;">Benutzername</f:facet>
-						<h:outputText style="text-align: center;" value="#{kunde.username}" />
+						<h:outputText style="text-align: center;"
+							value="#{kunde.username}" />
 					</p:column>
 					<p:column>
 						<f:facet name="header" style="text-align: center;">Vorname</f:facet>
@@ -54,13 +55,14 @@
 					</p:column>
 					<p:column>
 						<f:facet name="header" style="text-align: center;">Nachname</f:facet>
-						<h:outputText style="text-align: center;" 
+						<h:outputText style="text-align: center;"
 							value="#{kunde.nachname}" />
 					</p:column>
-					<p:column>
+ 					<p:column>
 						<f:facet name="header" style="text-align: center;">Geburtsdatum</f:facet>
 						<h:outputText style="text-align: center;"
-							value="#{kunde.geburtsdatum}" />
+							value="#{kunde.geburtsdatum}" >
+							<f:convertDateTime pattern="dd.MM.yyyy" /></h:outputText>
 					</p:column>
 					<p:column>
 						<f:facet name="header" style="text-align: center;">Strasse</f:facet>
@@ -74,6 +76,10 @@
 						<f:facet name="header" style="text-align: center;">Ort</f:facet>
 						<h:outputText style="text-align: center;" value="#{kunde.ort}" />
 					</p:column>
+					<p:column>
+						<f:facet name="header" style="text-align: center;">E-Mail</f:facet>
+						<h:outputText style="text-align: center;" value="#{kunde.email}" />
+					</p:column>
 
 					<p:column>
 						<f:facet name="header" style="text-align: center;">Löschen</f:facet>
@@ -85,7 +91,7 @@
 					</p:column>
 				</p:dataTable>
 
-				<p:commandButton action="#{kundenHandler.neu}" value="Neuer Kunde" />
+				<p:commandButton action="#{kundenHandler.neuK()}" value="Neuer Kunde" />
 				<p:commandButton action="index.xhtml" value="Abrechen" />
 			</h:form>
 		</ui:insert>

@@ -64,7 +64,7 @@ public class KundenHandler {
 
 	/**
 	 * Die Daten der jeweiligen Kunden und Artikel werden aufgerufen sobald man
-	 * als Admin auf die ansicht aller Kunden oder Artikel geht
+	 * als Admin auf die ansicht aller Kunden geht
 	 */
 
 	@PostConstruct
@@ -82,25 +82,23 @@ public class KundenHandler {
 			e.printStackTrace();
 		}
 		em.persist(new Kunde(Anrede.HERR, "Yasar", "Wieck", new GregorianCalendar(1993, 01, 06).getTime(),
-				"Prager Str. 12", "27568", "Bremerhaven", "ywieck", "ywieck", Rolle.ADMIN));
+				"Prager Str. 12", "27568", "Bremerhaven", "yw@ey.de", "ywieck", "ywieck", Rolle.ADMIN));
 		em.persist(new Kunde(Anrede.HERR, "Enno", "Münsterberg", new GregorianCalendar(1990, 11, 26).getTime(),
-				"Lodjeweg. 98", "27568", "Bremerhaven", "emünsterberg", "emünsterberg", Rolle.ADMIN));
-		em.persist(new Kunde(Anrede.HERR, "Kathleen", "Hasselhoff", new GregorianCalendar(1994, 10, 3).getTime(),
-				"Verdenerstr. 103", "27568", "Bremerhaven", "khasselhoff", "khasselhoff", Rolle.KUNDE));
+				"Lodjeweg. 98", "27568", "Bremerhaven", "em@ey.de", "emünsterberg", "emünsterberg", Rolle.ADMIN));
+		em.persist(new Kunde(Anrede.FRAU, "Kathleen", "Hasselhoff", new GregorianCalendar(1994, 10, 3).getTime(),
+				"Verdenerstr. 103", "27568", "Bremerhaven", "khase@bla.de", "khasselhoff", "khasselhoff", Rolle.KUNDE));
 		em.persist(new Kunde(Anrede.HERR, "Alfred-Admin", "Schmidt", new GregorianCalendar(1990, 1, 1).getTime(),
-				"Feldweg 5", "27568", "Bremerhaven", "aschmidta", "aschmidta", Rolle.ADMIN));
+				"Feldweg 5", "27568", "Bremerhaven", "aschmidt@hs-bremerhaven.de", "aschmidta", "aschmidta",
+				Rolle.ADMIN));
 		em.persist(new Kunde(Anrede.HERR, "Alfred-Kunde", "Schmidt", new GregorianCalendar(1990, 1, 1).getTime(),
-				"Alfredstr. 2", "27568", "Bremerhaven", "aschmidtk", "aschmidtk", Rolle.KUNDE));
-		em.persist(new Kunde(Anrede.HERR, "Hugo", "Hermann", new GregorianCalendar(1970, 1, 1).getTime(),
-				"havenstraße 2", "27568", "Bremerhaven", "hhermann", "hhermann", Rolle.KUNDE));
-		em.persist(new Kunde(Anrede.HERR, "Willi", "Meier", new GregorianCalendar(1960, 2, 2).getTime(),
-				"havenstraße 3", "27568", "Bremerhaven", "wmeier", "wmeier", Rolle.KUNDE));
-		em.persist(new Kunde(Anrede.HERR, "Alan", "Turing", new GregorianCalendar(1912, 6, 23).getTime(),
-				"havenstraße 4", "27568", "Bremerhaven", "aturing", "aturing", Rolle.KUNDE));
-		em.persist(new Kunde(Anrede.HERR, "Donald", "Knuth", new GregorianCalendar(1938, 1, 10).getTime(),
-				"havenstraße 5", "27568", "Bremerhaven", "dknuth", "dknuth", Rolle.KUNDE));
-		em.persist(new Kunde(Anrede.HERR, "Edsger W.", "Dijkstra", new GregorianCalendar(1930, 5, 11).getTime(),
-				"havenstraße 6", "27568", "Bremerhaven", "edijkstra", "edijkstra", Rolle.KUNDE));
+				"Feldweg 5", "27568", "Bremerhaven", "aschmidt@hs-bremerhaven.de", "aschmidtk", "aschmidtk",
+				Rolle.KUNDE));
+		em.persist(new Kunde(Anrede.HERR, "Marcel-Kunde", "Malitz", new GregorianCalendar(1990, 1, 1).getTime(),
+				"Alfredstr. 2", "27568", "Bremerhaven", "mmalitz@hs-bremerhaven.de", "mmalitzk", "mmalitzk",
+				Rolle.KUNDE));
+		em.persist(new Kunde(Anrede.HERR, "Marcel-Admin", "Malitz", new GregorianCalendar(1990, 1, 1).getTime(),
+				"Alfredstr. 2", "27568", "Bremerhaven", "mmalitz@hs-bremerhaven.de", "mmalitza", "mmalitza",
+				Rolle.ADMIN));
 
 		kunden = new ListDataModel<Kunde>();
 		kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
@@ -197,7 +195,7 @@ public class KundenHandler {
 	 * Durch den klick auf //neuer Kunde// als Admin in der Ansicht (alleKunde)
 	 * wird ein neues Objekt ereugt um die Daten zu sammeln
 	 */
-	public String neu() {
+	public String neuK() {
 		merkeKunde = new Kunde();
 		return "registrieren";
 	}
@@ -211,24 +209,17 @@ public class KundenHandler {
 	 * @throws IllegalStateException
 	 * @throws SecurityException
 	 */
-	public String speichern()
-			throws SecurityException, IllegalStateException, HeuristicMixedException, HeuristicRollbackException {
-
+	public String speichern() {
 		try {
 			utx.begin();
-		} catch (javax.transaction.NotSupportedException | javax.transaction.SystemException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		merkeKunde = em.merge(merkeKunde);
-		em.persist(merkeKunde);
-		kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
-
-		try {
+			merkeKunde = em.merge(merkeKunde);
+			em.persist(merkeKunde);
+			kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
 			utx.commit();
-		} catch (javax.transaction.RollbackException | javax.transaction.SystemException e) {
-			// TODO Auto-generated catch block
+		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicRollbackException
+				| SystemException | NotSupportedException | HeuristicMixedException
+				| javax.transaction.NotSupportedException | javax.transaction.SystemException
+				| javax.transaction.RollbackException e) {
 			e.printStackTrace();
 		}
 		return "alleKunden";
@@ -713,7 +704,7 @@ public class KundenHandler {
 	 */
 	public String Registrieren() {
 		merkeKunde = new Kunde();
-		return "registrieren";
+		return "alleKunden";
 	}
 
 	/**
@@ -876,12 +867,14 @@ public class KundenHandler {
 	 * wenn der Kunde oder Admin sich einloggt gelangt er auf die jeweilige
 	 * seite
 	 */
+	@SuppressWarnings("unchecked")
 	public String login() {
 
 		Query query = em
 				.createQuery("select k from Kunde k " + "where k.username = :username and k.passwort = :passwort ");
 		query.setParameter("username", username);
 		query.setParameter("passwort", passwort);
+		System.out.println("Test1");
 
 		if (kunden.isRowAvailable()) {
 			merkeKunde = kunden.getRowData();
@@ -897,7 +890,7 @@ public class KundenHandler {
 
 			if (kunde.getRolle() == Rolle.ADMIN) {
 
-				return "alleKunden";
+				return "index";
 			} else {
 				return "index";
 			}
@@ -906,6 +899,24 @@ public class KundenHandler {
 			falschesPasswort(null);
 			return null;
 		}
+	}
+
+	/**
+	 * 
+	 * 
+	 */
+	public boolean loggedIn() {
+		if (kunde == null) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean loggedNotIn() {
+		if (kunde != null) {
+			return true;
+		}
+		return false;
 	}
 
 	/**

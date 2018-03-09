@@ -30,34 +30,36 @@
 			<p:panelGrid styleClass="anmeldungGrid" columns="2" cellpadding="20">
 				<f:facet name="header">Einloggen</f:facet>
 
-				<p:outputLabel value="Benutzername" for="benutzername" />
+				<p:outputLabel value="Username:" for="username" />
 				<h:panelGroup>
-					<p:inputText id="benutzername" required="true" value=""
-						requiredMessage="benutzername fehlt">
+					<p:inputText id="username" required="true"
+						value="#{kundenHandler.username}" requiredMessage="Username fehlt">
 						<!-- 						<f:converter converterId="eigenerConverter" /> -->
 					</p:inputText>
-					<h:message for="benutzername" styleClass="message" />
+					<h:message for="username" styleClass="message" />
 				</h:panelGroup>
 
-				<p:outputLabel value="Passwort" for="passwort" />
+				<p:outputLabel value="Passwort:" for="passwort" />
 				<h:panelGroup>
-					<p:password id="passwort" value="" match="" label="Password"
+					<p:password id="passwort" value="#{kundenHandler.passwort}"
 						required="true" />
+					<p:message for="passwort" styleClass="message"></p:message>
 				</h:panelGroup>
 			</p:panelGrid>
 			<br />
-			<p:button value="Anmelden" outcome="index.xhtml"/>
-			<p:button value="Abrechen" outcome="index.xhtml"
-				immediate="true" />
+			<p:commandButton value="Anmelden" action="#{kundenHandler.login()}" ajax="false" />
+			<p:button value="Abrechen" outcome="index.xhtml" immediate="true" />
 			<br></br>
 			<br></br>
-			<a style="color: black; font-family: Jura, sans-serif; font-size: 17px "
-				href="registrieren.xhtml">Schon Registriert?</a>
+			<a
+				style="color: black; font-family: Jura, sans-serif; font-size: 17px"
+				href="registrieren.xhtml" onclick="#{kundenHandler.neuK()}">Schon
+				Registriert?</a>
 		</h:form>
 		<div class="push"></div>
 	</div>
-	
-	
+
+
 	<div>
 		<ui:insert>
 			<ui:include src="/WEB-INF/templates/footer.xhtml" />
