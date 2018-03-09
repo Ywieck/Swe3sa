@@ -1,5 +1,7 @@
 package Controller;
 
+import java.util.Locale;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.model.DataModel;
@@ -24,14 +26,8 @@ public class ProductHandler {
 	private UserTransaction utx;
 
 	private DataModel<Product> products;
-
-	public DataModel<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(DataModel<Product> products) {
-		this.products = products;
-	}
+	
+	private DataModel<Product> filteredProducts;
 
 	@PostConstruct
 	public void init() throws SecurityException, IllegalStateException, RollbackException, HeuristicRollbackException,
@@ -42,24 +38,36 @@ public class ProductHandler {
 
 			products = new ListDataModel<Product>();
 
-			em.persist(new Product("Enno",100.99F,"katfasf","uafafaisf"));
-			em.persist(new Product("Yasar",1000.99F,"jfafjsf","jfhaojsfhaojf"));
-			em.persist(new Product("Enno",100.99F,"katfasf","uafafaisf"));
-			em.persist(new Product("Yasar",1000.99F,"jfafjsf","jfhaojsfhaojf"));
-			em.persist(new Product("Enno",100.99F,"katfasf","uafafaisf"));
-			em.persist(new Product("Yasar",1000.99F,"jfafjsf","jfhaojsfhaojf"));
-			em.persist(new Product("Enno",100.99F,"katfasf","uafafaisf"));
-			em.persist(new Product("Yasar",1000.99F,"jfafjsf","jfhaojsfhaojf"));
-			em.persist(new Product("Enno",100.99F,"katfasf","uafafaisf"));
-			em.persist(new Product("Yasar",1000.99F,"jfafjsf","jfhaojsfhaojf"));
-			em.persist(new Product("Enno",100.99F,"katfasf","uafafaisf"));
-			em.persist(new Product("Yasar",1000.99F,"jfafjsf","jfhaojsfhaojf"));
-			em.persist(new Product("Enno",100.99F,"katfasf","uafafaisf"));
-			em.persist(new Product("Yasar",1000.99F,"jfafjsf","jfhaojsfhaojf"));
-			em.persist(new Product("Enno",100.99F,"katfasf","uafafaisf"));
-			em.persist(new Product("Yasar",1000.99F,"jfafjsf","jfhaojsfhaojf"));
-			em.persist(new Product("Enno",100.99F,"katfasf","uafafaisf"));
-			em.persist(new Product("Yasar",1000.99F,"jfafjsf","jfhaojsfhaojf"));
+			em.persist(new Product("Enno", 100.99F, "katfasf", "uafafaisf"));
+			em.persist(new Product("Yasar", 1000.99F, "jfafjsf", "jfhaojsfhaojf"));
+			em.persist(new Product("Enno", 100.99F, "katfasf", "uafafaisf"));
+			em.persist(new Product("Yasar", 1000.99F, "jfafjsf", "jfhaojsfhaojf"));
+			em.persist(new Product("Enno", 100.99F, "katfasf", "uafafaisf"));
+			em.persist(new Product("Yasar", 1000.99F, "jfafjsf", "jfhaojsfhaojf"));
+			em.persist(new Product("Enno", 100.99F, "katfasf", "uafafaisf"));
+			em.persist(new Product("Yasar", 1000.99F, "jfafjsf", "jfhaojsfhaojf"));
+			em.persist(new Product("Enno", 100.99F, "katfasf", "uafafaisf"));
+			em.persist(new Product("Yasar", 1000.99F, "jfafjsf", "jfhaojsfhaojf"));
+			em.persist(new Product("Enno", 100.99F, "katfasf", "uafafaisf"));
+			em.persist(new Product("Yasar", 1000.99F, "jfafjsf", "jfhaojsfhaojf"));
+			em.persist(new Product("Enno", 100.99F, "katfasf", "uafafaisf"));
+			em.persist(new Product("Yasar", 1000.99F, "jfafjsf", "jfhaojsfhaojf"));
+			em.persist(new Product("Enno", 100.99F, "katfasf", "uafafaisf"));
+			em.persist(new Product("Yasar", 1000.99F, "jfafjsf", "jfhaojsfhaojf"));
+			em.persist(new Product("Enno", 100.99F, "katfasf", "uafafaisf"));
+			em.persist(new Product("Yasar", 1000.99F, "jfafjsf", "jfhaojsfhaojf"));
+			em.persist(new Product("Enno", 100.99F, "katfasf", "uafafaisf"));
+			em.persist(new Product("Yasar", 1000.99F, "jfafjsf", "jfhaojsfhaojf"));
+			em.persist(new Product("Enno", 100.99F, "katfasf", "uafafaisf"));
+			em.persist(new Product("Yasar", 1000.99F, "jfafjsf", "jfhaojsfhaojf"));
+			em.persist(new Product("Enno", 100.99F, "katfasf", "uafafaisf"));
+			em.persist(new Product("Yasar", 1000.99F, "jfafjsf", "jfhaojsfhaojf"));
+			em.persist(new Product("Enno", 100.99F, "katfasf", "uafafaisf"));
+			em.persist(new Product("Yasar", 1000.99F, "jfafjsf", "jfhaojsfhaojf"));
+			em.persist(new Product("Enno", 100.99F, "katfasf", "uafafaisf"));
+			em.persist(new Product("Yasar", 1000.99F, "jfafjsf", "jfhaojsfhaojf"));
+			em.persist(new Product("Enno", 100.99F, "katfasf", "uafafaisf"));
+			em.persist(new Product("Yasar", 1000.99F, "jfafjsf", "jfhaojsfhaojf"));
 			products.setWrappedData(em.createNamedQuery("SelectedProduct").getResultList());
 			utx.commit();
 
@@ -69,6 +77,35 @@ public class ProductHandler {
 				| javax.transaction.RollbackException e) {
 			e.printStackTrace();
 		}
+	}
+
+//	public boolean filterByPrice(Object value, Object filter, Locale locale) {
+//		String filterText = (filter == null) ? null : filter.toString().trim();
+//		if (filterText == null || filterText.equals("")) {
+//			return true;
+//		}
+//
+//		if (value == null) {
+//			return false;
+//		}
+//
+//		return ((Comparable) value).compareTo(Integer.valueOf(filterText)) > 0;
+//	}
+	
+	public DataModel<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(DataModel<Product> products) {
+		this.products = products;
+	}
+
+	public DataModel<Product> getFilteredProducts() {
+		return filteredProducts;
+	}
+
+	public void setFilteredProducts(DataModel<Product> filteredProducts) {
+		this.filteredProducts = filteredProducts;
 	}
 
 }
