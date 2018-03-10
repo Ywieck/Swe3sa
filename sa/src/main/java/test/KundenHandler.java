@@ -35,6 +35,7 @@ public class KundenHandler {
 	private DataModel<Kunde> kunden;
 	private DataModel<ArtikelDaten> artikeln;
 	private DataModel<ArtikelDaten> filterArtikeln;
+	private ArtikelDaten selectedArtikel;
 
 	private Kunde merkeKunde = new Kunde();
 	private ArtikelDaten merkeArtikel = new ArtikelDaten();
@@ -992,6 +993,14 @@ public class KundenHandler {
 
 	public void setFilterArtikeln(DataModel<ArtikelDaten> filterArtikeln) {
 		this.filterArtikeln = filterArtikeln;
+	}
+
+	public ArtikelDaten getSelectedArtikel() {
+		return selectedArtikel;
+	}
+
+	public void setSelectedArtikel(ArtikelDaten selectedArtikel) {
+		this.selectedArtikel = selectedArtikel;
 	}
 
 	public double getGesamtpreis() {
