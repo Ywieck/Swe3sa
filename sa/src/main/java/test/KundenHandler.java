@@ -36,6 +36,7 @@ public class KundenHandler {
 	private DataModel<ArtikelDaten> artikeln;
 	private DataModel<ArtikelDaten> filterArtikeln;
 	private ArtikelDaten selectedArtikel;
+	private DataModel<ArtikelDaten> warenkorb;
 
 	private Kunde merkeKunde = new Kunde();
 	private ArtikelDaten merkeArtikel = new ArtikelDaten();
@@ -975,6 +976,14 @@ public class KundenHandler {
 	// public void setMerkeKreditkarte(Kreditkarte merkeKreditkarte) {
 	// this.merkeKreditkarte = merkeKreditkarte;
 	// }
+
+	public DataModel<ArtikelDaten> getWarenkorb() {
+		return warenkorb;
+	}
+
+	public void setWarenkorb(DataModel<ArtikelDaten> warenkorb) {
+		this.warenkorb = warenkorb;
+	}
 
 	public ArtikelDaten getMerkeArtikel() {
 		return merkeArtikel;
