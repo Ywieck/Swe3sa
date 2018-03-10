@@ -34,37 +34,13 @@
 			<h:commandButton action="#{kundenHandler.changeLang}"
 				value="#{msg.englisch}" />
 			<p:menubar>
-				<p:menuitem value="#{msg.startseite}" url="index.xhtml"
-					icon="ui-icon-home" />
-				<p:submenu label="#{msg.damen}">
-					<p:submenu label="#{msg.bekleidung}">
-						<p:menuitem value="#{msg.shirts}" url="#" />
-						<p:menuitem value="#{msg.jeans}" url="#" />
-						<p:menuitem value="#{msg.jacken}" url="#" />
-					</p:submenu>
-					<p:submenu label="#{msg.schuhe}">
-						<p:menuitem value="#{msg.sneaker}" url="#" />
-						<p:menuitem value="#{msg.sportschuhe}" url="#" />
-					</p:submenu>
-				</p:submenu>
-
-				<p:submenu label="#{msg.herren}">
-					<p:submenu label="#{msg.bekleidung}">
-						<p:menuitem value="#{msg.jeans}" url="#" />
-						<p:menuitem value="#{msg.tshirts}" url="#" />
-						<p:menuitem value="#{msg.jacken}" url="#" />
-					</p:submenu>
-					<p:submenu label="#{msg.schuhe}">
-						<p:menuitem value="#{msg.sneaker}" url="#" />
-						<p:menuitem value="#{msg.sportschuhe}" url="#" />
-					</p:submenu>
-				</p:submenu>
-
-				<p:submenu label="#{msg.verwaltung}">
+	
+				<p:menuitem value="#{msg.startseite}" url="index.xhtml" icon="ui-icon-home" />
+				<p:submenu rendered="#{kundenHandler.checkAdmin()}"
+					label="#{msg.verwaltung}">
 					<p:menuitem value="#{msg.kundenverwaltung}" url="alleKunden.xhtml" />
 					<p:menuitem value="#{msg.produktverwaltung}" url="produktVerwaltung.xhtml" />
 				</p:submenu>
-
 
 				<f:facet name="options">
 					<p:button value="#{msg.anmelden}" rendered="#{kundenHandler.loggedIn()}"
@@ -72,8 +48,10 @@
 					<p:commandButton value="#{msg.abmelden}"
 						rendered="#{kundenHandler.loggedNotIn()}"
 						action="#{kundenHandler.logout()}" />
-					<p:button value="#{msg.warenkorb}" outcome="cart.xhtml"
-						icon="ui-icon-cart" />
+
+					<p:button rendered="#{kundenHandler.loggedNotIn()}"
+						value="#{msg.warenkorb}" outcome="cart.xhtml" icon="ui-icon-cart" />
+
 				</f:facet>
 			</p:menubar>
 		</h:form>
