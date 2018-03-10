@@ -24,32 +24,22 @@
 
 	<div id="content">
 		<h:form id="form">
-			<p:dataTable var="prod" value="#{ProductHandler.products}"
-				widgetVar="productsTable"
-				emptyMessage="Keine Produkte gefunden die der Suche entsprechen"
-				filteredValue="#{ProductHandler.filteredProducts}">
+			<p:dataTable var="artikel" value="#{kundenHandler.artikeln}"
+				widgetVar="artikelTable" rows="10" paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15">
 
-				<f:facet name="header">
-					<p:outputPanel>
-						<h:outputText value="Search all fields:" />
-						<p:inputText id="globalFilter"
-							onkeyup="PF('productsTable').filter()" style="width:150px"
-							placeholder="Wo nach suchen Sie?" />
-					</p:outputPanel>
-				</f:facet>
-
-				<p:column headerText="Produkt" filteredBy="prod.name" filterMatchMode="contains">
-					<h:outputText value="#{prod.name}" />
-					<!-- 					<p:graphicImage libary="resources" name="Headerpic.jpg" /> -->
+				<p:column headerText="Bezeichnung" sortBy="#{artikel.bezeichnung}">
+					<h:outputText value="#{artikel.bezeichnung}" />
 				</p:column>
-				<p:column headerText="Preis" filteredBy="prod.price" filterMatchMode="contains">
-					<h:outputText value="#{prod.price}" />
+				<p:column headerText="Preis" sortBy="#{artikel.preis}">
+					<h:outputText value="#{artikel.preis}" />
 				</p:column>
-				<p:column headerText="Kategorie" filteredBy="prod.kategorie" filterMatchMode="contains">
-					<h:outputText value="#{prod.kategorie}" />
+				<p:column headerText="Hersteller" sortBy="#{artikel.hersteller}">
+					<h:outputText value="#{artikel.hersteller}" />
 				</p:column>
-				<p:column headerText="Geschlecht" filteredBy="prod.geschlecht" filterMatchMode="contains">
-					<h:outputText value="#{prod.geschlecht}" />
+				<p:column headerText="Beschreibung">
+					<h:outputText value="#{artikel.beschreibung}" />
 				</p:column>
 			</p:dataTable>
 		</h:form>

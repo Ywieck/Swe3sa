@@ -31,8 +31,6 @@ import test.ArtikelDaten;
 import test.Kunde;
 import test.Rolle;
 
-@ManagedBean(name = "kundenHandler")
-@SessionScoped
 public class KundenHandler {
 
 	@PersistenceContext
@@ -43,6 +41,7 @@ public class KundenHandler {
 
 	private DataModel<Kunde> kunden;
 	private DataModel<ArtikelDaten> artikeln;
+	private DataModel<ArtikelDaten> filterArtikeln;
 
 	private Kunde merkeKunde = new Kunde();
 	private ArtikelDaten merkeArtikel = new ArtikelDaten();
@@ -988,6 +987,14 @@ public class KundenHandler {
 
 	public void setMerkeArtikel(ArtikelDaten merkeArtikel) {
 		this.merkeArtikel = merkeArtikel;
+	}
+
+	public DataModel<ArtikelDaten> getFilterArtikeln() {
+		return filterArtikeln;
+	}
+
+	public void setFilterArtikeln(DataModel<ArtikelDaten> filterArtikeln) {
+		this.filterArtikeln = filterArtikeln;
 	}
 
 	public double getGesamtpreis() {
