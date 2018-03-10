@@ -291,7 +291,7 @@ public class KundenHandler {
 	 */
 	public String Artikelneu() {
 		merkeArtikel = new ArtikelDaten();
-		return "neuerArtikel";
+		return "neuesProdukt";
 	}
 
 	/**
@@ -300,7 +300,7 @@ public class KundenHandler {
 	 */
 	public String ArtikelBearbeiten() {
 		merkeArtikel = artikeln.getRowData();
-		return "artikelBearbeiten";
+		return "produkteBearbeiten";
 	}
 
 	/**

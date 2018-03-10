@@ -67,8 +67,36 @@
 						<f:facet name="header">Bearbeiten</f:facet>
 						<h:commandButton action="#{kundenHandler.ArtikelBearbeiten()}"
 							value="Bearbeiten" />
-
 					</p:column>
+					
+					
+
+					<p:growl id="growl" showDetail="true" sticky="true" />
+					<p:commandButton value="#{msg.bearbeiten}"
+						oncomplete="PF('Dialog').show()" title="View Detail">
+						<f:setPropertyActionListener value="#{artikel}"
+							target="#{kundenHandler.merkeArtikel}" />
+					</p:commandButton>
+					<p:dialog header="#{msg.bezahlen}" widgetVar="Dialog" modal="true"
+						position="center center">
+						<p:outputPanel id="Detail" style="text-align:center;">
+
+							<p:panelGrid columns="2" headerClass="header"
+								footerClass="footer">
+
+								<h:outputLabel value="#{msg.kunde}" for="kunde" />
+								<h:panelGroup>
+									<h:outputText id="kunde"
+										value="#{kundenHandler.merkeKunde.vorname} #{kundenHandler.merkeKunde.nachname}" />
+								</h:panelGroup>
+
+							</p:panelGrid>
+						</p:outputPanel>
+					</p:dialog>
+					
+					
+					
+
 					<p:column>
 						<f:facet name="header">Löschen</f:facet>
 						<h:commandButton action="#{kundenHandler.ArtikelLoeschen}"
@@ -76,8 +104,13 @@
 					</p:column>
 
 				</p:dataTable>
-				<p:commandButton action="#{kundenHandler.Artikelneu}" value="Produkt hinzufügen" />
-				<p:commandButton action="index.xhtml" value="Abbrechen" />
+				<p:commandButton action="#{kundenHandler.Artikelneu}"
+					value="Produkt hinzufügen" />
+
+				<p:commandButton action="index.xhtml" value="Abbrechen"
+					immediate="true" />
+
+
 
 			</h:form>
 

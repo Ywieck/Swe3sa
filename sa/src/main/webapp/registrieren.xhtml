@@ -8,7 +8,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 
-
+<!-- <f:view locale="en"> -->
 <h:head>
 	<title>EY!Wear!YE</title>
 	<link href="https://fonts.googleapis.com/css?family=Jura"
@@ -25,126 +25,137 @@
 
 
 	<div id="content">
-	<ui:insert name="content">
-		<h:form id="form">
-			<p:growl id="growl" showDetail="true" sticky="true" />
-			<p:panelGrid var="kunde" value="#{kundenHandler.kunden}" styleClass="anmeldungGrid" columns="2" cellpadding="20">
-				<f:facet name="header">Persönliche Daten</f:facet>
+		<ui:insert name="content">
+			<h:form id="form">
+				<p:growl id="growl" showDetail="true" sticky="true" />
+				<p:panelGrid var="kunde" value="#{kundenHandler.kunden}"
+					styleClass="anmeldungGrid" columns="2" cellpadding="20">
+					<f:facet name="header">#{msg.persoenlicheDaten}</f:facet>
 
-				<p:outputLabel value="Rolle" for="rolle" />
-				<h:panelGroup>
-					<p:inputText id="rolle" required="true"
-						value="#{kundenHandler.merkeKunde.rolle}"
-						requiredMessage="Rolle fehlt">
-						<!-- <f:converter converterId="eigenerConverter" /> -->
-					</p:inputText>
-					<h:message for="anrede" styleClass="message" />
-				</h:panelGroup>
+					<p:outputLabel value="#{msg.rolle}" for="rolle" />
+					<h:panelGroup>
+						<p:inputText id="rolle" required="true"
+							value="#{kundenHandler.merkeKunde.rolle}"
+							requiredMessage="Rolle fehlt">
+							<!-- <f:converter converterId="eigenerConverter" /> -->
+						</p:inputText>
+						<h:message for="rolle" styleClass="message" />
+					</h:panelGroup>
 
-				<p:outputLabel value="Anrede" for="anrede" />
-				<h:panelGroup>
-					<p:inputText id="anrede" required="true"
-						value="#{kundenHandler.merkeKunde.anrede}"
-						requiredMessage="anrede fehlt">
-						<!-- <f:converter converterId="eigenerConverter" /> -->
-					</p:inputText>
-					<h:message for="anrede" styleClass="message" />
-				</h:panelGroup>
+					<p:outputLabel value="#{msg.anrede}" for="anrede" />
+					<h:panelGroup>
+						<p:inputText id="anrede" required="true"
+							value="#{kundenHandler.merkeKunde.anrede}"
+							requiredMessage="anrede fehlt">
+							<!-- <f:converter converterId="eigenerConverter" /> -->
+						</p:inputText>
+						<h:message for="anrede" styleClass="message" />
+					</h:panelGroup>
 
 
-				<p:outputLabel value="Vorname" for="vorname" />
-				<h:panelGroup>
-					<p:inputText id="vorname" required="true"
-						value="#{kundenHandler.merkeKunde.vorname}"
-						requiredMessage="vorname fehlt">
+					<p:outputLabel value="#{msg.vorname}" for="vorname" />
+					<h:panelGroup>
+						<p:inputText id="vorname" required="true"
+							value="#{kundenHandler.merkeKunde.vorname}"
+							requiredMessage="vorname fehlt">
+							<!-- 						<f:converter converterId="eigenerConverter" /> -->
+						</p:inputText>
+						<h:message for="vorname" styleClass="message" />
+					</h:panelGroup>
+
+					<p:outputLabel value="#{msg.nachname}" for="nachname" />
+					<h:panelGroup>
+						<p:inputText id="nachname" required="true"
+							value="#{kundenHandler.merkeKunde.nachname}"
+							requiredMessage="nachname fehlt">
+							<!-- 						<f:converter converterId="eigenerConverter" /> -->
+						</p:inputText>
+						<h:message for="nachname" styleClass="message" />
+					</h:panelGroup>
+
+					<p:outputLabel value="#{msg.geburtsdatum}" for="geburtsdatum" />
+					<h:panelGroup>
+						<p:calendar style="padding-left: 45px;" id="geburtsdatum"
+							value="#{kundenHandler.merkeKunde.geburtsdatum}" showOn="button"
+							pattern="dd.MM.yyyy" />
+
 						<!-- 						<f:converter converterId="eigenerConverter" /> -->
-					</p:inputText>
-					<h:message for="vorname" styleClass="message" />
-				</h:panelGroup>
 
-				<p:outputLabel value="Nachname" for="nachname" />
-				<h:panelGroup>
-					<p:inputText id="nachname" required="true" value="#{kundenHandler.merkeKunde.nachname}"
-						requiredMessage="nachname fehlt">
-						<!-- 						<f:converter converterId="eigenerConverter" /> -->
-					</p:inputText>
-					<h:message for="nachname" styleClass="message" />
-				</h:panelGroup>
-
-				<p:outputLabel value="Geburtsdatum" for="geburtsdatum" />
-				<h:panelGroup>
-					<p:calendar style="padding-left: 45px;" id="geburtsdatum"
-						value="#{kundenHandler.merkeKunde.geburtsdatum}" showOn="button" pattern="dd.MM.yyyy" />
-
-					<!-- 						<f:converter converterId="eigenerConverter" /> -->
-
-					<h:message for="geburtsdatum" styleClass="message" />
-				</h:panelGroup>
+						<h:message for="geburtsdatum" styleClass="message" />
+					</h:panelGroup>
 
 
-				<p:outputLabel value="Strasse" for="strasse" />
-				<h:panelGroup>
-					<p:inputText id="strasse" required="true" value="#{kundenHandler.merkeKunde.strasse}"
-						requiredMessage="strasse fehlt">
-						<!-- 						<f:converter converterId="eigenerConverter" /> -->
-					</p:inputText>
-					<h:message for="strasse" styleClass="message" />
-				</h:panelGroup>
+					<p:outputLabel value="#{msg.strasse}" for="strasse" />
+					<h:panelGroup>
+						<p:inputText id="strasse" required="true"
+							value="#{kundenHandler.merkeKunde.strasse}"
+							requiredMessage="strasse fehlt">
+							<!-- 						<f:converter converterId="eigenerConverter" /> -->
+						</p:inputText>
+						<h:message for="strasse" styleClass="message" />
+					</h:panelGroup>
 
-				<p:outputLabel value="PLZ" for="plz" />
-				<h:panelGroup>
-					<p:inputText id="plz" required="true" value="#{kundenHandler.merkeKunde.plz}"
-						requiredMessage="plz fehlt">
-						<!-- 							<f:validateRegex pattern="^([A-Z]-)?[0-9]{5}$" /> -->
-					</p:inputText>
-					<h:message for="plz" styleClass="message" />
-				</h:panelGroup>
+					<p:outputLabel value="#{msg.plz}" for="plz" />
+					<h:panelGroup>
+						<p:inputText id="plz" required="true"
+							value="#{kundenHandler.merkeKunde.plz}"
+							requiredMessage="plz fehlt">
+							<!-- 							<f:validateRegex pattern="^([A-Z]-)?[0-9]{5}$" /> -->
+						</p:inputText>
+						<h:message for="plz" styleClass="message" />
+					</h:panelGroup>
 
-				<p:outputLabel value="Ort" for="ort" />
-				<h:panelGroup>
-					<p:inputText id="ort" required="true" value="#{kundenHandler.merkeKunde.ort}"
-						requiredMessage="ort fehlt">
-						<!-- 						<f:converter converterId="eigenerConverter" /> -->
-					</p:inputText>
-					<h:message for="ort" styleClass="message" />
-				</h:panelGroup>
-
-
-				<p:outputLabel value="E-Mail" for="email" />
-				<h:panelGroup>
-					<p:inputText id="email" required="true" value="#{kundenHandler.merkeKunde.email}"
-						requiredMessage="EMail fehlt">
-						<!-- 						<f:converter converterId="eigenerConverter" /> -->
-					</p:inputText>
-					<h:message for="email" styleClass="message" />
-				</h:panelGroup>
+					<p:outputLabel value="#{msg.ort}" for="ort" />
+					<h:panelGroup>
+						<p:inputText id="ort" required="true"
+							value="#{kundenHandler.merkeKunde.ort}"
+							requiredMessage="ort fehlt">
+							<!-- 						<f:converter converterId="eigenerConverter" /> -->
+						</p:inputText>
+						<h:message for="ort" styleClass="message" />
+					</h:panelGroup>
 
 
-				<p:outputLabel value="Benutzername" for="benutzername" />
-				<h:panelGroup>
-					<p:inputText id="benutzername" required="true" value="#{kundenHandler.merkeKunde.username}"
-						requiredMessage="Eingabe fehlt" />
-					<h:message for="benutzername" styleClass="message" />
-				</h:panelGroup>
+					<p:outputLabel value="#{msg.email}" for="email" />
+					<h:panelGroup>
+						<p:inputText id="email" required="true"
+							value="#{kundenHandler.merkeKunde.email}"
+							requiredMessage="EMail fehlt">
+							<!-- 						<f:converter converterId="eigenerConverter" /> -->
+						</p:inputText>
+						<h:message for="email" styleClass="message" />
+					</h:panelGroup>
 
 
-				<p:outputLabel for="pwd1" value="Passwort" />
-				<h:panelGroup>
-					<p:password id="pwd1" value="#{kundenHandler.passwort}" match="pwd2" label="Password 1"
-						required="true" feedback="true" />
-				</h:panelGroup>
+					<p:outputLabel value="#{msg.benutzername}" for="benutzername" />
+					<h:panelGroup>
+						<p:inputText id="benutzername" required="true"
+							value="#{kundenHandler.merkeKunde.username}"
+							requiredMessage="Eingabe fehlt" />
+						<h:message for="benutzername" styleClass="message" />
+					</h:panelGroup>
 
-				<p:outputLabel for="pwd2" value="Passwort" />
-				<h:panelGroup>
-					<p:password id="pwd2" value="#{kundenHandler.passwort}" label="Password 2" required="true" />
-				</h:panelGroup>
 
-			</p:panelGrid>
-			<br />
-			
-			<p:commandButton value="Speichern" action="#{kundenHandler.speichern()}" ajax="false"/>
-			<p:commandButton action="index.xhtml" value="Abrechen" />
-		</h:form>
+					<p:outputLabel for="pwd1" value="#{msg.passwort}" />
+					<h:panelGroup>
+						<p:password id="pwd1" value="#{kundenHandler.passwort}"
+							match="pwd2" label="Password 1" required="true" feedback="true" />
+					</h:panelGroup>
+
+					<p:outputLabel for="pwd2" value="#{msg.passwort}" />
+					<h:panelGroup>
+						<p:password id="pwd2" value="#{kundenHandler.passwort}"
+							label="Password 2" required="true" />
+					</h:panelGroup>
+
+				</p:panelGrid>
+				<br />
+
+				<p:commandButton value="#{msg.speichern}"
+					action="#{kundenHandler.speichern()}" ajax="false" />
+				<p:commandButton action="index.xhtml" value="#{msg.abbrechen}"
+					immediate="true" />
+			</h:form>
 		</ui:insert>
 		<div class="push"></div>
 	</div>
@@ -156,4 +167,5 @@
 		</ui:insert>
 	</div>
 </h:body>
+<!-- </f:view> -->
 </html>

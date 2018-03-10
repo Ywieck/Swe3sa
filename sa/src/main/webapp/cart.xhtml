@@ -27,7 +27,7 @@
 	<div id="content"
 		style="color: black; font-family: Jura; font-size: 17px; width: 100%; margin: auto;">
 		<h1>
-			<a style="color: maroon;">Warenkorb</a>
+			<a style="color: maroon;">#{msg.warenkorb}</a>
 		</h1>
 
 		<div
@@ -37,38 +37,38 @@
 		</div>
 		<ui:insert name="content">
 			<h:form id="id">
-				
+
 				<p:dataTable var="artikel"
 					value="#{kundenHandler.merkeKunde.artikelDaten}"
 					rowClasses="odd,even" headerClass="header">
 
 
 					<p:column>
-						<f:facet name="header">Bezeichnung</f:facet>
+						<f:facet name="header">#{msg.bezeichnung}</f:facet>
 						<h:outputText value="#{artikel.bezeichnung}" />
 					</p:column>
 
 					<p:column>
-						<f:facet name="header">Hersteller</f:facet>
+						<f:facet name="header">#{msg.hersteller}</f:facet>
 						<h:outputText value="#{artikel.hersteller}" />
 					</p:column>
 
 
 
 					<p:column>
-						<f:facet name="header">Preis</f:facet>
+						<f:facet name="header">#{msg.preis}</f:facet>
 						<h:outputText value="#{artikel.preis}" />
 					</p:column>
 
 					<p:column>
-						<f:facet name="header">Anzahl</f:facet>
+						<f:facet name="header">#{msg.anzahl}</f:facet>
 						<h:outputText value="#{artikel.anzahl} Stück" />
 					</p:column>
 
 
 
 					<p:column>
-						<f:facet name="header">Gesamt</f:facet>
+						<f:facet name="header">#{msg.gesamt}</f:facet>
 						<h:outputText value="#{artikel.gesamt}" />
 					</p:column>
 				</p:dataTable>
@@ -76,32 +76,32 @@
 				<p:panelGrid id="summe" columns="2">
 
 
-					<h:outputLabel for="gesa" value="Gesamtanzahl" />
+					<h:outputLabel for="gesa" value="#{msg.gesamtanzahl}" />
 					<h:outputText id="gesa"
-						value="#{kundenHandler.merkeArtikel.gesamtanzahl} Stück" />
+						value="#{kundenHandler.merkeArtikel.gesamtanzahl} #{msg.stueck}" />
 
 
-					<h:outputLabel for="gesamt" value="Gesamtpreis" />
+					<h:outputLabel for="gesamt" value="#{msg.gesamtpreis}" />
 					<h:outputText id="gesamt"
-						value="#{kundenHandler.merkeArtikel.gesamtprice} Euro" />
+						value="#{kundenHandler.merkeArtikel.gesamtprice} #{msg.euro}" />
 
 				</p:panelGrid>
 
 
 				<p:growl id="growl" showDetail="true" sticky="true" />
-				<p:commandButton value="Bezahlen"
+				<p:commandButton value="#{msg.bezahlen}"
 					oncomplete="PF('Dialog').show()" title="View Detail">
-					<f:setPropertyActionListener value=""
+					<f:setPropertyActionListener value="#{artikel}"
 						target="#{kundenHandler.merkeArtikel}" />
 				</p:commandButton>
 
-				<p:dialog header="Bezahlen" widgetVar="Dialog" modal="false"
+				<p:dialog header="#{msg.bezahlen}" widgetVar="Dialog" modal="false"
 					position="center center">
 					<p:outputPanel id="Detail" style="text-align:center;">
 
 						<p:panelGrid columns="2" headerClass="header" footerClass="footer">
 
-							<h:outputLabel value="Kunde" for="kunde" />
+							<h:outputLabel value="#{msg.kunde}" for="kunde" />
 							<h:panelGroup>
 								<h:outputText id="kunde"
 									value="#{kundenHandler.merkeKunde.vorname} #{kundenHandler.merkeKunde.nachname}" />
@@ -110,14 +110,10 @@
 						</p:panelGrid>
 					</p:outputPanel>
 				</p:dialog>
+				<p:commandButton value="#{msg.abbrechen}" action="index.xhtml" />
 
 			</h:form>
-			<h:form>
-				<div id="button">
-					<p:commandButton value="Abbrechen"
-						action="index.xhtml" />
-				</div>
-			</h:form>
+
 		</ui:insert>
 
 

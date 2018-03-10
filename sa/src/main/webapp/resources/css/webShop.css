@@ -11,10 +11,6 @@ body {
 	background: white;
 }
 
-.langbutton {
-	background-image: url(../Dflag.png) !important;
-}
-
 .headerImg {
 	height: 200px;
 	background-image: url(../Headerpic2.jpg) !important;
