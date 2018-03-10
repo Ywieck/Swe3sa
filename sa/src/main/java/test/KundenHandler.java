@@ -8,8 +8,6 @@ import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ComponentSystemEvent;
@@ -25,11 +23,6 @@ import javax.transaction.UserTransaction;
 import javax.ws.rs.NotSupportedException;
 
 import org.omg.CORBA.SystemException;
-
-import test.Anrede;
-import test.ArtikelDaten;
-import test.Kunde;
-import test.Rolle;
 
 public class KundenHandler {
 
@@ -299,7 +292,8 @@ public class KundenHandler {
 	 */
 	public String ArtikelBearbeiten() {
 		merkeArtikel = artikeln.getRowData();
-		return "produkteBearbeiten";
+//		return "produkteBearbeiten";
+		return "produktVerwaltung";
 	}
 
 	/**

@@ -30,13 +30,10 @@
 			<a style="color: maroon;">#{msg.warenkorb}</a>
 		</h1>
 
-		<div
-			style="color: #F1C40F; font-family: Helvetica; font-size: 15px; float: right; margin: auto;">
-			<h:outputText id="kunde"
-				value="#{kundenHandler.merkeKunde.vorname} #{kundenHandler.merkeKunde.nachname}" />
-		</div>
 		<ui:insert name="content">
 			<h:form id="id">
+			
+			<p:panel id="panel" style="text-align:left;" header="#{kundenHandler.merkeKunde.vorname} #{kundenHandler.merkeKunde.nachname}" />
 
 				<p:dataTable var="artikel"
 					value="#{kundenHandler.merkeKunde.artikelDaten}"

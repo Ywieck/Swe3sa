@@ -34,7 +34,7 @@
 				<p:dataTable var="artikel" value="#{kundenHandler.artikeln}"
 					rowClasses="odd,even" headerClass="header">
 
-					<f:facet name="header">Produktübersicht</f:facet>
+					<f:facet name="header">#{msg.artikeluebersicht}</f:facet>
 
 					<p:column>
 						<f:facet name="header"></f:facet>
@@ -43,67 +43,102 @@
 					</p:column>
 
 					<p:column>
-						<f:facet name="header">Bezeichnung</f:facet>
+						<f:facet name="header">#{msg.bezeichnung}</f:facet>
 						<h:outputText value="#{artikel.bezeichnung}" />
 
 					</p:column>
 
 					<p:column>
-						<f:facet name="header">Hersteller</f:facet>
+						<f:facet name="header">#{msg.hersteller}</f:facet>
 						<h:outputText value="#{artikel.hersteller}" />
 					</p:column>
 
 					<p:column>
-						<f:facet name="header">Beschreibung</f:facet>
+						<f:facet name="header">#{msg.beschreibung}</f:facet>
 						<h:outputText value="#{artikel.beschreibung}" />
 					</p:column>
 
 					<p:column>
-						<f:facet name="header">Preis</f:facet>
-						<h:outputText value="#{artikel.preis} Euro;" />
+						<f:facet name="header">#{msg.preis}</f:facet>
+						<h:outputText value="#{artikel.preis} #{msg.euro}" />
+					</p:column>
+
+
+					<p:column>
+						<p:growl id="growl" showDetail="true" sticky="true" />
+						<f:facet name="header">#{msg.bearbeiten}</f:facet>
+						<p:commandButton value="#{msg.bearbeiten}"
+							oncomplete="PF('Dialog').show()" title="View Detail">
+							<f:setPropertyActionListener value="#{artikel}"
+								target="#{kundenHandler.merkeArtikel}" />
+						</p:commandButton>
 					</p:column>
 
 					<p:column>
-						<f:facet name="header">Bearbeiten</f:facet>
-						<h:commandButton action="#{kundenHandler.ArtikelBearbeiten()}"
-							value="Bearbeiten" />
+						<f:facet name="header">#{msg.loeschen}</f:facet>
+						<p:commandButton action="#{kundenHandler.ArtikelLoeschen}"
+							value="#{msg.loeschen}" ajax="false" />
 					</p:column>
-					
-					
 
-					<p:growl id="growl" showDetail="true" sticky="true" />
-					<p:commandButton value="#{msg.bearbeiten}"
-						oncomplete="PF('Dialog').show()" title="View Detail">
-						<f:setPropertyActionListener value="#{artikel}"
-							target="#{kundenHandler.merkeArtikel}" />
-					</p:commandButton>
-					<p:dialog header="#{msg.bezahlen}" widgetVar="Dialog" modal="true"
-						position="center center">
-						<p:outputPanel id="Detail" style="text-align:center;">
 
-							<p:panelGrid columns="2" headerClass="header"
-								footerClass="footer">
 
-								<h:outputLabel value="#{msg.kunde}" for="kunde" />
-								<h:panelGroup>
-									<h:outputText id="kunde"
-										value="#{kundenHandler.merkeKunde.vorname} #{kundenHandler.merkeKunde.nachname}" />
-								</h:panelGroup>
-
-							</p:panelGrid>
-						</p:outputPanel>
-					</p:dialog>
-					
-					
-					
-
-					<p:column>
-						<f:facet name="header">Löschen</f:facet>
-						<h:commandButton action="#{kundenHandler.ArtikelLoeschen}"
-							value="Löschen" />
-					</p:column>
 
 				</p:dataTable>
+
+				<p:dialog header="#{msg.artikelbearbeiten}" widgetVar="Dialog"
+					modal="true" position="center center">
+					<p:outputPanel id="Detail" style="text-align:center;">
+
+						<p:panelGrid columns="2" headerClass="header" footerClass="footer">
+
+							<h:outputLabel value="Admin" for="kunde" />
+							<h:panelGroup>
+								<h:outputText id="kunde"
+									value="#{kundenHandler.merkeKunde.vorname} #{kundenHandler.merkeKunde.nachname}" />
+							</h:panelGroup>
+
+							<h:outputLabel value="#{msg.bezeichnung}" for="bezeichnung" />
+							<h:panelGroup>
+								<p:inputText id="bezeichnung" required="true"
+									requiredMessage="Bezeichnung fehlt/title is missing"
+									value="#{kundenHandler.merkeArtikel.bezeichnung}">
+									<!-- 								<f:converter converterId="eigenerConverter" /> -->
+								</p:inputText>
+								<p:message for="bezeichnung" />
+							</h:panelGroup>
+
+							<h:outputLabel value="#{msg.hersteller}" for="hersteller" />
+							<h:panelGroup>
+								<p:inputText id="hersteller" required="true"
+									requiredMessage="Hersteller fehlt/manufacturer missing"
+									value="#{kundenHandler.merkeArtikel.hersteller}">
+									<!-- 								<f:validator validatorId="eigenerValidator" /> -->
+								</p:inputText>
+								<p:message for="hersteller" />
+							</h:panelGroup>
+
+							<h:outputLabel value="#{msg.beschreibung}" for="beschreibung" />
+							<h:panelGroup>
+								<p:inputText id="beschreibung" required="true"
+									requiredMessage=""
+									value="#{kundenHandler.merkeArtikel.beschreibung}">
+									<!-- 								<f:converter converterId="eigenerConverter" /> -->
+								</p:inputText>
+								<p:message for="beschreibung" />
+							</h:panelGroup>
+							<h:outputLabel value="#{msg.preis}:" for="preis" />
+							<h:panelGroup>
+								<p:inputText id="preis" required="true"
+									requiredMessage="Preis fehlt"
+									value="#{kundenHandler.merkeArtikel.preis }">
+								</p:inputText>
+								<p:message for="preis" />
+							</h:panelGroup>
+
+						</p:panelGrid>
+					</p:outputPanel>
+				</p:dialog>
+
 				<p:commandButton action="#{kundenHandler.Artikelneu}"
 					value="Produkt hinzufügen" />
 
