@@ -83,11 +83,11 @@
 
 					<p:column>
 						<f:facet name="header" style="text-align: center;">#{msg.loeschen}</f:facet>
-						<h:commandButton action="#{kundenHandler.delete}" value="#{msg.loeschen}" />
+						<p:commandButton action="#{kundenHandler.delete}" value="#{msg.loeschen}" ajax="false" />
 					</p:column>
 					<p:column>
 						<f:facet name="header" style="text-align: center;">#{msg.bearbeiten}</f:facet>
-						<h:commandButton action="#{kundenHandler.edit}" value="#{msg.bearbeiten}" />
+						<p:commandButton action="#{kundenHandler.edit}" value="#{msg.bearbeiten}" ajax="false" />
 					</p:column>
 				</p:dataTable>
 

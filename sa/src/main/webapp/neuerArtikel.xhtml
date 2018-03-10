@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+	<title>EY!Wear!YE</title>
+	<link href="https://fonts.googleapis.com/css?family=Jura"
+		rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="resources/css/webShop.css" type="text/css" />
+</h:head>
+
+<h:body>
+	<div>
+		<ui:insert>
+			<ui:include src="/WEB-INF/templates/headermenubar.xhtml" />
+		</ui:insert>
+	</div>
+
+
+	<div id="content"
+		style="color: black; font-family: Jura; font-size: 17px; width: 100%; margin: auto;">
+		<h1>
+			<a style="color: maroon;">Neuen Artikel hinzufügen</a>
+		</h1>
+		<ui:insert name="content">
+			<h:form id="form">
+
+				<p:panel id="panel" header="Bearbeiten / neuer Artikel">
+					<h:panelGrid columns="2">
+
+						<h:outputLabel value="#{msg.bezeichnung}" for="bezeichnung" />
+						<h:panelGroup>
+							<p:inputText id="bezeichnung"
+								value="#{kundenHandler.merkeArtikel.bezeichnung}">
+								<!-- 								<f:converter converterId="eigenerConverter" /> -->
+							</p:inputText>
+							<p:message for="bezeichnung" />
+						</h:panelGroup>
+
+						<h:outputLabel value="#{msg.hersteller}" for="hersteller" />
+						<h:panelGroup>
+							<p:inputText id="hersteller"
+								value="#{kundenHandler.merkeArtikel.hersteller}">
+								<!-- 								<f:validator validatorId="eigenerValidator" /> -->
+							</p:inputText>
+							<p:message for="hersteller" />
+						</h:panelGroup>
+
+						<h:outputLabel value="#{msg.beschreibung}" for="beschreibung" />
+						<h:panelGroup>
+							<p:inputText id="beschreibung"
+								value="#{kundenHandler.merkeArtikel.beschreibung}">
+								<!-- 								<f:converter converterId="eigenerConverter" /> -->
+							</p:inputText>
+							<p:message for="beschreibung" />
+						</h:panelGroup>
+
+						<h:outputLabel value="#{msg.preis}:" for="preis" />
+						<h:panelGroup>
+							<p:inputText id="preis"
+								value="#{kundenHandler.merkeArtikel.preis }">
+							</p:inputText>
+							<p:message for="preis" />
+						</h:panelGroup>
+
+						<!-- 						<h:outputLabel value="#{msg.foto}" for="foto" /> -->
+						<!-- 						<h:panelGroup> -->
+						<!-- 							<p:inputText id="foto" required="true" -->
+						<!-- 								requiredMessage="Foto fehlt/Photo is missing" -->
+						<!-- 								value="#{kundenHandler.merkeArtikel.photo}"> -->
+						<!-- 								<f:converter converterId="eigenerConverter" /> -->
+						<!-- 							</p:inputText> -->
+						<!-- 							<p:message for="foto" /> -->
+						<!-- 						</h:panelGroup> -->
+					</h:panelGrid>
+				</p:panel>
+				<p:commandButton action="#{kundenHandler.Artikelspeichern}"
+					value="#{msg.speichern}" ajax="false" />
+				<p:commandButton action="produktVerwaltung.xhtml"
+					value="#{msg.abbrechen}" immediate="true" />
+			</h:form>
+
+
+		</ui:insert>
+
+		<div class="push"></div>
+	</div>
+
+	<div>
+		<ui:insert>
+			<ui:include src="/WEB-INF/templates/footer.xhtml" />
+		</ui:insert>
+	</div>
+</h:body>
+</html>
