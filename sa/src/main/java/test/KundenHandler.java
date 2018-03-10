@@ -918,6 +918,13 @@ public class KundenHandler {
 		}
 		return false;
 	}
+	
+	public boolean checkAdmin() {
+		if(kunde != null && kunde.getRolle() == Rolle.ADMIN) {
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * manche Seiten sind ohne Persönliche Daten nicht zulässig. daher wird,

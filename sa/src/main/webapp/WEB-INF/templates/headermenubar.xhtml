@@ -20,7 +20,7 @@
 	<div id="header">
 		<div class="headerImg">
 			<div>
-				<h:commandButton action="#{kundenHandler.changeLang}" 
+				<h:commandButton action="#{kundenHandler.changeLang}"
 					immediate="true" value="English" />
 				<h:commandButton action="#{kundenHandler.wechselLang}"
 					immediate="true" value="Deutsch" />
@@ -35,31 +35,8 @@
 
 			<p:menubar>
 				<p:menuitem value="Home" url="index.xhtml" icon="ui-icon-home" />
-				<p:submenu label="Damen">
-					<p:submenu label="Bekleidung">
-						<p:menuitem value="Shirts" url="#" />
-						<p:menuitem value="Jeans" url="#" />
-						<p:menuitem value="Jacken" url="#" />
-					</p:submenu>
-					<p:submenu label="Schuhe">
-						<p:menuitem value="Sneaker" url="#" />
-						<p:menuitem value="Sportschuhe" url="#" />
-					</p:submenu>
-				</p:submenu>
-
-				<p:submenu label="Herren">
-					<p:submenu label="Bekleidung">
-						<p:menuitem value="Jeans" url="#" />
-						<p:menuitem value="T-Shirts" url="#" />
-						<p:menuitem value="Jacken" url="#" />
-					</p:submenu>
-					<p:submenu label="Schuhe">
-						<p:menuitem value="Sneaker" url="#" />
-						<p:menuitem value="Sportschuhe" url="#" />
-					</p:submenu>
-				</p:submenu>
-
-				<p:submenu label="Verwaltung">
+				<p:submenu rendered="#{kundenHandler.checkAdmin()}"
+					label="Verwaltung">
 					<p:menuitem value="Kundenverwaltung" url="alleKunden.xhtml" />
 					<p:menuitem value="Produktverwaltung" url="produktVerwaltung.xhtml" />
 				</p:submenu>
@@ -71,8 +48,8 @@
 					<p:commandButton value="Abmelden"
 						rendered="#{kundenHandler.loggedNotIn()}"
 						action="#{kundenHandler.logout()}" />
-					<p:button value="Warenkorb" outcome="cart.xhtml"
-						icon="ui-icon-cart" />
+					<p:button rendered="#{kundenHandler.loggedNotIn()}"
+						value="Warenkorb" outcome="cart.xhtml" icon="ui-icon-cart" />
 				</f:facet>
 			</p:menubar>
 		</h:form>
