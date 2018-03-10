@@ -78,18 +78,14 @@
 					<p:column>
 						<f:facet name="header">#{msg.loeschen}</f:facet>
 						<p:commandButton action="#{kundenHandler.ArtikelLoeschen}"
-							value="#{msg.loeschen}" ajax="false" />
+							value="#{msg.loeschen}" />
 					</p:column>
-
-
-
 
 				</p:dataTable>
 
 				<p:dialog header="#{msg.artikelbearbeiten}" widgetVar="Dialog"
 					modal="true" position="center center">
-					<p:outputPanel id="myDetail"
-						style="text-align:center;">
+					<p:outputPanel id="myDetail" style="text-align:center;">
 
 						<p:panelGrid columns="2" headerClass="header" footerClass="footer">
 
@@ -138,13 +134,11 @@
 					</p:outputPanel>
 				</p:dialog>
 
-				<p:commandButton action="#{kundenHandler.Artikelneu}"
-					value="Produkt hinzufügen" />
+				<p:commandButton action="neuerArtikel.xhtml"
+					value="Produkt hinzufügen" immediate="true" />
 
 				<p:commandButton action="index.xhtml" value="Abbrechen"
 					immediate="true" />
-
-
 
 			</h:form>
 

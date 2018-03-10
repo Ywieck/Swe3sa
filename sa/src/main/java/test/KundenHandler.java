@@ -285,7 +285,7 @@ public class KundenHandler {
 	 */
 	public String Artikelneu() {
 		merkeArtikel = new ArtikelDaten();
-		return "neuesProdukt";
+		return "neuerArtikel";
 	}
 
 	/**
@@ -294,8 +294,8 @@ public class KundenHandler {
 	 */
 	public String ArtikelBearbeiten() {
 		merkeArtikel = artikeln.getRowData();
-//		return "produkteBearbeiten";
-		return "produktVerwaltung";
+		return "produkteBearbeiten";
+		// return "produktVerwaltung";
 	}
 
 	/**
@@ -307,7 +307,10 @@ public class KundenHandler {
 		try {
 			try {
 				utx.begin();
-			} catch (javax.transaction.NotSupportedException | javax.transaction.SystemException e) {
+			} catch (javax.transaction.NotSupportedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (javax.transaction.SystemException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -348,7 +351,7 @@ public class KundenHandler {
 			e.printStackTrace();
 		}
 		artikelGespeichert(null);
-		return "artikelBearbeiten";
+		return "produktVerwaltung";
 	}
 
 	/**
@@ -494,7 +497,7 @@ public class KundenHandler {
 		if (kunden.isRowAvailable())
 			merkeKunde = kunden.getRowData();
 
-		return "shop";
+		return "index";
 	}
 
 	/**
@@ -913,9 +916,9 @@ public class KundenHandler {
 		}
 		return false;
 	}
-	
+
 	public boolean checkAdmin() {
-		if(kunde != null && kunde.getRolle() == Rolle.ADMIN) {
+		if (kunde != null && kunde.getRolle() == Rolle.ADMIN) {
 			return true;
 		}
 		return false;
