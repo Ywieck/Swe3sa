@@ -24,10 +24,10 @@
 
 	<div id="content">
 		<h:form id="form">
-			<p:dataTable var="artikel" selectionMode="single"
-				selection="#{kundenHandler.selectedArtikel}" rowKey="#{artikel.nummer}"
-				value="#{kundenHandler.artikeln}" widgetVar="artikelTable" rows="10"
-				paginator="true"
+			<p:dataTable scrollable="true" var="artikel" selectionMode="single"
+				selection="#{kundenHandler.selectedArtikel}"
+				rowKey="#{artikel.nummer}" value="#{kundenHandler.artikeln}"
+				widgetVar="artikelTable" rows="10" paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				rowsPerPageTemplate="5,10,15">
 
@@ -70,6 +70,9 @@
 						<h:outputText value="#{msg.beschreibung}" />
 						<h:outputText
 							value="$#{kundenHandler.selectedArtikel.beschreibung}" />
+						<p:commandButton value="Warenkorb"
+							action="#{kundenHandler.artikelInWarenkorb}" ajax="false">
+						</p:commandButton>
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>
