@@ -1,4 +1,4 @@
-package Validierer;
+package validierer;
 
 
 import javax.faces.component.UIComponent;

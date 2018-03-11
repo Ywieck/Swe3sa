@@ -43,20 +43,20 @@
 						<p:graphicImage libary="rescoures"
 							name="images/#{artikel.photo}.jpeg" />
 					</p:column>
-					<p:column headerText="Bezeichnung" sortBy="#{artikel.bezeichnung}">
+					<p:column headerText="#{msg.bezeichnung}" sortBy="#{artikel.bezeichnung}">
 						<h:outputText value="#{artikel.bezeichnung}" />
 					</p:column>
-					<p:column headerText="Preis" sortBy="#{artikel.preis}">
+					<p:column headerText="#{msg.preis}" sortBy="#{artikel.preis}">
 						<h:outputText value="#{artikel.preis}" />
 					</p:column>
-					<p:column headerText="Hersteller" sortBy="#{artikel.hersteller}">
+					<p:column headerText="#{msg.hersteller}" sortBy="#{artikel.hersteller}">
 						<h:outputText value="#{artikel.hersteller}" />
 					</p:column>
-					<p:column headerText="Beschreibung">
+					<p:column headerText="#{msg.beschreibung}">
 						<h:outputText value="#{artikel.beschreibung}" />
 					</p:column>
 					<p:column>
-						<p:commandButton value="Löschen"
+						<p:commandButton value="#{msg.loeschen}"
 							action="#{kundenHandler.ausWarenkorblöschen}" ajax="false">
 						</p:commandButton>
 					</p:column>
@@ -93,7 +93,7 @@
 							<h:outputLabel value="#{msg.kunde}" for="kunde" />
 							<h:panelGroup>
 								<h:outputText id="kunde"
-									value="#{kundenHandler.merkeKunde.vorname} #{kundenHandler.merkeKunde.nachname}" />
+									value="#{kundenHandler.kunde.vorname} #{kundenHandler.kunde.nachname}" />
 							</h:panelGroup>
 
 						</p:panelGrid>

@@ -1,4 +1,4 @@
-package test;
+package model;
 
 public enum Anrede {
 	HERR("Herr"), FRAU("Frau"), FIRMA("Firma");

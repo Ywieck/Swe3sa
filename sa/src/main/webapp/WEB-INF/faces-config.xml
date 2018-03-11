@@ -18,7 +18,7 @@
 
 	<managed-bean>
         	<managed-bean-name>kundenHandler</managed-bean-name>
-        	<managed-bean-class>test.KundenHandler</managed-bean-class>
+        	<managed-bean-class>controller.SaHandler</managed-bean-class>
         	<managed-bean-scope>session</managed-bean-scope>
         </managed-bean>
 

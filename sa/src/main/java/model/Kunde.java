@@ -1,4 +1,4 @@
-package test;
+package model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -21,8 +21,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
-
-import Model.Kreditkarte;
 
 @NamedQuery(name = "SelectKunden", query = "Select k from Kunde k")
 @Entity

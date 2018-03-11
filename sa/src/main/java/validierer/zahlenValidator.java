@@ -1,4 +1,4 @@
-package Validierer;
+package validierer;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package test;
+package controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +23,14 @@ import javax.ws.rs.NotSupportedException;
 
 import org.omg.CORBA.SystemException;
 
-import Model.Kreditkarte;
-import Model.Kreditkartentyp;
+import model.Anrede;
+import model.ArtikelDaten;
+import model.Kreditkarte;
+import model.Kreditkartentyp;
+import model.Kunde;
+import model.Rolle;
 
-public class KundenHandler {
+public class SaHandler {
 
 	@PersistenceContext
 	private EntityManager em;
@@ -70,7 +74,7 @@ public class KundenHandler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+
 		// em.persist(new Kunde(Anrede.HERR, "Yasar", "Wieck", new
 		// GregorianCalendar(1993, 01, 06).getTime(),
 		// "Prager Str. 12", "27568", "Bremerhaven", "yw@ey.de", "ywieck",
@@ -241,95 +245,67 @@ public class KundenHandler {
 
 	// Methoden zur Verwaltung der Kreditkarten
 
-		/**
-		 * durch den klick auf //Kreditkarte// in der Ansicht(eigenedatenBearbeiten)
-		 * oder (kundeBearbeiten) werden die daten der Kreditkarte aufgerufen(falls
-		 * welche vorhanden sind. wenn nich dann werden die Felder leer angezeigt,
-		 * so das man eine neue Kreditkarte anlegen kann
-		 */
-		public String toKreditkarte() {
-			if (merkeKunde.getKreditkarte() == null)
-				merkeKreditkarte = new Kreditkarte();
-			else
-				merkeKreditkarte = merkeKunde.getKreditkarte();
-			return "kreditkarte";
-		}
-		
-		/**
-		 * Durch den klick auf //Speichern// (kreditkarte) Daten der Kreditkarte des
-		 * jeweiligen Kunden werden in der Datenbank gespeichert
-		 */
-		public String kreditkarteSpeichern() {
-			merkeKunde.setKreditkarte(merkeKreditkarte);
+	/**
+	 * Durch den klick auf //Speichern// (kreditkarte) Daten der Kreditkarte des
+	 * jeweiligen Kunden werden in der Datenbank gespeichert
+	 */
+	public String kreditkarteSpeichern() {
+		merkeKunde.setKreditkarte(merkeKreditkarte);
+		try {
 			try {
-				try {
-					utx.begin();
-				} catch (javax.transaction.NotSupportedException | javax.transaction.SystemException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			} catch (NotSupportedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SystemException e) {
+				utx.begin();
+			} catch (javax.transaction.NotSupportedException | javax.transaction.SystemException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			merkeKunde = em.merge(merkeKunde);
-			merkeKreditkarte = em.merge(merkeKreditkarte);
-			em.persist(merkeKunde);
-			em.persist(merkeKreditkarte);
-			kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
+		} catch (NotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SystemException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		merkeKunde = em.merge(merkeKunde);
+		merkeKreditkarte = em.merge(merkeKreditkarte);
+		em.persist(merkeKunde);
+		em.persist(merkeKreditkarte);
+		kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
+		try {
 			try {
-				try {
-					utx.commit();
-				} catch (javax.transaction.RollbackException | javax.transaction.SystemException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (RollbackException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (HeuristicMixedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (HeuristicRollbackException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SystemException e) {
+				utx.commit();
+			} catch (javax.transaction.RollbackException | javax.transaction.SystemException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return "index";
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RollbackException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (HeuristicMixedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (HeuristicRollbackException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SystemException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		return "index";
+	}
 
-		/**
-		 * Array der auszuwählenden Kreditkarten (Enum-Klasse Kreditkartentyp)
-		 */
-		public Kreditkartentyp[] getKkTypValues() {
-			return Kreditkartentyp.values();
-		}
+	/**
+	 * Array der auszuwählenden Kreditkarten (Enum-Klasse Kreditkartentyp)
+	 */
+	public Kreditkartentyp[] getKkTypValues() {
+		return Kreditkartentyp.values();
+	}
 
-		/**
-		 * Wenn man auf den Button //zurück// drückt von der Kreditkarten ansicht
-		 * aus, dann gelangt der Kunde oder Admin auf die jeweils in der Methode
-		 * angegebene ansicht
-		 */
-		public String abbruchKreditkarte() {
-			if (merkeKunde.getRolle() == Rolle.ADMIN)
-				return "alleKunden";
-			else
-				return "eigeneDatenBearbeiten";
-		}
-	
-	
-	
 	// Methoden zur Verwaltung der Artikel
 
 	/**
@@ -349,7 +325,6 @@ public class KundenHandler {
 	public String ArtikelBearbeiten() {
 		merkeArtikel = artikeln.getRowData();
 		return "produkteBearbeiten";
-		// return "produktVerwaltung";
 	}
 
 	/**
@@ -466,112 +441,81 @@ public class KundenHandler {
 		}
 		return null;
 	}
-	
-	 // Methoden zur Verwaltung des Webshops
-	
-	 /**
+
+	// Methoden zur Verwaltung des Webshops
+
+	/**
 	 * Durch das klicken auf //Bezahlen// in der Ansicht (zurKasse) werden
 	 * Kreditkartendaten aufgerufen. Durch das klicken auf //Bezahlen// in der
 	 * Ansicht (Kreditkartendaten) werden die Artikel in die Datenbank in
 	 * Beziehung zu dem zugehörigen Kunden aufgerufen
 	 */
-	 public String Bezahlen() {
-	 if (gesamtpreis == 0) {
-	 keineArtikel(null);
-	 return null;
-	 }
-	
-	 if (merkeKunde.getKreditkarte() == null)
-	 merkeKunde.setKreditkarte(merkeKreditkarte);
-	 merkeKunde.getArtikelDaten();
-	 try {
-	 try {
-	 utx.begin();
-	 } catch (javax.transaction.NotSupportedException |
-	 javax.transaction.SystemException e) {
-	 // TODO Auto-generated catch block
-	 e.printStackTrace();
-	 }
-	 } catch (NotSupportedException e) {
-	 // TODO Auto-generated catch block
-	 e.printStackTrace();
-	 } catch (SystemException e) {
-	 // TODO Auto-generated catch block
-	 e.printStackTrace();
-	 }
-	 merkeKunde = em.merge(merkeKunde);
-	 merkeKreditkarte = em.merge(merkeKreditkarte);
-	 merkeArtikel = em.merge(merkeArtikel);
-	 em.persist(merkeKunde);
-	 em.persist(merkeKreditkarte);
-	 em.persist(merkeArtikel);
-	 kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
-	
-	 try {
-	 try {
-	 utx.commit();
-	 } catch (javax.transaction.RollbackException |
-	 javax.transaction.SystemException e) {
-	 // TODO Auto-generated catch block
-	 e.printStackTrace();
-	 }
-	 } catch (SecurityException e) {
-	 // TODO Auto-generated catch block
-	 e.printStackTrace();
-	 } catch (IllegalStateException e) {
-	 // TODO Auto-generated catch block
-	 e.printStackTrace();
-	 } catch (RollbackException e) {
-	 // TODO Auto-generated catch block
-	 e.printStackTrace();
-	 } catch (HeuristicMixedException e) {
-	 // TODO Auto-generated catch block
-	 e.printStackTrace();
-	 } catch (HeuristicRollbackException e) {
-	 // TODO Auto-generated catch block
-	 e.printStackTrace();
-	 } catch (SystemException e) {
-	 // TODO Auto-generated catch block
-	 e.printStackTrace();
-	 }
-	
-	 gesamtpreis = 0;
-	 gesamt = 0;
-	
-	 bezahlt(null);
-	 return null;
-	
-	 }
+	public String Bezahlen() {
+		if (gesamtpreis == 0) {
+			keineArtikel(null);
+			return null;
+		}
 
-	/**
-	 * Durch den klick auf //zum Einkauf// gelangt der Admin mit sein Daten zur
-	 * Shop ansicht
-	 */
-	public String zumEinkauf() {
-		if (kunden.isRowAvailable())
-			merkeKunde = kunden.getRowData();
+		if (merkeKunde.getKreditkarte() == null)
+			merkeKunde.setKreditkarte(merkeKreditkarte);
+		merkeKunde.getArtikelDaten();
+		try {
+			try {
+				utx.begin();
+			} catch (javax.transaction.NotSupportedException | javax.transaction.SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (NotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SystemException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		merkeKunde = em.merge(merkeKunde);
+		merkeKreditkarte = em.merge(merkeKreditkarte);
+		merkeArtikel = em.merge(merkeArtikel);
+		em.persist(merkeKunde);
+		em.persist(merkeKreditkarte);
+		em.persist(merkeArtikel);
+		kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
 
-		return "index";
-	}
+		try {
+			try {
+				utx.commit();
+			} catch (javax.transaction.RollbackException | javax.transaction.SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RollbackException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (HeuristicMixedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (HeuristicRollbackException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SystemException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-	/**
-	 * Durch den klick auf //Persönliche Daten// in der Ansicht (shop) kann der
-	 * Kunde seine eigenen Daten bearbeiten
-	 */
-	public String eigeneDatenBearbeiten() {
-		return "eigeneDatenBearbeiten";
-	}
-
-	/**
-	 * Durch den klick auf //warenkorb leeren// in der Ansicht (shop) werden
-	 * alle Artikel aus dem Warenkorb gelöscht
-	 */
-	public String warenkorbLeeren() {
-		merkeKunde.getArtikelDaten().clear();
 		gesamtpreis = 0;
-		gesamtanzahl = 0;
+		gesamt = 0;
+
+		bezahlt(null);
 		return null;
+
 	}
+
 
 	/**
 	 * durch das Klicken auf //löschen// in der Ansicht (shop) wird der
@@ -623,23 +567,6 @@ public class KundenHandler {
 			e.printStackTrace();
 		}
 		return "cart";
-		// if (index >= merkeKunde.getArtikelDaten().size()) {
-		// keinePosition(null);
-		// return null;
-		// } else {
-		// gesamtpreis = gesamtpreis -
-		// merkeKunde.getArtikelDaten().get(index).getPreis();
-		// gesamt = Math.floor(gesamt * 100) / 100.0;
-		//
-		// gesamtanzahl = gesamtanzahl -
-		// merkeKunde.getArtikelDaten().get(index).getAnzahl();
-		// merkeKunde.getArtikelDaten().remove(index);
-		// positionGeloescht(null);
-		// for (int i = index; i < merkeKunde.getArtikelDaten().size(); i++) {
-		// merkeKunde.getArtikelDaten().get(i).setNummer(i);
-		// }
-		// return null;
-		// }
 	}
 
 	/**
@@ -697,15 +624,6 @@ public class KundenHandler {
 		return "index";
 	}
 
-	/**
-	 * Diese Nachricht erscheint nach dem klicken auf Löschen in der Ansicht
-	 * (shop) nach der eingabe einer bestimmten Position
-	 */
-	public void positionGeloescht(ActionEvent actionevent) {
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null,
-				new FacesMessage("Artikel gelöscht", "Sie haben den Artikel aus Ihrem warenkorb gelöscht"));
-	}
 
 	/**
 	 * diese Nachricht erscheint nach der Eingabe der Kreditkarte nach dem
@@ -716,14 +634,6 @@ public class KundenHandler {
 		context.addMessage(null, new FacesMessage("Bezahlt", "Sie haben die/den Artikel soeben Bezahlt"));
 	}
 
-	/**
-	 * diese Ansicht erscheint wenn der Kunde auf den Button //in den
-	 * warenkorb// klickt
-	 */
-	public void inDenWarenkorb(ActionEvent event) {
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage("Warenkorb", "Artikel ist jetzt in ihrem Warenkorb"));
-	}
 
 	/**
 	 * diese Nachricht erscheint, wenn der Kunde eine ungültige Position angibt
@@ -731,7 +641,6 @@ public class KundenHandler {
 	public void keinePosition(ActionEvent actionEvent) {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
 				"ungültige Position", "diese Position ist in Ihrem warenkorb nicht vorhanden"));
-
 	}
 
 	/**
@@ -779,11 +688,6 @@ public class KundenHandler {
 	 * ein neues Objekt wird erzeugt um die Daten nachher zu speichern, wenn auf
 	 * //Registrieren// klickt
 	 */
-
-	// public String Registrieren() {
-	// merkeKunde = new Kunde();
-	// return "alleKunden";
-	// }
 	public String registrieren() {
 		try {
 			utx.begin();
@@ -800,106 +704,6 @@ public class KundenHandler {
 		return "login";
 	}
 
-	/**
-	 * wenn der Kunde auf //speichern// klickt (registrierung)dann werden seine
-	 * Daten gespeichert und die Rolle wird automatisch auf KUNDE gesetzt. Man
-	 * gelangt nach der Registrierung zur Login seite
-	 */
-	public String registrierungSpeichern() {
-		if (merkeKunde.getPasswort() == null) {
-			merkeKunde.setRolle(Rolle.KUNDE);
-			try {
-				try {
-					utx.begin();
-				} catch (javax.transaction.NotSupportedException | javax.transaction.SystemException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			} catch (NotSupportedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SystemException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			merkeKunde = em.merge(merkeKunde);
-			em.persist(merkeKunde);
-			kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
-			try {
-				try {
-					utx.commit();
-				} catch (javax.transaction.RollbackException | javax.transaction.SystemException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (RollbackException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (HeuristicMixedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (HeuristicRollbackException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SystemException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			return "PasswortBearbeiten";
-		} else {
-			try {
-				try {
-					utx.begin();
-				} catch (javax.transaction.NotSupportedException | javax.transaction.SystemException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			} catch (NotSupportedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SystemException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			merkeKunde = em.merge(merkeKunde);
-			em.persist(merkeKunde);
-			kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
-			try {
-				try {
-					utx.commit();
-				} catch (javax.transaction.RollbackException | javax.transaction.SystemException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (RollbackException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (HeuristicMixedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (HeuristicRollbackException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SystemException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return "login";
-		}
-	}
 
 	/**
 	 * Wenn der Kunde auf den Button //zur Kasse// in der Ansicht (shop) klickt,
@@ -993,10 +797,6 @@ public class KundenHandler {
 		}
 	}
 
-	/**
-	 * 
-	 * 
-	 */
 	public boolean loggedIn() {
 		if (kunde == null) {
 			return true;
@@ -1066,13 +866,13 @@ public class KundenHandler {
 		this.artikeln = artikeln;
 	}
 
-	 public Kreditkarte getMerkeKreditkarte() {
-	 return merkeKreditkarte;
-	 }
-	
-	 public void setMerkeKreditkarte(Kreditkarte merkeKreditkarte) {
-	 this.merkeKreditkarte = merkeKreditkarte;
-	 }
+	public Kreditkarte getMerkeKreditkarte() {
+		return merkeKreditkarte;
+	}
+
+	public void setMerkeKreditkarte(Kreditkarte merkeKreditkarte) {
+		this.merkeKreditkarte = merkeKreditkarte;
+	}
 
 	public DataModel<ArtikelDaten> getWarenkorb() {
 		return warenkorb;
@@ -1205,5 +1005,4 @@ public class KundenHandler {
 	public Anrede[] getAnredeValues() {
 		return Anrede.values();
 	}
-
 }
