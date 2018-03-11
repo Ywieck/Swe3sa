@@ -34,7 +34,6 @@ public class KundenHandler {
 
 	private DataModel<Kunde> kunden;
 	private DataModel<ArtikelDaten> artikeln;
-	private DataModel<ArtikelDaten> filterArtikeln;
 	private ArtikelDaten selectedArtikel;
 	private DataModel<ArtikelDaten> warenkorb;
 
@@ -48,7 +47,6 @@ public class KundenHandler {
 	private String username;
 	private String passwort;
 	private Kunde kunde;
-	private List<String> images;
 	private String langCode = "en";
 	private String langerCode = "de";
 	private int number;
@@ -63,18 +61,13 @@ public class KundenHandler {
 
 	@PostConstruct
 	public void init() {
-		images = new ArrayList<String>();
 		try {
 			utx.begin();
-		} catch (NotSupportedException e) {
-			e.printStackTrace();
-		} catch (SystemException e) {
-			e.printStackTrace();
-		} catch (javax.transaction.NotSupportedException e) {
-			e.printStackTrace();
-		} catch (javax.transaction.SystemException e) {
+		} catch (javax.transaction.NotSupportedException | javax.transaction.SystemException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
 		// em.persist(new Kunde(Anrede.HERR, "Yasar", "Wieck", new
 		// GregorianCalendar(1993, 01, 06).getTime(),
 		// "Prager Str. 12", "27568", "Bremerhaven", "yw@ey.de", "ywieck",
@@ -108,93 +101,12 @@ public class KundenHandler {
 		// "mmalitza", "mmalitza",
 		// Rolle.ADMIN));
 
-		kunden = new ListDataModel<Kunde>();
-		kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
-
-		try {
-			utx.commit();
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (RollbackException e) {
-			e.printStackTrace();
-		} catch (HeuristicMixedException e) {
-			e.printStackTrace();
-		} catch (HeuristicRollbackException e) {
-			e.printStackTrace();
-		} catch (SystemException e) {
-			e.printStackTrace();
-		} catch (javax.transaction.RollbackException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (javax.transaction.SystemException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		try {
-			utx.begin();
-		} catch (javax.transaction.NotSupportedException | javax.transaction.SystemException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// em.persist(new ArtikelDaten("Macbook Pro 2017", "Apple", "macOS,
-		// Intel i7, 16 GB DDR RAM, 512 GB SSD, Retina",
-		// 2199.00, "macbook.jpg"));
-		// em.persist(
-		// new ArtikelDaten("hp-630", "HP", "Windows 8, Intel core i3, Radeon
-		// R9, 500 GB", 399.00, "hp-630..jpg"));
-		// em.persist(new ArtikelDaten("asus-relax", "ASUS", "Windows 10, Intel
-		// core i7, Geforce GTX 890, 500 GB", 549.95,
-		// "asus2.jpg"));
-		// em.persist(new ArtikelDaten("Chromebook", "Samsung", "Windows 10, AMD
-		// FX, Geforce GTX 580, 750 GB", 349.95,
-		// "chrome.jpg"));
-		//
-		// em.persist(new ArtikelDaten("Biker Lederjacke", "Jack & Jones",
-		// "Slim-fit, echtes Lammleder", 199.95,
-		// "lederjacke.jpg"));
-		// em.persist(new ArtikelDaten("Tailliertes Kleid", "NEXT", "Materialmix
-		// mit Stretch", 51.00, "kleid.jpg"));
-		// em.persist(new ArtikelDaten("Tommy Hilfiger Multifunktionsuhr",
-		// "Tommy Hilfiger",
-		// "Edelstahlgehäuse, Armband aus echtem Leder", 199.95,
-		// "lederjacke.jpg"));
-		//
-		// em.persist(new ArtikelDaten("Magnifica ESAM 3200.s / 3240",
-		// "De'Longhi",
-		// "Mahlt Bohnen frisch, mit Michschäumdüse ausgestattet", 339.00,
-		// "kaffeemaschine.jpg"));
-		// em.persist(new ArtikelDaten("HARD TITANIUM", "Tefal", "Pfannenset aus
-		// echtem Aluminium, Anti-Haft-Versiegelung",
-		// 69.99, "pfannen.jpg"));
-		//
-		// em.persist(new ArtikelDaten("Monopoli Classic", "Hasbro",
-		// "Familienspiel, für 2-6 Spieler", 34.99,
-		// "monopoli.jpg"));
-		// em.persist(new ArtikelDaten("Fifa 17 für PlayStation 4", "EA Games",
-		// "Fussball für die Konsole, Mehrspieler",
-		// 64.99, "fifa.jpg"));
-		//
-		// em.persist(new ArtikelDaten("Fifty Shades of Grey - Gefährliche
-		// Liebe", "Goldman",
-		// "Romane & Erzählungen, Erscheinungsjahr: 2017", 9.99,
-		// "shadesofgrey.jpg"));
-		// em.persist(new ArtikelDaten("Grundkurs SAP ERP", "vieweg",
-		// "Einführung in SAP ERP, Fallstudie auf Basis ECC 5.0", 42.99,
-		// "sapbuch.jpg"));
-		//
-		// em.persist(new ArtikelDaten("Nike Libero knit Short Herren", "Nike",
-		// "Effektives Feuchtigekeitsmanagement, Elasitscher Bund", 24.95,
-		// "nikeshorts.jpg"));
-		// em.persist(new ArtikelDaten("CL Finale Berlin Fussball", "adidas",
-		// "optimale Spieleigenschaft, Hohe Abriebfestigkeit", 29.95,
-		// "ball.jpg"));
-
 		artikeln = new ListDataModel<ArtikelDaten>();
 		artikeln.setWrappedData(em.createNamedQuery("SelectArtikel").getResultList());
+		warenkorb = new ListDataModel<ArtikelDaten>();
+		warenkorb.setWrappedData(em.createNamedQuery("SelectArtikel").getResultList());
+		kunden = new ListDataModel<Kunde>();
+		kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
 
 		try {
 			try {
@@ -643,23 +555,6 @@ public class KundenHandler {
 	 * Zusätzlich werden noch Gesamtpreis und Anzahl mitberechnet
 	 */
 	public String artikelInWarenkorb() {
-		// merkeKunde.getArtikelDaten().add(merkeArtikel);
-		//
-		// merkeArtikel.setNummer(number);
-		// number++;
-		//
-		// gesamtpreis = gesamtpreis + (merkeArtikel.getAnzahl() *
-		// merkeArtikel.getPreis());
-		// gesamtpreis = Math.floor(gesamtpreis * 100) / 100.0;
-		//
-		// gesamt = merkeArtikel.getAnzahl() * merkeArtikel.getPreis();
-		// gesamt = Math.floor(gesamt * 100) / 100.0;
-		// merkeArtikel.setGesamt(gesamt);
-		//
-		// gesamtanzahl = gesamtanzahl + merkeArtikel.getAnzahl();
-		//
-		// System.out.println(merkeArtikel.getGesamt());
-		// merkeArtikel = new ArtikelDaten();
 		try {
 			try {
 				utx.begin();
@@ -676,10 +571,7 @@ public class KundenHandler {
 		}
 
 		merkeArtikel = em.merge(merkeArtikel);
-		// merkeArtikel = em.merge(merkeArtikel);
-		// em.persist(merkeKunde);
 		em.persist(merkeArtikel);
-		warenkorb = new ListDataModel<ArtikelDaten>();
 		warenkorb.setWrappedData(em.createNamedQuery("SelectArtikel").getResultList());
 
 		try {
@@ -708,7 +600,6 @@ public class KundenHandler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		gesamt = 0;
 		return "index";
 	}
 
@@ -1105,14 +996,6 @@ public class KundenHandler {
 		this.merkeArtikel = merkeArtikel;
 	}
 
-	public DataModel<ArtikelDaten> getFilterArtikeln() {
-		return filterArtikeln;
-	}
-
-	public void setFilterArtikeln(DataModel<ArtikelDaten> filterArtikeln) {
-		this.filterArtikeln = filterArtikeln;
-	}
-
 	public ArtikelDaten getSelectedArtikel() {
 		return selectedArtikel;
 	}
@@ -1175,14 +1058,6 @@ public class KundenHandler {
 
 	public void setKunde(Kunde kunde) {
 		this.kunde = kunde;
-	}
-
-	public List<String> getImages() {
-		return images;
-	}
-
-	public void setImages(List<String> images) {
-		this.images = images;
 	}
 
 	public String getLangCode() {
