@@ -33,44 +33,37 @@
 		<ui:insert name="content">
 			<h:form id="form">
 				<p:growl id="growl" showDetail="true" sticky="true" />
-				<p:panel id="panel" header="Bearbeiten / neuer Artikel">
+				<p:panel id="panel" header="#{msg.artikelbearbeiten}">
 					<h:panelGrid columns="2">
 
 						<h:outputLabel value="#{msg.bezeichnung}" for="bezeichnung" />
 						<h:panelGroup>
-							<p:inputText id="bezeichnung" required="true"
-								requiredMessage="Bezeichnung fehlt/title is missing"
+							<p:inputText id="bezeichnung"
 								value="#{kundenHandler.merkeArtikel.bezeichnung}">
-<!-- 								<f:converter converterId="eigenerConverter" /> -->
+								<f:converter converterId="eigenerConverter" />
 							</p:inputText>
-							<p:message for="bezeichnung" />
 						</h:panelGroup>
 
 						<h:outputLabel value="#{msg.hersteller}" for="hersteller" />
 						<h:panelGroup>
-							<p:inputText id="hersteller" required="true"
-								requiredMessage="Hersteller fehlt/manufacturer missing"
+							<p:inputText id="hersteller"
 								value="#{kundenHandler.merkeArtikel.hersteller}">
-<!-- 								<f:validator validatorId="eigenerValidator" /> -->
+								<f:validator validatorId="eigenerValidator" />
 							</p:inputText>
-							<p:message for="hersteller" />
 						</h:panelGroup>
 
 						<h:outputLabel value="#{msg.beschreibung}" for="beschreibung" />
 						<h:panelGroup>
-							<p:inputText id="beschreibung" required="true" requiredMessage=""
+							<p:inputText id="beschreibung"
 								value="#{kundenHandler.merkeArtikel.beschreibung}">
-<!-- 								<f:converter converterId="eigenerConverter" /> -->
+								<f:converter converterId="eigenerConverter" />
 							</p:inputText>
-							<p:message for="beschreibung" />
 						</h:panelGroup>
 						<h:outputLabel value="#{msg.preis}:" for="preis" />
 						<h:panelGroup>
-							<p:inputText id="preis" required="true"
-								requiredMessage="Preis fehlt"
+							<p:inputText id="preis"
 								value="#{kundenHandler.merkeArtikel.preis }">
 							</p:inputText>
-							<p:message for="preis" />
 						</h:panelGroup>
 
 					</h:panelGrid>

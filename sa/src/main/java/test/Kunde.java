@@ -81,6 +81,10 @@ public class Kunde implements Serializable {
 
 	@JoinColumn(name = "FK_ARTIKEL_ID", foreignKey = @ForeignKey(name = "FK_ARTIKEL_ID"))
 	private ArtikelDaten daten;
+	
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@Column(name = "Kreditkarte")
+//	private Kreditkarte kreditkarte;
 
 	public Kunde(Anrede anrede, String vorname, String nachname, Date geburtsdatum, String strasse, String plz,
 			String ort, String email, String username, String passwort, Rolle rolle) {

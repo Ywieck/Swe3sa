@@ -1157,5 +1157,7 @@ public class KundenHandler {
 	public Anrede[] getAnredeValues() {
 		return Anrede.values();
 	}
+	
+	
 
 }
