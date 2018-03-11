@@ -40,8 +40,8 @@
 					<h:panelGroup>
 						<p:inputText id="vorname" required="true"
 							requiredMessage="vorname fehlt"
-							value="#{kundenHandler.merkeKunde.vorname}">
-							<!-- 							<f:converter converterId="eigenerConverter" /> -->
+							value="#{kundenHandler.kunde.vorname}">
+														<f:converter converterId="eigenerConverter" />
 						</p:inputText>
 						<h:message for="vorname" styleClass="message" />
 					</h:panelGroup>
@@ -49,16 +49,16 @@
 					<h:outputLabel value="#{msg.nachname}" for="nachname" />
 					<h:panelGroup>
 						<p:inputText id="nachname"
-							value="#{kundenHandler.merkeKunde.nachname}" required="true"
+							value="#{kundenHandler.kunde.nachname}" required="true"
 							requiredMessage="nachname fehlt">
-							<!-- 							<f:converter converterId="eigenerConverter" /> -->
+														<f:converter converterId="eigenerConverter" />
 						</p:inputText>
 					</h:panelGroup>
 
 
 					<h:outputLabel value="#{msg.geburtsdatum}" for="geburtsdatum" />
 					<p:calendar id="geburtsdatum"
-						value="#{kundenHandler.merkeKunde.geburtsdatum}" required="true"
+						value="#{kundenHandler.kunde.geburtsdatum}" required="true"
 						pattern="dd.MM.yyyy" timeZone="Europe/Berlin"
 						requiredMessage="Geburtsdatum fehlt" />
 
@@ -66,15 +66,15 @@
 					<h:outputLabel value="#{msg.strasse}" for="strasse" />
 					<h:panelGroup>
 						<p:inputText id="strasse"
-							value="#{kundenHandler.merkeKunde.strasse}" required="true"
+							value="#{kundenHandler.kunde.strasse}" required="true"
 							requiredMessage="strasse fehlt">
-							<!-- 							<f:converter converterId="eigenerConverter" /> -->
+														<f:converter converterId="eigenerConverter" />
 						</p:inputText>
 					</h:panelGroup>
 
 					<h:outputLabel value="#{msg.plz}" for="plz" />
 					<h:panelGroup>
-						<p:inputText id="plz" value="#{kundenHandler.merkeKunde.plz}"
+						<p:inputText id="plz" value="#{kundenHandler.kunde.plz}"
 							required="true" requiredMessage="plz fehlt">
 							<f:validateRegex pattern="^([A-Z]-)?[0-9]{5}$" />
 						</p:inputText>
@@ -82,9 +82,9 @@
 
 					<h:outputLabel value="#{msg.ort}" for="ort" />
 					<h:panelGroup>
-						<p:inputText id="ort" value="#{kundenHandler.merkeKunde.ort}"
+						<p:inputText id="ort" value="#{kundenHandler.kunde.ort}"
 							required="true" requiredMessage="ort fehlt">
-							<!-- 							<f:converter converterId="eigenerConverter" /> -->
+														<f:converter converterId="eigenerConverter" />
 						</p:inputText>
 					</h:panelGroup>
 
@@ -92,16 +92,16 @@
 					<h:outputLabel value="#{msg.benutzername}" for="username" />
 					<h:panelGroup>
 						<p:inputText id="username"
-							value="#{kundenHandler.merkeKunde.username}" required="true"
+							value="#{kundenHandler.kunde.username}" required="true"
 							requiredMessage="username fehlt" />
 					</h:panelGroup>
 				</h:panelGrid>
 				<br></br>
 
 				<p:commandButton action="#{kundenHandler.speichernProfil()}"
-					value="#{msg.speichern}" update="@(form)" />
+					value="#{msg.speichern}" ajax="false" />
 
-				<p:commandButton action="alleKunden.xhtml" value="#{msg.abbrechen}"
+				<p:commandButton action="index.xhtml" value="#{msg.abbrechen}"
 					update="@(form)" />
 			</p:panel>
 		</h:form>

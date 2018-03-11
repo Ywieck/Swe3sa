@@ -45,7 +45,7 @@
 				</p:submenu>
 
 				<p:submenu rendered="#{kundenHandler.loggedNotIn()}"
-					label="#{msg.hallo} #{kundenHandler.merkeKunde.vorname}"
+					label="#{msg.hallo} #{kundenHandler.kunde.vorname}"
 					styleClass="align:center">
 					<p:menuitem value="Profil" action="profil.xhtml" />
 					<p:menuitem value="#{msg.abmelden}"
