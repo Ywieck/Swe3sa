@@ -39,6 +39,10 @@
 				<p:dataTable var="artikel" value="#{kundenHandler.warenkorb}"
 					rowClasses="odd,even" headerClass="header">
 
+					<p:column>
+						<p:graphicImage libary="rescoures"
+							name="images/#{artikel.photo}.jpeg" />
+					</p:column>
 					<p:column headerText="Bezeichnung" sortBy="#{artikel.bezeichnung}">
 						<h:outputText value="#{artikel.bezeichnung}" />
 					</p:column>
@@ -50,6 +54,11 @@
 					</p:column>
 					<p:column headerText="Beschreibung">
 						<h:outputText value="#{artikel.beschreibung}" />
+					</p:column>
+					<p:column>
+						<p:commandButton value="Löschen"
+							action="#{kundenHandler.ausWarenkorblöschen}" ajax="false">
+						</p:commandButton>
 					</p:column>
 				</p:dataTable>
 
