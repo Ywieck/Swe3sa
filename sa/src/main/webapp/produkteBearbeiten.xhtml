@@ -36,6 +36,13 @@
 				<p:panel id="panel" header="#{msg.artikelbearbeiten}">
 					<h:panelGrid columns="2">
 
+						<h:outputLabel value="#{msg.foto}" for="photo" />
+						<h:panelGroup>
+							<p:inputText id="photo"
+								value="#{kundenHandler.merkeArtikel.photo}">
+								<f:converter converterId="eigenerConverter" />
+							</p:inputText>
+						</h:panelGroup>
 						<h:outputLabel value="#{msg.bezeichnung}" for="bezeichnung" />
 						<h:panelGroup>
 							<p:inputText id="bezeichnung"

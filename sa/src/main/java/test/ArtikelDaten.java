@@ -43,7 +43,6 @@ public class ArtikelDaten implements Serializable {
 	@Column(name = "Anzahl")
 	private int anzahl = 1;
 	
-	
 	private double gesamt;
 	private double gesamtprice;
 	private int gesamtanzahl;

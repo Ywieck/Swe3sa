@@ -24,58 +24,34 @@
 
 	<div id="content">
 		<h:form id="form">
-			<p:dataTable scrollable="true" var="artikel" selectionMode="single"
-				selection="#{kundenHandler.selectedArtikel}"
-				rowKey="#{artikel.nummer}" value="#{kundenHandler.artikeln}"
-				widgetVar="artikelTable" rows="10" paginator="true"
+			<p:dataTable var="artikel" value="#{kundenHandler.artikeln}"
+				paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				rowsPerPageTemplate="5,10,15">
 
-				<p:ajax event="rowSelect" oncomplete="PF('selectedDialog').show()"
-					update=":form:selectedDetail" />
-
-				<p:column headerText="#{msg.bezeichnung}" sortBy="#{artikel.bezeichnung}">
+				<p:column>
+					<p:graphicImage libary="rescoures" name="images/#{artikel.photo}.jpeg" />
+				</p:column>
+				<p:column headerText="#{msg.bezeichnung}"
+					sortBy="#{artikel.bezeichnung}">
 					<h:outputText value="#{artikel.bezeichnung}" />
 				</p:column>
 				<p:column headerText="#{msg.preis}" sortBy="#{artikel.preis}">
 					<h:outputText value="#{artikel.preis}" />
 				</p:column>
-				<p:column headerText="#{msg.hersteller}" sortBy="#{artikel.hersteller}">
+				<p:column headerText="#{msg.hersteller}"
+					sortBy="#{artikel.hersteller}">
 					<h:outputText value="#{artikel.hersteller}" />
 				</p:column>
 				<p:column headerText="#{msg.beschreibung}">
 					<h:outputText value="#{artikel.beschreibung}" />
 				</p:column>
+				<p:column>
+					<p:commandButton icon="ui-icon-cart"
+						action="#{kundenHandler.artikelInWarenkorb}" ajax="false">
+					</p:commandButton>
+				</p:column>
 			</p:dataTable>
-
-			<p:dialog header="#{msg.artikelInfo}" widgetVar="selectedDialog"
-				modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-				<p:outputPanel id="selectedDetail" style="text-align:center;">
-					<p:panelGrid columns="2"
-						rendered="#{not empty kundenHandler.selectedArtikel}"
-						columnClasses="label,value">
-						<f:facet name="header">
-							<p:graphicImage libary="rescoures" name="Dflag.png" />
-						</f:facet>
-
-						<h:outputText value="#{msg.bezeichnung}" />
-						<h:outputText value="#{kundenHandler.selectedArtikel.bezeichnung}" />
-
-						<h:outputText value="#{msg.preis}" />
-						<h:outputText value="#{kundenHandler.selectedArtikel.preis}" />
-
-						<h:outputText value="#{msg.hersteller}" />
-						<h:outputText value="#{kundenHandler.selectedArtikel.hersteller}" />
-
-						<h:outputText value="#{msg.beschreibung}" />
-						<h:outputText
-							value="$#{kundenHandler.selectedArtikel.beschreibung}" />
-						<p:commandButton value="Warenkorb"
-							action="#{kundenHandler.artikelInWarenkorb}" ajax="false">
-						</p:commandButton>
-					</p:panelGrid>
-				</p:outputPanel>
-			</p:dialog>
 		</h:form>
 
 		<div class="push"></div>

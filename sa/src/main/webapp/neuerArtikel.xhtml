@@ -35,6 +35,14 @@
 				<p:panel id="panel" header="#{msg.neuerArtikel}">
 					<h:panelGrid columns="2">
 
+						<h:outputLabel value="#{msg.foto}" for="photo" />
+						<h:panelGroup>
+							<p:inputText id="photo"
+								value="#{kundenHandler.merkeArtikel.photo}">
+								<!-- 								<f:converter converterId="eigenerConverter" /> -->
+							</p:inputText>
+							<p:message for="bezeichnung" />
+						</h:panelGroup>
 						<h:outputLabel value="#{msg.bezeichnung}:" for="bezeichnung" />
 						<h:panelGroup>
 							<p:inputText id="bezeichnung"
@@ -81,7 +89,7 @@
 						<!-- 						</h:panelGroup> -->
 					</h:panelGrid>
 				</p:panel>
-				
+
 				<p:commandButton action="#{kundenHandler.Artikelspeichern}"
 					value="#{msg.speichern}" ajax="false" />
 				<p:commandButton action="produktVerwaltung.xhtml"
