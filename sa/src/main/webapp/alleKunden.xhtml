@@ -58,19 +58,16 @@
 						<h:outputText style="text-align: center;"
 							value="#{kunde.nachname}" />
 					</p:column>
- 					<p:column>
+					<p:column>
 						<f:facet name="header" style="text-align: center;">#{msg.geburtsdatum}</f:facet>
 						<h:outputText style="text-align: center;"
-							value="#{kunde.geburtsdatum}" >
-							<f:convertDateTime pattern="dd.MM.yyyy" /></h:outputText>
+							value="#{kunde.geburtsdatum}">
+							<f:convertDateTime pattern="dd.MM.yyyy" />
+						</h:outputText>
 					</p:column>
 					<p:column>
 						<f:facet name="header" style="text-align: center;">#{msg.strasse}</f:facet>
 						<h:outputText style="text-align: center;" value="#{kunde.strasse}" />
-					</p:column>
-					<p:column>
-						<f:facet name="header" style="text-align: center;">#{msg.plz}</f:facet>
-						<h:outputText style="text-align: center;" value="#{kunde.plz}" />
 					</p:column>
 					<p:column>
 						<f:facet name="header" style="text-align: center;">#{msg.ort}</f:facet>
@@ -80,18 +77,20 @@
 						<f:facet name="header" style="text-align: center;">#{msg.email}</f:facet>
 						<h:outputText style="text-align: center;" value="#{kunde.email}" />
 					</p:column>
-
-					<p:column>
-						<f:facet name="header" style="text-align: center;">#{msg.loeschen}</f:facet>
-						<p:commandButton action="#{kundenHandler.delete}" value="#{msg.loeschen}" ajax="false" />
-					</p:column>
 					<p:column>
 						<f:facet name="header" style="text-align: center;">#{msg.bearbeiten}</f:facet>
-						<p:commandButton action="#{kundenHandler.edit}" value="#{msg.bearbeiten}" ajax="false" />
+						<p:commandButton action="#{kundenHandler.edit}"
+							value="#{msg.bearbeiten}" ajax="false" />
 					</p:column>
+					<p:column>
+						<f:facet name="header" style="text-align: center;">#{msg.loeschen}</f:facet>
+						<p:commandButton action="#{kundenHandler.delete}"
+							value="#{msg.loeschen}" ajax="false" />
+					</p:column>
+
 				</p:dataTable>
 
-<!-- 				<p:commandButton action="#{kundenHandler.neuK()}" value="#{msg.neuerkunde}" /> -->
+				<!-- 				<p:commandButton action="#{kundenHandler.neuK()}" value="#{msg.neuerkunde}" /> -->
 				<p:commandButton action="index.xhtml" value="#{msg.abbrechen}" />
 			</h:form>
 		</ui:insert>
