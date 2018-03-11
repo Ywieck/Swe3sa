@@ -30,9 +30,9 @@
 
 			<!-- 			style="float:right;" -->
 			<p:commandButton action="#{kundenHandler.wechselLang}"
-				value="#{msg.deutsch}" ajax="false"/>
+				value="#{msg.deutsch}" ajax="false" />
 			<p:commandButton action="#{kundenHandler.changeLang}"
-				value="#{msg.englisch}" ajax="false"/>
+				value="#{msg.englisch}" ajax="false" />
 			<p:menubar>
 
 				<p:menuitem value="#{msg.startseite}" url="index.xhtml"
@@ -43,13 +43,12 @@
 					<p:menuitem value="#{msg.produktverwaltung}"
 						url="produktVerwaltung.xhtml" />
 				</p:submenu>
-				
+
 				<p:submenu rendered="#{kundenHandler.loggedNotIn()}"
 					label="#{msg.hallo} #{kundenHandler.kunde.vorname}"
 					styleClass="align:center">
 					<p:menuitem value="Profil" action="profil.xhtml" />
-					<p:menuitem value="#{msg.abmelden}"
-						action="#{kundenHandler.logout()}" />
+					<p:menuitem value="Zahlungsmethode" action="kreditKarte.xhtml" />
 				</p:submenu>
 
 				<f:facet name="options">

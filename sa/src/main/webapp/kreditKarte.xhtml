@@ -9,92 +9,89 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<link rel="stylesheet" href="resources/alleKunden.css" type="text/css" />
-	<title><ui:insert name="title">
-Kreditkarte anlegen/bearbeiten
- </ui:insert></title>
+	<title>EY!Wear-#{msg.kreditkarte}</title>
+	<link href="https://fonts.googleapis.com/css?family=Jura"
+		rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="resources/css/webShop.css" type="text/css" />
 </h:head>
+
 <h:body>
-	<h2 align="center">Kreditkarte anlegen/bearbeiten</h2>
-	<div id="header">
-		<ui:insert name="header">
+	<div>
+		<ui:insert>
+			<ui:include src="/WEB-INF/templates/headermenubar.xhtml" />
 		</ui:insert>
 	</div>
-	<div id="content">
+
+	<div id="content"
+		style="color: black; font-family: Jura; font-size: 17px; width: 100%; margin: auto;">
+		<h1>
+			<a style="color: maroon;">#{msg.zahlungsart}</a>
+		</h1>
 		<ui:insert name="content">
 
-			<h:form>
-				<h:panelGrid var="kunde" value="#{KundenHandler.kunden}" columns="2"
-					headerClass="header" footerClass="footer">
+			<h:form id="form">
+				<p:growl id="growl" showDetail="true" sticky="true" />
+				<p:panel id="panel" header="#{msg.kreditkarte}">
+					<h:panelGrid columns="2">
 
-					<h:outputLabel value="Kunde:" for="kunde" />
-					<h:panelGroup>
-						<h:outputLabel id="kunde"
-							value="#{KundenHandler.merkeKunde.vorname.concat(', ').concat(KundenHandler.merkeKunde.nachname)}"
-							required="true" requiredMessage="Eingabe Fehlt" />
-						<h:message for="kunde" styleClass="message" />
-					</h:panelGroup>
+						<h:outputLabel value="#{msg.kunde}" for="kunde" />
+						<h:panelGroup>
+							<h:outputText id="kunde"
+								value="#{kundenHandler.kunde.vorname} #{kundenHandler.kunde.nachname}" />
+						</h:panelGroup>
 
-					<h:outputLabel value="Kartentyp" for="kartentyp" />
-					<h:panelGroup>
-						<h:selectOneMenu id="kartentyp"
-							value="#{KundenHandler.merkeKreditkarte.typ}">
-							<f:selectItems var="form"
-								value="#{KundenHandler.kreditkartentypValues}"
-								itemValue="#{form}" itemLabel="#{form.label}" />
-						</h:selectOneMenu>
-					</h:panelGroup>
+						<h:outputLabel value="#{msg.kartentyp}" for="typ" />
+						<h:panelGroup>
+							<p:selectOneMenu id="city"
+								value="#{kundenHandler.merkeKreditkarte.kkTyp}">
+								<f:selectItems var="ktyp" value="#{kundenHandler.kkTypValues}"
+									itemValue="#{ktyp}" itemLabel="#{ktyp.kkLabel}" />
+							</p:selectOneMenu>
+						</h:panelGroup>
 
-					<h:outputLabel value="Kreditkartennummer:" for="nummer" />
-					<h:panelGroup>
-						<h:inputText id="nummer"
-							value="#{KundenHandler.merkeKreditkarte.nummer}" required="true"
-							requiredMessage="Eingabe Fehlt">
-							<f:converter converterId="kreditkartenConverter" />
-							<f:validator validatorId="kreditkartenValidator" />
-						</h:inputText>
-						<h:message for="nummer" styleClass="message" />
-					</h:panelGroup>
+						<h:outputLabel value="#{msg.kkn}" for="nummer" required="true" />
+						<h:panelGroup>
+							<p:inputText id="nummer" required="true"
+								requiredMessage="Kartennummer fehlt"
+								value="#{kundenHandler.merkeKreditkarte.kkNummer}">
+								<f:converter converterId="kreditkartenConverter" />
+								<f:validator validatorId="kreditkartenValidator" />
+							</p:inputText>
+							<p:message for="nummer" />
+						</h:panelGroup>
 
-					<h:outputLabel value="Gültig Bis: (z.B. 05/17)" for="gueltigBis" />
-					<h:panelGroup>
+						<h:outputLabel value="#{msg.gueltigBis}" for="kkg" />
+						<h:panelGroup>
+							<p:calendar id="kkg"
+								value="#{kundenHandler.merkeKreditkarte.kkGueltigBis}"
+								pattern="dd.MM.yyyy" required="true"
+								requiredMessage="Gültigkeit fehlt" />
+							<p:message for="kkg" />
+						</h:panelGroup>
 
-						<p:calendar id="gueltigBis"
-							value="#{KundenHandler.merkeKreditkarte.gueltigBis}" mode="popup"
-							navigator="true" showOn="button" pattern="MM.yy" requiredMessage="Eingabe Fehlt" />
-
-						<!-- 	<h:inputText id="gueltigBis"
-							value="#{KundenHandler.merkeKreditkarte.gueltigBis}"
-							required="true" requiredMessage="Eingabe Fehlt">
-							<f:convertDateTime pattern="MM/yy" />
-						</h:inputText>   -->
-
-
-						<h:message for="gueltigBis" styleClass="message" />
-					</h:panelGroup>
-
-					<h:outputLabel value="Inhaber:" for="inhaber" />
-					<h:panelGroup>
-						<h:inputText id="inhaber"
-							value="#{KundenHandler.merkeKreditkarte.inhaber}" required="true"
-							requiredMessage="Eingabe Fehlt" />
-						<h:message for="inhaber" styleClass="message" />
-					</h:panelGroup>
-
-				</h:panelGrid>
-
-				<p:commandButton action="#{KundenHandler.kreditkarteSpeichern()}"
-					value="Speichern" icon="ui-icon-ckeck" />
-
-				<p:commandButton action="#{KundenHandler.cancel()}" value="Abrechen"
-					immediate="true" icon="ui-icon-cancel"/>
+						<h:outputLabel value="#{msg.inhaber}" for="inhaber" />
+						<h:panelGroup>
+							<p:inputText id="inhaber" required="true"
+								requiredMessage="Inhaber fehlt"
+								value="#{kundenHandler.merkeKreditkarte.kkInhaber}" />
+							<p:message for="inhaber" />
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:panel>
+				<p:commandButton update="@(form)"
+					action="#{kundenHandler.kreditkarteSpeichern}"
+					value="#{msg.speichern}" />
+				<p:commandButton action="#{kundenHandler.abbruchKreditkarte}"
+					value="#{msg.abbrechen}" immediate="true" />
 			</h:form>
 		</ui:insert>
-	</div>
-	<div id="footer">
-		<ui:insert name="footer">
-			<h5 align="center">2017 Hochschule Bremerhaven - Yasar Wieck</h5>
 
+		<div class="push"></div>
+	</div>
+
+	<div>
+		<ui:insert>
+			<ui:include src="/WEB-INF/templates/footer.xhtml" />
 		</ui:insert>
 	</div>
 </h:body>

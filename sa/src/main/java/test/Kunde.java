@@ -15,11 +15,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+
+import Model.Kreditkarte;
 
 @NamedQuery(name = "SelectKunden", query = "Select k from Kunde k")
 @Entity
@@ -81,10 +84,10 @@ public class Kunde implements Serializable {
 
 	@JoinColumn(name = "FK_ARTIKEL_ID", foreignKey = @ForeignKey(name = "FK_ARTIKEL_ID"))
 	private ArtikelDaten daten;
-	
+
 //	@OneToOne(cascade = CascadeType.ALL)
-//	@Column(name = "Kreditkarte")
-//	private Kreditkarte kreditkarte;
+	@Column(name = "Kreditkarte")
+	private Kreditkarte kreditkarte;
 
 	public Kunde(Anrede anrede, String vorname, String nachname, Date geburtsdatum, String strasse, String plz,
 			String ort, String email, String username, String passwort, Rolle rolle) {
@@ -214,6 +217,14 @@ public class Kunde implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Kreditkarte getKreditkarte() {
+		return kreditkarte;
+	}
+
+	public void setKreditkarte(Kreditkarte kreditkarte) {
+		this.kreditkarte = kreditkarte;
 	}
 
 }

@@ -1,7 +1,6 @@
 package test;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -24,6 +23,9 @@ import javax.ws.rs.NotSupportedException;
 
 import org.omg.CORBA.SystemException;
 
+import Model.Kreditkarte;
+import Model.Kreditkartentyp;
+
 public class KundenHandler {
 
 	@PersistenceContext
@@ -39,6 +41,7 @@ public class KundenHandler {
 	private DataModel<ArtikelDaten> warenkorb;
 
 	private Kunde merkeKunde = new Kunde();
+	private Kreditkarte merkeKreditkarte = new Kreditkarte();
 	private ArtikelDaten merkeArtikel = new ArtikelDaten();
 
 	private double gesamtpreis;
@@ -324,6 +327,97 @@ public class KundenHandler {
 		return "kundenDatenBearbeiten";
 	}
 
+	// Methoden zur Verwaltung der Kreditkarten
+
+		/**
+		 * durch den klick auf //Kreditkarte// in der Ansicht(eigenedatenBearbeiten)
+		 * oder (kundeBearbeiten) werden die daten der Kreditkarte aufgerufen(falls
+		 * welche vorhanden sind. wenn nich dann werden die Felder leer angezeigt,
+		 * so das man eine neue Kreditkarte anlegen kann
+		 */
+		public String toKreditkarte() {
+			if (merkeKunde.getKreditkarte() == null)
+				merkeKreditkarte = new Kreditkarte();
+			else
+				merkeKreditkarte = merkeKunde.getKreditkarte();
+			return "kreditkarte";
+		}
+		
+		/**
+		 * Durch den klick auf //Speichern// (kreditkarte) Daten der Kreditkarte des
+		 * jeweiligen Kunden werden in der Datenbank gespeichert
+		 */
+		public String kreditkarteSpeichern() {
+			merkeKunde.setKreditkarte(merkeKreditkarte);
+			try {
+				try {
+					utx.begin();
+				} catch (javax.transaction.NotSupportedException | javax.transaction.SystemException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} catch (NotSupportedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			merkeKunde = em.merge(merkeKunde);
+			merkeKreditkarte = em.merge(merkeKreditkarte);
+			em.persist(merkeKunde);
+			em.persist(merkeKreditkarte);
+			kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
+			try {
+				try {
+					utx.commit();
+				} catch (javax.transaction.RollbackException | javax.transaction.SystemException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RollbackException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (HeuristicMixedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (HeuristicRollbackException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "index";
+		}
+
+		/**
+		 * Array der auszuwählenden Kreditkarten (Enum-Klasse Kreditkartentyp)
+		 */
+		public Kreditkartentyp[] getKkTypValues() {
+			return Kreditkartentyp.values();
+		}
+
+		/**
+		 * Wenn man auf den Button //zurück// drückt von der Kreditkarten ansicht
+		 * aus, dann gelangt der Kunde oder Admin auf die jeweils in der Methode
+		 * angegebene ansicht
+		 */
+		public String abbruchKreditkarte() {
+			if (merkeKunde.getRolle() == Rolle.ADMIN)
+				return "alleKunden";
+			else
+				return "eigeneDatenBearbeiten";
+		}
+	
+	
+	
 	// Methoden zur Verwaltung der Artikel
 
 	/**
@@ -460,82 +554,82 @@ public class KundenHandler {
 		}
 		return null;
 	}
-	//
-	// // Methoden zur Verwaltung des Webshops
-	//
-	// /**
-	// * Durch das klicken auf //Bezahlen// in der Ansicht (zurKasse) werden
-	// * Kreditkartendaten aufgerufen. Durch das klicken auf //Bezahlen// in der
-	// * Ansicht (Kreditkartendaten) werden die Artikel in die Datenbank in
-	// * Beziehung zu dem zugehörigen Kunden aufgerufen
-	// */
-	// public String Bezahlen() {
-	// if (gesamtpreis == 0) {
-	// keineArtikel(null);
-	// return null;
-	// }
-	//
-	// if (merkeKunde.getKreditkarte() == null)
-	// merkeKunde.setKreditkarte(merkeKreditkarte);
-	// merkeKunde.getArtikelDaten();
-	// try {
-	// try {
-	// utx.begin();
-	// } catch (javax.transaction.NotSupportedException |
-	// javax.transaction.SystemException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// } catch (NotSupportedException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// } catch (SystemException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// merkeKunde = em.merge(merkeKunde);
-	// merkeKreditkarte = em.merge(merkeKreditkarte);
-	// merkeArtikel = em.merge(merkeArtikel);
-	// em.persist(merkeKunde);
-	// em.persist(merkeKreditkarte);
-	// em.persist(merkeArtikel);
-	// kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
-	//
-	// try {
-	// try {
-	// utx.commit();
-	// } catch (javax.transaction.RollbackException |
-	// javax.transaction.SystemException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// } catch (SecurityException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// } catch (IllegalStateException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// } catch (RollbackException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// } catch (HeuristicMixedException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// } catch (HeuristicRollbackException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// } catch (SystemException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	//
-	// gesamtpreis = 0;
-	// gesamt = 0;
-	//
-	// bezahlt(null);
-	// return null;
-	//
-	// }
+	
+	 // Methoden zur Verwaltung des Webshops
+	
+	 /**
+	 * Durch das klicken auf //Bezahlen// in der Ansicht (zurKasse) werden
+	 * Kreditkartendaten aufgerufen. Durch das klicken auf //Bezahlen// in der
+	 * Ansicht (Kreditkartendaten) werden die Artikel in die Datenbank in
+	 * Beziehung zu dem zugehörigen Kunden aufgerufen
+	 */
+	 public String Bezahlen() {
+	 if (gesamtpreis == 0) {
+	 keineArtikel(null);
+	 return null;
+	 }
+	
+	 if (merkeKunde.getKreditkarte() == null)
+	 merkeKunde.setKreditkarte(merkeKreditkarte);
+	 merkeKunde.getArtikelDaten();
+	 try {
+	 try {
+	 utx.begin();
+	 } catch (javax.transaction.NotSupportedException |
+	 javax.transaction.SystemException e) {
+	 // TODO Auto-generated catch block
+	 e.printStackTrace();
+	 }
+	 } catch (NotSupportedException e) {
+	 // TODO Auto-generated catch block
+	 e.printStackTrace();
+	 } catch (SystemException e) {
+	 // TODO Auto-generated catch block
+	 e.printStackTrace();
+	 }
+	 merkeKunde = em.merge(merkeKunde);
+	 merkeKreditkarte = em.merge(merkeKreditkarte);
+	 merkeArtikel = em.merge(merkeArtikel);
+	 em.persist(merkeKunde);
+	 em.persist(merkeKreditkarte);
+	 em.persist(merkeArtikel);
+	 kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
+	
+	 try {
+	 try {
+	 utx.commit();
+	 } catch (javax.transaction.RollbackException |
+	 javax.transaction.SystemException e) {
+	 // TODO Auto-generated catch block
+	 e.printStackTrace();
+	 }
+	 } catch (SecurityException e) {
+	 // TODO Auto-generated catch block
+	 e.printStackTrace();
+	 } catch (IllegalStateException e) {
+	 // TODO Auto-generated catch block
+	 e.printStackTrace();
+	 } catch (RollbackException e) {
+	 // TODO Auto-generated catch block
+	 e.printStackTrace();
+	 } catch (HeuristicMixedException e) {
+	 // TODO Auto-generated catch block
+	 e.printStackTrace();
+	 } catch (HeuristicRollbackException e) {
+	 // TODO Auto-generated catch block
+	 e.printStackTrace();
+	 } catch (SystemException e) {
+	 // TODO Auto-generated catch block
+	 e.printStackTrace();
+	 }
+	
+	 gesamtpreis = 0;
+	 gesamt = 0;
+	
+	 bezahlt(null);
+	 return null;
+	
+	 }
 
 	/**
 	 * Durch den klick auf //zum Einkauf// gelangt der Admin mit sein Daten zur
@@ -1081,13 +1175,13 @@ public class KundenHandler {
 		this.artikeln = artikeln;
 	}
 
-	// public Kreditkarte getMerkeKreditkarte() {
-	// return merkeKreditkarte;
-	// }
-	//
-	// public void setMerkeKreditkarte(Kreditkarte merkeKreditkarte) {
-	// this.merkeKreditkarte = merkeKreditkarte;
-	// }
+	 public Kreditkarte getMerkeKreditkarte() {
+	 return merkeKreditkarte;
+	 }
+	
+	 public void setMerkeKreditkarte(Kreditkarte merkeKreditkarte) {
+	 this.merkeKreditkarte = merkeKreditkarte;
+	 }
 
 	public DataModel<ArtikelDaten> getWarenkorb() {
 		return warenkorb;
