@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet" href="resources/alleKunden.css" type="text/css" />
+	<title><ui:insert name="title">
+Kreditkarte anlegen/bearbeiten
+ </ui:insert></title>
+</h:head>
+<h:body>
+	<h2 align="center">Kreditkarte anlegen/bearbeiten</h2>
+	<div id="header">
+		<ui:insert name="header">
+		</ui:insert>
+	</div>
+	<div id="content">
+		<ui:insert name="content">
+
+			<h:form>
+				<h:panelGrid var="kunde" value="#{KundenHandler.kunden}" columns="2"
+					headerClass="header" footerClass="footer">
+
+					<h:outputLabel value="Kunde:" for="kunde" />
+					<h:panelGroup>
+						<h:outputLabel id="kunde"
+							value="#{KundenHandler.merkeKunde.vorname.concat(', ').concat(KundenHandler.merkeKunde.nachname)}"
+							required="true" requiredMessage="Eingabe Fehlt" />
+						<h:message for="kunde" styleClass="message" />
+					</h:panelGroup>
+
+					<h:outputLabel value="Kartentyp" for="kartentyp" />
+					<h:panelGroup>
+						<h:selectOneMenu id="kartentyp"
+							value="#{KundenHandler.merkeKreditkarte.typ}">
+							<f:selectItems var="form"
+								value="#{KundenHandler.kreditkartentypValues}"
+								itemValue="#{form}" itemLabel="#{form.label}" />
+						</h:selectOneMenu>
+					</h:panelGroup>
+
+					<h:outputLabel value="Kreditkartennummer:" for="nummer" />
+					<h:panelGroup>
+						<h:inputText id="nummer"
+							value="#{KundenHandler.merkeKreditkarte.nummer}" required="true"
+							requiredMessage="Eingabe Fehlt">
+							<f:converter converterId="kreditkartenConverter" />
+							<f:validator validatorId="kreditkartenValidator" />
+						</h:inputText>
+						<h:message for="nummer" styleClass="message" />
+					</h:panelGroup>
+
+					<h:outputLabel value="Gültig Bis: (z.B. 05/17)" for="gueltigBis" />
+					<h:panelGroup>
+
+						<p:calendar id="gueltigBis"
+							value="#{KundenHandler.merkeKreditkarte.gueltigBis}" mode="popup"
+							navigator="true" showOn="button" pattern="MM.yy" requiredMessage="Eingabe Fehlt" />
+
+						<!-- 	<h:inputText id="gueltigBis"
+							value="#{KundenHandler.merkeKreditkarte.gueltigBis}"
+							required="true" requiredMessage="Eingabe Fehlt">
+							<f:convertDateTime pattern="MM/yy" />
+						</h:inputText>   -->
+
+
+						<h:message for="gueltigBis" styleClass="message" />
+					</h:panelGroup>
+
+					<h:outputLabel value="Inhaber:" for="inhaber" />
+					<h:panelGroup>
+						<h:inputText id="inhaber"
+							value="#{KundenHandler.merkeKreditkarte.inhaber}" required="true"
+							requiredMessage="Eingabe Fehlt" />
+						<h:message for="inhaber" styleClass="message" />
+					</h:panelGroup>
+
+				</h:panelGrid>
+
+				<p:commandButton action="#{KundenHandler.kreditkarteSpeichern()}"
+					value="Speichern" icon="ui-icon-ckeck" />
+
+				<p:commandButton action="#{KundenHandler.cancel()}" value="Abrechen"
+					immediate="true" icon="ui-icon-cancel"/>
+			</h:form>
+		</ui:insert>
+	</div>
+	<div id="footer">
+		<ui:insert name="footer">
+			<h5 align="center">2017 Hochschule Bremerhaven - Yasar Wieck</h5>
+
+		</ui:insert>
+	</div>
+</h:body>
+</html>
