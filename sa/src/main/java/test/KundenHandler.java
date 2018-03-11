@@ -75,24 +75,24 @@ public class KundenHandler {
 		} catch (javax.transaction.SystemException e) {
 			e.printStackTrace();
 		}
-		em.persist(new Kunde(Anrede.HERR, "Yasar", "Wieck", new GregorianCalendar(1993, 01, 06).getTime(),
-				"Prager Str. 12", "27568", "Bremerhaven", "yw@ey.de", "ywieck", "ywieck", Rolle.ADMIN));
-		em.persist(new Kunde(Anrede.HERR, "Enno", "Münsterberg", new GregorianCalendar(1990, 11, 26).getTime(),
-				"Lodjeweg. 98", "27568", "Bremerhaven", "em@ey.de", "emünsterberg", "emünsterberg", Rolle.ADMIN));
-		em.persist(new Kunde(Anrede.FRAU, "Kathleen", "Hasselhoff", new GregorianCalendar(1994, 10, 3).getTime(),
-				"Verdenerstr. 103", "27568", "Bremerhaven", "khase@bla.de", "khasselhoff", "khasselhoff", Rolle.KUNDE));
-		em.persist(new Kunde(Anrede.HERR, "Alfred-Admin", "Schmidt", new GregorianCalendar(1990, 1, 1).getTime(),
-				"Feldweg 5", "27568", "Bremerhaven", "aschmidt@hs-bremerhaven.de", "aschmidta", "aschmidta",
-				Rolle.ADMIN));
-		em.persist(new Kunde(Anrede.HERR, "Alfred-Kunde", "Schmidt", new GregorianCalendar(1990, 1, 1).getTime(),
-				"Feldweg 5", "27568", "Bremerhaven", "aschmidt@hs-bremerhaven.de", "aschmidtk", "aschmidtk",
-				Rolle.KUNDE));
-		em.persist(new Kunde(Anrede.HERR, "Marcel-Kunde", "Malitz", new GregorianCalendar(1990, 1, 1).getTime(),
-				"Alfredstr. 2", "27568", "Bremerhaven", "mmalitz@hs-bremerhaven.de", "mmalitzk", "mmalitzk",
-				Rolle.KUNDE));
-		em.persist(new Kunde(Anrede.HERR, "Marcel-Admin", "Malitz", new GregorianCalendar(1990, 1, 1).getTime(),
-				"Alfredstr. 2", "27568", "Bremerhaven", "mmalitz@hs-bremerhaven.de", "mmalitza", "mmalitza",
-				Rolle.ADMIN));
+//		em.persist(new Kunde(Anrede.HERR, "Yasar", "Wieck", new GregorianCalendar(1993, 01, 06).getTime(),
+//				"Prager Str. 12", "27568", "Bremerhaven", "yw@ey.de", "ywieck", "ywieck", Rolle.ADMIN));
+//		em.persist(new Kunde(Anrede.HERR, "Enno", "Münsterberg", new GregorianCalendar(1990, 11, 26).getTime(),
+//				"Lodjeweg. 98", "27568", "Bremerhaven", "em@ey.de", "emünsterberg", "emünsterberg", Rolle.ADMIN));
+//		em.persist(new Kunde(Anrede.FRAU, "Kathleen", "Hasselhoff", new GregorianCalendar(1994, 10, 3).getTime(),
+//				"Verdenerstr. 103", "27568", "Bremerhaven", "khase@bla.de", "khasselhoff", "khasselhoff", Rolle.KUNDE));
+//		em.persist(new Kunde(Anrede.HERR, "Alfred-Admin", "Schmidt", new GregorianCalendar(1990, 1, 1).getTime(),
+//				"Feldweg 5", "27568", "Bremerhaven", "aschmidt@hs-bremerhaven.de", "aschmidta", "aschmidta",
+//				Rolle.ADMIN));
+//		em.persist(new Kunde(Anrede.HERR, "Alfred-Kunde", "Schmidt", new GregorianCalendar(1990, 1, 1).getTime(),
+//				"Feldweg 5", "27568", "Bremerhaven", "aschmidt@hs-bremerhaven.de", "aschmidtk", "aschmidtk",
+//				Rolle.KUNDE));
+//		em.persist(new Kunde(Anrede.HERR, "Marcel-Kunde", "Malitz", new GregorianCalendar(1990, 1, 1).getTime(),
+//				"Alfredstr. 2", "27568", "Bremerhaven", "mmalitz@hs-bremerhaven.de", "mmalitzk", "mmalitzk",
+//				Rolle.KUNDE));
+//		em.persist(new Kunde(Anrede.HERR, "Marcel-Admin", "Malitz", new GregorianCalendar(1990, 1, 1).getTime(),
+//				"Alfredstr. 2", "27568", "Bremerhaven", "mmalitz@hs-bremerhaven.de", "mmalitza", "mmalitza",
+//				Rolle.ADMIN));
 
 		kunden = new ListDataModel<Kunde>();
 		kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
@@ -126,40 +126,40 @@ public class KundenHandler {
 			e.printStackTrace();
 		}
 
-		em.persist(new ArtikelDaten("Macbook Pro 2017", "Apple", "macOS, Intel i7, 16 GB DDR RAM, 512 GB SSD, Retina",
-				2199.00, "macbook.jpg"));
-		em.persist(
-				new ArtikelDaten("hp-630", "HP", "Windows 8, Intel core i3, Radeon R9, 500 GB", 399.00, "hp-630..jpg"));
-		em.persist(new ArtikelDaten("asus-relax", "ASUS", "Windows 10, Intel core i7, Geforce GTX 890, 500 GB", 549.95,
-				"asus2.jpg"));
-		em.persist(new ArtikelDaten("Chromebook", "Samsung", "Windows 10, AMD FX, Geforce GTX 580, 750 GB", 349.95,
-				"chrome.jpg"));
-
-		em.persist(new ArtikelDaten("Biker Lederjacke", "Jack & Jones", "Slim-fit, echtes Lammleder", 199.95,
-				"lederjacke.jpg"));
-		em.persist(new ArtikelDaten("Tailliertes Kleid", "NEXT", "Materialmix mit Stretch", 51.00, "kleid.jpg"));
-		em.persist(new ArtikelDaten("Tommy Hilfiger Multifunktionsuhr", "Tommy Hilfiger",
-				"Edelstahlgehäuse, Armband aus echtem Leder", 199.95, "lederjacke.jpg"));
-
-		em.persist(new ArtikelDaten("Magnifica ESAM 3200.s / 3240", "De'Longhi",
-				"Mahlt Bohnen frisch, mit Michschäumdüse ausgestattet", 339.00, "kaffeemaschine.jpg"));
-		em.persist(new ArtikelDaten("HARD TITANIUM", "Tefal", "Pfannenset aus echtem Aluminium, Anti-Haft-Versiegelung",
-				69.99, "pfannen.jpg"));
-
-		em.persist(new ArtikelDaten("Monopoli Classic", "Hasbro", "Familienspiel, für 2-6 Spieler", 34.99,
-				"monopoli.jpg"));
-		em.persist(new ArtikelDaten("Fifa 17 für PlayStation 4", "EA Games", "Fussball für die Konsole, Mehrspieler",
-				64.99, "fifa.jpg"));
-
-		em.persist(new ArtikelDaten("Fifty Shades of Grey - Gefährliche Liebe", "Goldman",
-				"Romane & Erzählungen, Erscheinungsjahr: 2017", 9.99, "shadesofgrey.jpg"));
-		em.persist(new ArtikelDaten("Grundkurs SAP ERP", "vieweg",
-				"Einführung in SAP ERP, Fallstudie auf Basis ECC 5.0", 42.99, "sapbuch.jpg"));
-
-		em.persist(new ArtikelDaten("Nike Libero knit Short Herren", "Nike",
-				"Effektives Feuchtigekeitsmanagement, Elasitscher Bund", 24.95, "nikeshorts.jpg"));
-		em.persist(new ArtikelDaten("CL Finale Berlin Fussball", "adidas",
-				"optimale Spieleigenschaft, Hohe Abriebfestigkeit", 29.95, "ball.jpg"));
+//		em.persist(new ArtikelDaten("Macbook Pro 2017", "Apple", "macOS, Intel i7, 16 GB DDR RAM, 512 GB SSD, Retina",
+//				2199.00, "macbook.jpg"));
+//		em.persist(
+//				new ArtikelDaten("hp-630", "HP", "Windows 8, Intel core i3, Radeon R9, 500 GB", 399.00, "hp-630..jpg"));
+//		em.persist(new ArtikelDaten("asus-relax", "ASUS", "Windows 10, Intel core i7, Geforce GTX 890, 500 GB", 549.95,
+//				"asus2.jpg"));
+//		em.persist(new ArtikelDaten("Chromebook", "Samsung", "Windows 10, AMD FX, Geforce GTX 580, 750 GB", 349.95,
+//				"chrome.jpg"));
+//
+//		em.persist(new ArtikelDaten("Biker Lederjacke", "Jack & Jones", "Slim-fit, echtes Lammleder", 199.95,
+//				"lederjacke.jpg"));
+//		em.persist(new ArtikelDaten("Tailliertes Kleid", "NEXT", "Materialmix mit Stretch", 51.00, "kleid.jpg"));
+//		em.persist(new ArtikelDaten("Tommy Hilfiger Multifunktionsuhr", "Tommy Hilfiger",
+//				"Edelstahlgehäuse, Armband aus echtem Leder", 199.95, "lederjacke.jpg"));
+//
+//		em.persist(new ArtikelDaten("Magnifica ESAM 3200.s / 3240", "De'Longhi",
+//				"Mahlt Bohnen frisch, mit Michschäumdüse ausgestattet", 339.00, "kaffeemaschine.jpg"));
+//		em.persist(new ArtikelDaten("HARD TITANIUM", "Tefal", "Pfannenset aus echtem Aluminium, Anti-Haft-Versiegelung",
+//				69.99, "pfannen.jpg"));
+//
+//		em.persist(new ArtikelDaten("Monopoli Classic", "Hasbro", "Familienspiel, für 2-6 Spieler", 34.99,
+//				"monopoli.jpg"));
+//		em.persist(new ArtikelDaten("Fifa 17 für PlayStation 4", "EA Games", "Fussball für die Konsole, Mehrspieler",
+//				64.99, "fifa.jpg"));
+//
+//		em.persist(new ArtikelDaten("Fifty Shades of Grey - Gefährliche Liebe", "Goldman",
+//				"Romane & Erzählungen, Erscheinungsjahr: 2017", 9.99, "shadesofgrey.jpg"));
+//		em.persist(new ArtikelDaten("Grundkurs SAP ERP", "vieweg",
+//				"Einführung in SAP ERP, Fallstudie auf Basis ECC 5.0", 42.99, "sapbuch.jpg"));
+//
+//		em.persist(new ArtikelDaten("Nike Libero knit Short Herren", "Nike",
+//				"Effektives Feuchtigekeitsmanagement, Elasitscher Bund", 24.95, "nikeshorts.jpg"));
+//		em.persist(new ArtikelDaten("CL Finale Berlin Fussball", "adidas",
+//				"optimale Spieleigenschaft, Hohe Abriebfestigkeit", 29.95, "ball.jpg"));
 
 		artikeln = new ListDataModel<ArtikelDaten>();
 		artikeln.setWrappedData(em.createNamedQuery("SelectArtikel").getResultList());
@@ -871,26 +871,25 @@ public class KundenHandler {
 				.createQuery("select k from Kunde k " + "where k.username = :username and k.passwort = :passwort ");
 		query.setParameter("username", username);
 		query.setParameter("passwort", passwort);
-		System.out.println("Test1");
 
-		if (kunden.isRowAvailable()) {
-			merkeKunde = kunden.getRowData();
-			merkeKunde.setArtikelDaten(new ArrayList<ArtikelDaten>());
-		}
+//		if (kunden.isRowAvailable()) {
+//			merkeKunde = kunden.getRowData();
+//			merkeKunde.setArtikelDaten(new ArrayList<ArtikelDaten>());
+//		}
 
 		System.out.println(username + " " + passwort);
 
 		List<Kunde> kunden = query.getResultList();
 		if (kunden.size() == 1) {
 			kunde = kunden.get(0);
-			merkeKunde = kunde;
+//			merkeKunde = kunde;
 
-			if (kunde.getRolle() == Rolle.ADMIN) {
+//			if (kunde.getRolle() == Rolle.ADMIN) {
 
 				return "index";
-			} else {
-				return "index";
-			}
+//			} else {
+//				return "index";
+//			}
 
 		} else {
 			falschesPasswort(null);
