@@ -29,10 +29,10 @@
 			<p:growl id="messages" />
 
 			<!-- 			style="float:right;" -->
-			<h:commandButton action="#{kundenHandler.wechselLang}"
-				value="#{msg.deutsch}" />
-			<h:commandButton action="#{kundenHandler.changeLang}"
-				value="#{msg.englisch}" />
+			<p:commandButton action="#{kundenHandler.wechselLang}"
+				value="#{msg.deutsch}" ajax="false"/>
+			<p:commandButton action="#{kundenHandler.changeLang}"
+				value="#{msg.englisch}" ajax="false"/>
 			<p:menubar>
 
 				<p:menuitem value="#{msg.startseite}" url="index.xhtml"
@@ -43,7 +43,7 @@
 					<p:menuitem value="#{msg.produktverwaltung}"
 						url="produktVerwaltung.xhtml" />
 				</p:submenu>
-
+				
 				<p:submenu rendered="#{kundenHandler.loggedNotIn()}"
 					label="#{msg.hallo} #{kundenHandler.kunde.vorname}"
 					styleClass="align:center">
