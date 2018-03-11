@@ -32,41 +32,24 @@
 
 		<ui:insert name="content">
 			<h:form id="id">
-			
-			<p:panel id="panel" style="text-align:left;" header="#{kundenHandler.merkeKunde.vorname} #{kundenHandler.merkeKunde.nachname}" />
 
-				<p:dataTable var="artikel"
-					value="#{kundenHandler.merkeKunde.artikelDaten}"
+				<p:panel id="panel" style="text-align:left;"
+					header="#{kundenHandler.merkeKunde.vorname} #{kundenHandler.merkeKunde.nachname}" />
+
+				<p:dataTable var="artikel" value="#{kundenHandler.warenkorb}"
 					rowClasses="odd,even" headerClass="header">
 
-
-					<p:column>
-						<f:facet name="header">#{msg.bezeichnung}</f:facet>
+					<p:column headerText="Bezeichnung" sortBy="#{artikel.bezeichnung}">
 						<h:outputText value="#{artikel.bezeichnung}" />
 					</p:column>
-
-					<p:column>
-						<f:facet name="header">#{msg.hersteller}</f:facet>
-						<h:outputText value="#{artikel.hersteller}" />
-					</p:column>
-
-
-
-					<p:column>
-						<f:facet name="header">#{msg.preis}</f:facet>
+					<p:column headerText="Preis" sortBy="#{artikel.preis}">
 						<h:outputText value="#{artikel.preis}" />
 					</p:column>
-
-					<p:column>
-						<f:facet name="header">#{msg.anzahl}</f:facet>
-						<h:outputText value="#{artikel.anzahl} Stück" />
+					<p:column headerText="Hersteller" sortBy="#{artikel.hersteller}">
+						<h:outputText value="#{artikel.hersteller}" />
 					</p:column>
-
-
-
-					<p:column>
-						<f:facet name="header">#{msg.gesamt}</f:facet>
-						<h:outputText value="#{artikel.gesamt}" />
+					<p:column headerText="Beschreibung">
+						<h:outputText value="#{artikel.beschreibung}" />
 					</p:column>
 				</p:dataTable>
 
@@ -112,14 +95,6 @@
 			</h:form>
 
 		</ui:insert>
-
-
-
-
-
-
-
-
 		<div class="push"></div>
 	</div>
 

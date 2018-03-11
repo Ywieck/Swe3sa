@@ -163,7 +163,7 @@ public class KundenHandler {
 
 		artikeln = new ListDataModel<ArtikelDaten>();
 		artikeln.setWrappedData(em.createNamedQuery("SelectArtikel").getResultList());
-
+		
 		try {
 			try {
 				utx.commit();
@@ -549,23 +549,22 @@ public class KundenHandler {
 	 * Zusätzlich werden noch Gesamtpreis und Anzahl mitberechnet
 	 */
 	public String artikelInWarenkorb() {
-
-		merkeKunde.getArtikelDaten().add(merkeArtikel);
-
-		merkeArtikel.setNummer(number);
-		number++;
-
-		gesamtpreis = gesamtpreis + (merkeArtikel.getAnzahl() * merkeArtikel.getPreis());
-		gesamtpreis = Math.floor(gesamtpreis * 100) / 100.0;
-
-		gesamt = merkeArtikel.getAnzahl() * merkeArtikel.getPreis();
-		gesamt = Math.floor(gesamt * 100) / 100.0;
-		merkeArtikel.setGesamt(gesamt);
-
-		gesamtanzahl = gesamtanzahl + merkeArtikel.getAnzahl();
-
-		System.out.println(merkeArtikel.getGesamt());
-		merkeArtikel = new ArtikelDaten();
+//		merkeKunde.getArtikelDaten().add(merkeArtikel);
+//
+//		merkeArtikel.setNummer(number);
+//		number++;
+//
+//		gesamtpreis = gesamtpreis + (merkeArtikel.getAnzahl() * merkeArtikel.getPreis());
+//		gesamtpreis = Math.floor(gesamtpreis * 100) / 100.0;
+//
+//		gesamt = merkeArtikel.getAnzahl() * merkeArtikel.getPreis();
+//		gesamt = Math.floor(gesamt * 100) / 100.0;
+//		merkeArtikel.setGesamt(gesamt);
+//
+//		gesamtanzahl = gesamtanzahl + merkeArtikel.getAnzahl();
+//
+//		System.out.println(merkeArtikel.getGesamt());
+//		merkeArtikel = new ArtikelDaten();
 		try {
 			try {
 				utx.begin();
@@ -581,11 +580,12 @@ public class KundenHandler {
 			e.printStackTrace();
 		}
 
-		merkeKunde = em.merge(merkeKunde);
-		merkeArtikel = em.merge(merkeArtikel);
-		em.persist(merkeKunde);
-		em.persist(merkeArtikel);
-		kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
+		selectedArtikel = em.merge(selectedArtikel);
+//		merkeArtikel = em.merge(merkeArtikel);
+//		em.persist(merkeKunde);
+		em.persist(selectedArtikel);
+		warenkorb = new ListDataModel<ArtikelDaten>();
+		warenkorb.setWrappedData(em.createNamedQuery("SelectArtikel").getResultList());
 
 		try {
 			try {
@@ -614,8 +614,7 @@ public class KundenHandler {
 			e.printStackTrace();
 		}
 		gesamt = 0;
-
-		return null;
+		return "index";
 	}
 
 	/**
