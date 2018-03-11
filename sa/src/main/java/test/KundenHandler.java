@@ -218,6 +218,22 @@ public class KundenHandler {
 		return "alleKunden";
 	}
 
+	public String speichernProfil() {
+		try {
+			utx.begin();
+			merkeKunde = em.merge(merkeKunde);
+			em.persist(merkeKunde);
+			kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
+			utx.commit();
+		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicRollbackException
+				| SystemException | NotSupportedException | HeuristicMixedException
+				| javax.transaction.NotSupportedException | javax.transaction.SystemException
+				| javax.transaction.RollbackException e) {
+			e.printStackTrace();
+		}
+		return "index";
+	}
+
 	/**
 	 * durch den klick auf //Löschen// als Admin in der Ansicht (alleKunden)
 	 * wird der jenige aus der Datenbank gelöscht
@@ -699,9 +715,25 @@ public class KundenHandler {
 	 * ein neues Objekt wird erzeugt um die Daten nachher zu speichern, wenn auf
 	 * //Registrieren// klickt
 	 */
-	public String Registrieren() {
-		merkeKunde = new Kunde();
-		return "alleKunden";
+
+	// public String Registrieren() {
+	// merkeKunde = new Kunde();
+	// return "alleKunden";
+	// }
+	public String registrieren() {
+		try {
+			utx.begin();
+			merkeKunde = em.merge(merkeKunde);
+			em.persist(merkeKunde);
+			kunden.setWrappedData(em.createNamedQuery("SelectKunden").getResultList());
+			utx.commit();
+		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicRollbackException
+				| SystemException | NotSupportedException | HeuristicMixedException
+				| javax.transaction.NotSupportedException | javax.transaction.SystemException
+				| javax.transaction.RollbackException e) {
+			e.printStackTrace();
+		}
+		return "login";
 	}
 
 	/**

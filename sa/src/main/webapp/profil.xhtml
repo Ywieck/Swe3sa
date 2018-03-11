@@ -10,7 +10,7 @@
 
 
 <h:head>
-	<title>EY!Wear-#{msg.kundendaten}</title>
+	<title>EY!Wear-#{msg.deinProfil}</title>
 	<link href="https://fonts.googleapis.com/css?family=Jura"
 		rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="resources/css/webShop.css" type="text/css" />
@@ -27,24 +27,14 @@
 	<div id="content"
 		style="color: black; font-family: Jura; font-size: 17px; width: 100%; margin: auto;">
 		<h1>
-			<a style="color: maroon;">#{msg.kundendatenBeab}</a>
+			<a style="color: maroon;">#{msg.deinProfil}</a>
 		</h1>
 
 		<h:form id="form">
 
 			<p:growl showDetail="true" />
-			<p:panel id="panel" header="#{msg.kundendaten}">
-				<h:panelGrid columns="2">
-
-					<h:outputLabel value="#{msg.rolle}" for="rolle" />
-					<h:panelGroup>
-						<p:inputText id="rolle" required="true"
-							requiredMessage="rolle fehlt"
-							value="#{kundenHandler.merkeKunde.rolle}">
-							<!-- 							<f:converter converterId="eigenerConverter" /> -->
-						</p:inputText>
-						<h:message for="rolle" styleClass="message" />
-					</h:panelGroup>
+			<p:panel id="panel" header="#{msg.deineDaten}">
+				<h:panelGrid columns="2" >
 
 					<h:outputLabel value="#{msg.vorname}" for="vorname" />
 					<h:panelGroup>
@@ -108,7 +98,7 @@
 				</h:panelGrid>
 				<br></br>
 
-				<p:commandButton action="#{kundenHandler.speichern}"
+				<p:commandButton action="#{kundenHandler.speichernProfil()}"
 					value="#{msg.speichern}" update="@(form)" />
 
 				<p:commandButton action="alleKunden.xhtml" value="#{msg.abbrechen}"

@@ -34,18 +34,28 @@
 			<h:commandButton action="#{kundenHandler.changeLang}"
 				value="#{msg.englisch}" />
 			<p:menubar>
-	
-				<p:menuitem value="#{msg.startseite}" url="index.xhtml" icon="ui-icon-home" />
+
+				<p:menuitem value="#{msg.startseite}" url="index.xhtml"
+					icon="ui-icon-home" />
 				<p:submenu rendered="#{kundenHandler.checkAdmin()}"
 					label="#{msg.verwaltung}">
 					<p:menuitem value="#{msg.kundenverwaltung}" url="alleKunden.xhtml" />
-					<p:menuitem value="#{msg.produktverwaltung}" url="produktVerwaltung.xhtml" />
+					<p:menuitem value="#{msg.produktverwaltung}"
+						url="produktVerwaltung.xhtml" />
+				</p:submenu>
+
+				<p:submenu rendered="#{kundenHandler.loggedNotIn()}"
+					label="#{msg.hallo} #{kundenHandler.merkeKunde.vorname}"
+					styleClass="align:center">
+					<p:menuitem value="Profil" action="profil.xhtml" />
+					<p:menuitem value="#{msg.abmelden}"
+						action="#{kundenHandler.logout()}" />
 				</p:submenu>
 
 				<f:facet name="options">
-					<p:button value="#{msg.anmelden}" rendered="#{kundenHandler.loggedIn()}"
-						outcome="login.xhtml" />
-					<p:commandButton value="#{msg.abmelden}"
+					<p:button value="#{msg.anmelden}"
+						rendered="#{kundenHandler.loggedIn()}" outcome="login.xhtml" />
+					<p:commandButton value="#{msg.abmelden} "
 						rendered="#{kundenHandler.loggedNotIn()}"
 						action="#{kundenHandler.logout()}" />
 

@@ -10,7 +10,7 @@
 
 
 <h:head>
-	<title>EY!Wear!YE</title>
+	<title>EY!Wear-#{msg.impressum}</title>
 	<link href="https://fonts.googleapis.com/css?family=Jura"
 		rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="resources/css/webShop.css" type="text/css" />
@@ -29,38 +29,38 @@
 		<ui:insert name="impressum">
 			<center>
 				<h1>
-					<a style="color: maroon;">§ Impressum</a>
+					<a style="color: maroon;">§ #{msg.impressum}</a>
 				</h1>
 			</center>
 		</ui:insert>
-		<h2>Angaben gemäß § 5 TMG:</h2>
+		<h2>#{msg.angaben} #{msg.gemaes} § 5 TMG:</h2>
 		<p>
 			EY!Wear GmbH<br /> Am Lunedeich 183<br /> 27572 Bremerhaven
 		</p>
-		<h2>Vertreten durch:</h2>
+		<h2>#{msg.vertretenDurch}:</h2>
 		<p>
 			Yasar Wieck<br /> Enno Münsterberg
 		</p>
 
-		<h2>Registereintrag:</h2>
+		<h2>#{msg.registereintrag}:</h2>
 		<p>
-			Eintragung im Handelsregister. <br />Registergericht: Amtsgericht
-			Musterstadt <br />Registernummer: AMS-999999
+			#{msg.eintragungImHandelsregister}. <br />#{msg.registergericht}: #{msg.amtsgericht}
+			Musterstadt <br />#{msg.registernummer}: AMS-999999
 		</p>
-		<h2>Umsatzsteuer-ID:</h2>
+		<h2>#{msg.umsatzsteuerID}:</h2>
 		<p>
-			Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
+			#{msg.umsatzsteuer}-#{msg.identifikationsnummer} #{msg.gemaes} § 27 a #{msg.umsatzsteuergesetz}:<br />
 			DE 999 999 999
 		</p>
-		<h2>Aufsichtsbehörde:</h2>
-		<p>Landratsamt Musterstadt</p>
-		<h2>Angaben zur Berufshaftpflichtversicherung:</h2>
+		<h2>#{msg.aufsichtsbehoerde}:</h2>
+		<p>#{msg.landratsamt} Musterstadt</p>
+		<h2>#{msg.angaben} #{msg.zur} #{msg.berufshaftpflichtversicherung}:</h2>
 		<p>
-			Name und Sitz des Versicherers:<br /> Beispiel Versicherung AG<br />
+			#{msg.name} #{msg.undund} #{msg.sitz} #{msg.des} #{msg.versicherers}:<br /> #{msg.beispiel} #{msg.versicherungAG}<br />
 			Musterweg 10<br /> 90210 Musterstadt
 		</p>
 		<p>
-			Geltungsraum der Versicherung:<br /> Deutschland
+			#{msg.geltungsraum} #{msg.der} #{msg.versicherung}:<br /> #{msg.deutschland}
 		</p>
 		<div class="push"></div>
 	</div>

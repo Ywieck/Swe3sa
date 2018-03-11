@@ -10,7 +10,7 @@
 
 <!-- <f:view locale="en"> -->
 <h:head>
-	<title>EY!Wear!YE</title>
+	<title>EY!Wear-#{msg.registrieren}</title>
 	<link href="https://fonts.googleapis.com/css?family=Jura"
 		rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="resources/css/webShop.css" type="text/css" />
@@ -151,8 +151,8 @@
 				</p:panelGrid>
 				<br />
 
-				<p:commandButton value="#{msg.speichern}"
-					action="#{kundenHandler.speichern()}" ajax="false" />
+				<p:commandButton value="#{msg.registrieren}"
+					action="#{kundenHandler.registrieren()}" ajax="false" />
 				<p:commandButton action="index.xhtml" value="#{msg.abbrechen}"
 					immediate="true" />
 			</h:form>

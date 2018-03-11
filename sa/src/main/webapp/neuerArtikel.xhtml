@@ -10,7 +10,7 @@
 
 
 <h:head>
-	<title>EY!Wear!YE</title>
+	<title>EY!Wear-#{msg.neuerArtikel}</title>
 	<link href="https://fonts.googleapis.com/css?family=Jura"
 		rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="resources/css/webShop.css" type="text/css" />
@@ -27,15 +27,15 @@
 	<div id="content"
 		style="color: black; font-family: Jura; font-size: 17px; width: 100%; margin: auto;">
 		<h1>
-			<a style="color: maroon;">Neuen Artikel hinzufügen</a>
+			<a style="color: maroon;">#{msg.neuenArtikelHinzufuegen}</a>
 		</h1>
 		<ui:insert name="content">
 			<h:form id="form">
 
-				<p:panel id="panel" header="Bearbeiten / neuer Artikel">
+				<p:panel id="panel" header="#{msg.neuerArtikel}">
 					<h:panelGrid columns="2">
 
-						<h:outputLabel value="#{msg.bezeichnung}" for="bezeichnung" />
+						<h:outputLabel value="#{msg.bezeichnung}:" for="bezeichnung" />
 						<h:panelGroup>
 							<p:inputText id="bezeichnung"
 								value="#{kundenHandler.merkeArtikel.bezeichnung}">
@@ -44,7 +44,7 @@
 							<p:message for="bezeichnung" />
 						</h:panelGroup>
 
-						<h:outputLabel value="#{msg.hersteller}" for="hersteller" />
+						<h:outputLabel value="#{msg.hersteller}:" for="hersteller" />
 						<h:panelGroup>
 							<p:inputText id="hersteller"
 								value="#{kundenHandler.merkeArtikel.hersteller}">
@@ -53,7 +53,7 @@
 							<p:message for="hersteller" />
 						</h:panelGroup>
 
-						<h:outputLabel value="#{msg.beschreibung}" for="beschreibung" />
+						<h:outputLabel value="#{msg.beschreibung}:" for="beschreibung" />
 						<h:panelGroup>
 							<p:inputText id="beschreibung"
 								value="#{kundenHandler.merkeArtikel.beschreibung}">
@@ -75,12 +75,13 @@
 						<!-- 							<p:inputText id="foto" required="true" -->
 						<!-- 								requiredMessage="Foto fehlt/Photo is missing" -->
 						<!-- 								value="#{kundenHandler.merkeArtikel.photo}"> -->
-						<!-- 								<f:converter converterId="eigenerConverter" /> -->
+						<!-- 																<f:converter converterId="eigenerConverter" /> -->
 						<!-- 							</p:inputText> -->
 						<!-- 							<p:message for="foto" /> -->
 						<!-- 						</h:panelGroup> -->
 					</h:panelGrid>
 				</p:panel>
+				
 				<p:commandButton action="#{kundenHandler.Artikelspeichern}"
 					value="#{msg.speichern}" ajax="false" />
 				<p:commandButton action="produktVerwaltung.xhtml"
